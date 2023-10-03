@@ -2,7 +2,7 @@ import React from 'react'
 import * as OBC from "openbim-components"
 import * as THREE from "three"
 
-export default () => {
+const Viewer = () => {
   const [modelCount, setModelCount] = React.useState(0)
 
   React.useEffect(() => {

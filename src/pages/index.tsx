@@ -4,6 +4,7 @@ import Link from "next/link";
 import Viewer from '@/components/Viewer';
 import Sidebar from '@/components/Sidebar';
 import World from '@/components/World';
+// import './index.css'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -15,10 +16,17 @@ interface tHomeProps {
 export default function Home(props: tHomeProps) {
     const {formattedDate} = props;
     return (
-        <div className={"container mx-auto"}>
-            {/* <Viewer /> */}
-            hi
-            <World />
+        <div 
+        id="app" 
+        style={{
+            width: "100vw",
+            height: "100vh",
+            // display: "grid",
+            // gridTemplateColumns: "60px 1fr",
+            // gridTemplateAreas: "sidebar viewer",
+        }}
+        >
+            <World/>
             <Sidebar />
         </div>
     );
