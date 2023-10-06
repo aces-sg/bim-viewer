@@ -1,23 +1,23 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-bimviewer-dev-151742-authRole",
-            "UnauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-authRole",
-            "Region": "ap-southeast-1",
-            "DeploymentBucketName": "amplify-bimviewer-dev-151742-deployment",
-            "UnauthRoleName": "amplify-bimviewer-dev-151742-unauthRole",
-            "StackName": "amplify-bimviewer-dev-151742",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:517820625953:stack/amplify-bimviewer-dev-151742/f185d590-61bc-11ee-acc1-02accb91574a",
-            "AmplifyAppId": "d2bqotf9sbgkzl"
-        },
-        "categories": {
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "d2bqotf9sbgkzl",
-                    "type": "manual"
-                }
-            }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bimviewer-dev-151742-authRole",
+      "UnauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-bimviewer-dev-151742-deployment",
+      "UnauthRoleName": "amplify-bimviewer-dev-151742-unauthRole",
+      "StackName": "amplify-bimviewer-dev-151742",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:517820625953:stack/amplify-bimviewer-dev-151742/f185d590-61bc-11ee-acc1-02accb91574a",
+      "AmplifyAppId": "d2bqotf9sbgkzl"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2bqotf9sbgkzl",
+          "type": "manual"
         }
+      }
     }
+  }
 }
