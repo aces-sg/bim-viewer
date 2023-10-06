@@ -24,5 +24,14 @@
         }
       }
     }
+  },
+  "auth": {
+    "bimviewereb9fad2a": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
   }
 }
