@@ -86,7 +86,14 @@ export default function World() {
       exportButton
     );
     viewer.ui.addToolbar(mainToolbar);
-    viewer.camera.controls.setLookAt(10, 10, 10, 0, 0, 0);
+    (viewer.camera as OBC.OrthoPerspectiveCamera).controls?.setLookAt(
+      10,
+      10,
+      10,
+      0,
+      0,
+      0
+    );
   }, []);
 
   useEffect(() => {
