@@ -1,10 +1,6 @@
-import Image from 'next/image'
 import {Inter} from 'next/font/google'
-import Link from "next/link";
 import Viewer from '@/components/Viewer';
 import Sidebar from '@/components/Sidebar';
-import World from '@/components/World';
-// import './index.css'
 
 const inter = Inter({subsets: ['latin']})
 
@@ -21,13 +17,13 @@ export default function Home(props: tHomeProps) {
         style={{
             width: "100vw",
             height: "100vh",
-            // display: "grid",
-            // gridTemplateColumns: "60px 1fr",
-            // gridTemplateAreas: "sidebar viewer",
+            display: "grid",
+            gridTemplateColumns: "60px 1fr",
+            gridTemplateAreas: "'sidebar viewer'",
         }}
         >
-            <World/>
             <Sidebar />
+            <Viewer />
         </div>
     );
 }
