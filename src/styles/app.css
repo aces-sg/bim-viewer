@@ -1709,3 +1709,16 @@ dialog::backdrop{
     background-color: rgb(75 85 99 / var(--tw-bg-opacity));
   }
 }
+
+#viewerContainer  canvas {
+  height: 100vh !important;
+  position: absolute;
+}
+
+#viewerContainer  > div {
+  max-height: 100vh !important;
+}
+
+#viewerContainer > #bottom-toolbar-container {
+  height: 80px !important;
+}
