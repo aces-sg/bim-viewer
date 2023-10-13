@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import Viewer from "@/components/Viewer";
+import ViewerNoSSR from "@/components/ViewerNoSSR";
 import Sidebar from "@/components/Sidebar";
 
 const inter = Inter({ subsets: ["latin"] });
@@ -23,28 +24,30 @@ export default function Home(props: tHomeProps) {
       }}
     >
       <Sidebar />
-      <Viewer />
+      <ViewerNoSSR />
     </div>
   );
 }
 
-// export async function getStaticProps() {
-//     const buildDate = Date.now();
-//     try {
-//         const formattedDate = new Intl.DateTimeFormat("en-US", {
-//             dateStyle: "long",
-//             timeStyle: "long",
-//         }).format(buildDate);
+export async function getStaticProps() {
+  const buildDate = Date.now();
+  try {
+    const formattedDate = new Intl.DateTimeFormat("en-US", {
+      dateStyle: "long",
+      timeStyle: "long",
+    }).format(buildDate);
 
-//         const res = await fetch('https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty');
-//         const postIds: number[] = await res.json();
-//         return {
-//             props: {
-//                 posts: postIds,
-//                 formattedDate
-//             }
-//         };
-//     } catch (e) {
-//         console.log(e);
-//     }
-// }
+    const res = await fetch(
+      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+    );
+    const postIds: number[] = await res.json();
+    return {
+      props: {
+        posts: postIds,
+        formattedDate,
+      },
+    };
+  } catch (e) {
+    console.log(e);
+  }
+}
