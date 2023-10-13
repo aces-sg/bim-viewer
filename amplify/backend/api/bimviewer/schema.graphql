@@ -1,0 +1,42 @@
+# This "input" configures a global authorization rule to enable public access to
+# all models in this schema. Learn more about authorization rules here: https://docs.amplify.aws/cli/graphql/authorization-rules
+input AMPLIFY {
+  globalAuthRule: AuthRule = { allow: public }
+} # FOR TESTING ONLY!
+type Todo @model {
+  id: ID!
+}
+
+type Submission {
+  id: ID!
+  name: String
+  email: String
+  phone: String
+  commpany: String
+  description: String
+}
+
+type SubmissionsResult {
+  items: [Submission]
+}
+
+input CreateSubmissionInput {
+  id: ID
+  modelId: String!
+  modelUrl: String!
+  name: String
+  email: String
+  phone: String
+  commpany: String
+  description: String
+}
+
+type Mutation {
+  triggerNotification(input: String): String
+    @function(name: "ServerlessCdkProd-ServerlessStack-sub-function")
+  createSubmission(input: CreateSubmissionInput): Submission
+}
+
+type Query {
+  listSubmissions: SubmissionsResult
+}

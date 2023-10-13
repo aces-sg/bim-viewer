@@ -2,8 +2,43 @@
   "hosting": {
     "amplifyhosting": {
       "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2023-10-13T00:25:37.414Z"
+    }
+  },
+  "storage": {
+    "Submission65p3lcy62bfuhbghoxvj7fgb7mdev": {
+      "service": "DynamoDB",
+      "serviceType": "imported",
       "providerPlugin": "awscloudformation",
-      "type": "manual"
+      "dependsOn": []
+    }
+  },
+  "api": {
+    "bimviewer": {
+      "service": "AppSync",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
+  "auth": {
+    "bimviewereb9fad2a": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
     }
   }
 }
