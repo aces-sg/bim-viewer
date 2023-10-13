@@ -24,9 +24,6 @@ export default function Sidebar() {
         <a href={links.home}>
           <span className={OBC.Button.Class.Base + "material-icons"}>home</span>
         </a>
-        <span className={OBC.Button.Class.Base + "material-icons"}>
-          menu_open
-        </span>
       </div>
     </>
   );
