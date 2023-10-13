@@ -1,38 +1,48 @@
 {
-    "dev": {
-        "awscloudformation": {
-            "AuthRoleName": "amplify-bimviewer-dev-151742-authRole",
-            "UnauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-unauthRole",
-            "AuthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-authRole",
-            "Region": "ap-southeast-1",
-            "DeploymentBucketName": "amplify-bimviewer-dev-151742-deployment",
-            "UnauthRoleName": "amplify-bimviewer-dev-151742-unauthRole",
-            "StackName": "amplify-bimviewer-dev-151742",
-            "StackId": "arn:aws:cloudformation:ap-southeast-1:517820625953:stack/amplify-bimviewer-dev-151742/f185d590-61bc-11ee-acc1-02accb91574a",
-            "AmplifyAppId": "d2bqotf9sbgkzl"
-        },
-        "categories": {
-            "auth": {
-                "bimviewereb9fad2a": {
-                    "userPoolId": "ap-southeast-1_2XSwgLCua",
-                    "userPoolName": "bim11d6741b_userpool_11d6741b-dev",
-                    "webClientId": "q49pbhmvqqtbs33fbapgf7nkv",
-                    "nativeClientId": "7ro5fej4lu3kpfckj4l2sj3g97",
-                    "identityPoolId": "ap-southeast-1:8e8aaea4-45d3-4737-a922-5bfb8e860c6b",
-                    "identityPoolName": "bim11d6741b_identitypool_11d6741b__dev",
-                    "allowUnauthenticatedIdentities": false,
-                    "authRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-authRole",
-                    "authRoleName": "amplify-bim-dev-90405-authRole",
-                    "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-unauthRole",
-                    "unauthRoleName": "amplify-bim-dev-90405-unauthRole"
-                }
-            },
-            "hosting": {
-                "amplifyhosting": {
-                    "appId": "d2bqotf9sbgkzl",
-                    "type": "cicd"
-                }
-            }
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bimviewer-dev-151742-authRole",
+      "UnauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-dev-151742-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-bimviewer-dev-151742-deployment",
+      "UnauthRoleName": "amplify-bimviewer-dev-151742-unauthRole",
+      "StackName": "amplify-bimviewer-dev-151742",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:517820625953:stack/amplify-bimviewer-dev-151742/f185d590-61bc-11ee-acc1-02accb91574a",
+      "AmplifyAppId": "d2bqotf9sbgkzl"
+    },
+    "categories": {
+      "auth": {
+        "bimviewereb9fad2a": {
+          "userPoolId": "ap-southeast-1_2XSwgLCua",
+          "userPoolName": "bim11d6741b_userpool_11d6741b-dev",
+          "webClientId": "q49pbhmvqqtbs33fbapgf7nkv",
+          "nativeClientId": "7ro5fej4lu3kpfckj4l2sj3g97",
+          "identityPoolId": "ap-southeast-1:8e8aaea4-45d3-4737-a922-5bfb8e860c6b",
+          "identityPoolName": "bim11d6741b_identitypool_11d6741b__dev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-authRole",
+          "authRoleName": "amplify-bim-dev-90405-authRole",
+          "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-unauthRole",
+          "unauthRoleName": "amplify-bim-dev-90405-unauthRole"
         }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2bqotf9sbgkzl",
+          "type": "cicd"
+        }
+      },
+      "storage": {
+        "Submission65p3lcy62bfuhbghoxvj7fgb7mdev": {
+          "tableName": "Submission-65p3lcy62bfuhbghoxvj7fgb7m-dev",
+          "region": "ap-southeast-1",
+          "arn": "arn:aws:dynamodb:ap-southeast-1:517820625953:table/Submission-65p3lcy62bfuhbghoxvj7fgb7m-dev",
+          "streamArn": "arn:aws:dynamodb:ap-southeast-1:517820625953:table/Submission-65p3lcy62bfuhbghoxvj7fgb7m-dev/stream/2023-03-09T01:08:49.283",
+          "partitionKeyName": "id",
+          "partitionKeyType": "S"
+        }
+      }
     }
+  }
 }
