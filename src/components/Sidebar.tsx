@@ -1,8 +1,6 @@
-import React from 'react'
-import * as OBC from "openbim-components"
-
+import React from "react";
+import * as OBC from "openbim-components";
 export default function Sidebar() {
-
   const sidebarStyle: React.CSSProperties = {
     gridArea: "sidebar",
     backgroundColor: "#202932",
@@ -12,15 +10,24 @@ export default function Sidebar() {
     flexDirection: "column",
     rowGap: "12px",
     justifyContent: "center",
-    alignItems: "center"
-  }
+    alignItems: "center",
+  };
+
+  const links = {
+    home: "https://www.bim.com.sg",
+    projects: "/projects",
+  };
 
   return (
     <>
       <div style={sidebarStyle}>
-        <span className={OBC.Button.Class.Base + "material-icons"}>home</span>
-        <span className={OBC.Button.Class.Base + "material-icons"}>menu_open</span>
+        <a href={links.home}>
+          <span className={OBC.Button.Class.Base + "material-icons"}>home</span>
+        </a>
+        <span className={OBC.Button.Class.Base + "material-icons"}>
+          menu_open
+        </span>
       </div>
     </>
-  )
+  );
 }

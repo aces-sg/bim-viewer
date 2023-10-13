@@ -2,8 +2,36 @@
   "hosting": {
     "amplifyhosting": {
       "service": "amplifyhosting",
+      "type": "cicd",
+      "lastPushTimeStamp": "2023-10-13T00:25:37.414Z"
+    }
+  },
+  "storage": {},
+  "api": {
+    "bimviewer": {
+      "service": "AppSync",
       "providerPlugin": "awscloudformation",
-      "type": "manual"
+      "dependsOn": [],
+      "output": {
+        "authConfig": {
+          "defaultAuthentication": {
+            "authenticationType": "API_KEY",
+            "apiKeyConfig": {
+              "apiKeyExpirationDays": 7
+            }
+          },
+          "additionalAuthenticationProviders": []
+        }
+      }
+    }
+  },
+  "auth": {
+    "bimviewereb9fad2a": {
+      "service": "Cognito",
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
     }
   }
 }
