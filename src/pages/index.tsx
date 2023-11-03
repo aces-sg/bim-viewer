@@ -13,24 +13,7 @@ interface tHomeProps {
 
 const Home: React.FC<tHomeProps> = props => {
   const { formattedDate } = props;
-  return (
-    <div
-      id="app"
-      style={{
-        width: "100vw",
-        height: "100vh",
-        display: "grid",
-        gridTemplateColumns: "100px 1fr",
-        gridTemplateAreas: "'sidebar viewer'",
-      }}
-    >
-      <Sidebar />
-      <div>
-        <Navbar />
-        <ViewerNoSSR />
-      </div>
-    </div>
-  );
+  return <ViewerNoSSR />;
 };
 
 export default Home;
