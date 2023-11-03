@@ -1,9 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
+import Image from "next/image";
 import * as OBC from "openbim-components";
 import * as THREE from "three";
+import CommentsBox from "@/components/CommentsBox";
 
 const Viewer = () => {
-  const [modelCount, setModelCount] = React.useState(0);
+  const [modelCount, setModelCount] = useState(0);
+  const [showCommentsBox, setShowCommentsBox] = useState(false);
 
   const init = async () => {
     const { GUI } = await import("dat.gui");
@@ -159,6 +162,10 @@ const Viewer = () => {
     init();
   }, []);
 
+  const closeCommentsBox = () => {
+    setShowCommentsBox(false);
+  };
+
   const viewerContainerStyle: React.CSSProperties = {
     width: "100%",
     height: "100%",
@@ -166,18 +173,36 @@ const Viewer = () => {
     gridArea: "viewer",
   };
 
-  const titleStyle: React.CSSProperties = {
-    position: "absolute",
-    top: "15px",
-    left: "15px",
-    zIndex: 1,
-  };
-
   return (
     <>
       <div id="viewerContainer" style={viewerContainerStyle}>
-        <h3 style={titleStyle}>Models loaded: {modelCount}</h3>
+        <h3 className="absolute top-[15px] left-[15px] z-20">
+          Models loaded: {modelCount}
+        </h3>
+        <div className="flex items-center justify-between absolute top-[20px] right-[45px] z-20">
+          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]">
+            <Image
+              priority
+              src="/images/plusUserIcon.svg"
+              width={22}
+              height={16}
+              alt="PlusIcon"
+              className="mr-2"
+            />
+            <span>Assign</span>
+          </button>
+          <Image
+            priority
+            src="/images/chatIcon.svg"
+            width={40}
+            height={40}
+            alt="PlusIcon"
+            className="cursor-pointer ml-5"
+            onClick={() => setShowCommentsBox(true)}
+          />
+        </div>
       </div>
+      {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
     </>
   );
 };

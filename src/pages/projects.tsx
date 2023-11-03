@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import ProjectCard from "@/components/ProjectCard";
+import CommentsBox from "@/components/CommentsBox";
 
 import { Project } from "@/types";
 
@@ -51,25 +52,32 @@ const projects: Project[] = [
 const Projects = () => {
   const [showCommentsBox, setShowCommentsBox] = useState(false);
 
+  const closeCommentsBox = () => {
+    setShowCommentsBox(false);
+  };
+
   return (
-    <div className="h-full px-[40px] py-[32px]">
-      <div className="mb-[20px] flex items-center justify-end">
-        <Image
-          priority
-          src="/images/chatIcon.svg"
-          width={40}
-          height={40}
-          alt="ChatIcon"
-          className="cursor-pointer"
-          onClick={() => setShowCommentsBox(true)}
-        />
+    <>
+      <div className="h-full px-[40px] py-[32px]">
+        <div className="mb-[20px] flex items-center justify-end">
+          <Image
+            priority
+            src="/images/chatIcon.svg"
+            width={40}
+            height={40}
+            alt="ChatIcon"
+            className="cursor-pointer"
+            onClick={() => setShowCommentsBox(true)}
+          />
+        </div>
+        <div className="grid grid-cols-4 gap-[20px]">
+          {projects.map(project => (
+            <ProjectCard project={project} key={project.id} />
+          ))}
+        </div>
       </div>
-      <div className="grid grid-cols-4 gap-[20px]">
-        {projects.map(project => (
-          <ProjectCard project={project} key={project.id} />
-        ))}
-      </div>
-    </div>
+      {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
+    </>
   );
 };
 

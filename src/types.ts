@@ -20,3 +20,10 @@ export interface Document {
   id: number;
   name: string;
 }
+
+export interface Comment {
+  id: number;
+  name: string;
+  time: string;
+  description: string;
+}

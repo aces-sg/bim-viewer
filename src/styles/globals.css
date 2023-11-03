@@ -25,3 +25,7 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.active-nav svg path {
+  fill: #121212 !important;
+}
