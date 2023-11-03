@@ -9,3 +9,9 @@ export interface tHnBlogPost {
   type: string;
   url: string;
 }
+
+export interface Project {
+  id: number;
+  title: string;
+  description: string;
+}
