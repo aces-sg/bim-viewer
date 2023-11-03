@@ -15,3 +15,8 @@ export interface Project {
   title: string;
   description: string;
 }
+
+export interface Document {
+  id: number;
+  name: string;
+}

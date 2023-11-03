@@ -4,7 +4,7 @@ import LeftArrowIcon from "./icons/LeftArrowIcon";
 
 const Navbar: FC = () => {
   return (
-    <div className="bg-white px-[40px] py-[8px] flex items-center justify-between">
+    <div className="bg-white px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2]">
       <Link href="https://www.bim.com.sg" className="flex items-center">
         <LeftArrowIcon />
         <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">

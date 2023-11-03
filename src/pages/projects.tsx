@@ -49,7 +49,7 @@ const projects: Project[] = [
 
 const Projects = () => {
   return (
-    <div className="h-100 px-[20px] py-[32px]">
+    <div className="h-full px-[40px] py-[32px]">
       <div className="grid grid-cols-4 gap-[20px]">
         {projects.map(project => (
           <ProjectCard project={project} key={project.id} />

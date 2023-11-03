@@ -18,7 +18,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           src="/images/threeDot.svg"
           width={4}
           height={16}
-          alt="Follow us on Twitter"
+          alt="threeDotIcon"
           className="cursor-pointer ml-10"
         />
       </div>
