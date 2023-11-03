@@ -1,7 +1,8 @@
 import { Inter } from "next/font/google";
-import Viewer from "@/components/Viewer";
 import ViewerNoSSR from "@/components/ViewerNoSSR";
 import Sidebar from "@/components/Sidebar";
+import Navbar from "@/components/Navbar";
+import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -10,7 +11,7 @@ interface tHomeProps {
   formattedDate: string;
 }
 
-export default function Home(props: tHomeProps) {
+const Home: React.FC<tHomeProps> = props => {
   const { formattedDate } = props;
   return (
     <div
@@ -19,15 +20,20 @@ export default function Home(props: tHomeProps) {
         width: "100vw",
         height: "100vh",
         display: "grid",
-        gridTemplateColumns: "60px 1fr",
+        gridTemplateColumns: "100px 1fr",
         gridTemplateAreas: "'sidebar viewer'",
       }}
     >
       <Sidebar />
-      <ViewerNoSSR />
+      <div>
+        <Navbar />
+        <ViewerNoSSR />
+      </div>
     </div>
   );
-}
+};
+
+export default Home;
 
 export async function getStaticProps() {
   const buildDate = Date.now();
@@ -38,7 +44,7 @@ export async function getStaticProps() {
     }).format(buildDate);
 
     const res = await fetch(
-      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty"
+      "https://hacker-news.firebaseio.com/v0/topstories.json?print=pretty",
     );
     const postIds: number[] = await res.json();
     return {

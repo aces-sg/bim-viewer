@@ -1,16 +1,30 @@
 import React from "react";
+import Link from "next/link";
 import * as OBC from "openbim-components";
-const Sidebar = () => {
-  const links = {
-    home: "https://www.bim.com.sg",
-    projects: "/projects",
-  };
+
+type Props = {};
+
+const Sidebar: React.FC<Props> = () => {
+  // const links = {
+  //   home: "https://www.bim.com.sg",
+  //   projects: "/projects",
+  // };
+
+  const links = [
+    { id: 1, link: "/viewers", name: "View" },
+    { id: 2, link: "/projects", name: "Projects" },
+    { id: 3, link: "/files", name: "Files" },
+  ];
 
   return (
     <div>
-      <a href={links.home}>
-        <span className={OBC.Button.Class.Base + "material-icons"}>home</span>
-      </a>
+      {links.map(linkItem => (
+        <div key={linkItem.id}>
+          <Link href={linkItem.link}>
+            <span>{linkItem.name}</span>
+          </Link>
+        </div>
+      ))}
     </div>
   );
 };
