@@ -1,7 +1,6 @@
 import React from "react";
 import Image from "next/image";
 import DocumentCard from "@/components/DocumentCard";
-import CommentsBox from "@/components/CommentsBox";
 
 const documents = [
   { id: 1, name: "Document 2023" },
@@ -39,7 +38,19 @@ const Documents = () => {
             className="cursor-pointer"
           />
         </div>
-        <div></div>
+        <div className="flex items-center mb-[16px]">
+          <Image
+            priority
+            src="/images/yellowFolderIcon.svg"
+            width={23.3}
+            height={18.6}
+            alt="yellowFolderIcon"
+            className="mr-[16px]"
+          />
+          <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">
+            All Folders
+          </h5>
+        </div>
         <div className="grid grid-cols-4 gap-[20px]">
           {documents.map(document => (
             <DocumentCard document={document} key={document.id} />

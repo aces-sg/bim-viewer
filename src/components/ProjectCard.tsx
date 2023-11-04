@@ -73,14 +73,16 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
                 key={index}
                 onClick={() => handleMenuOption(menu.id)}
               >
-                <Image
-                  priority
-                  src={`/images/${menu.iconLink}.svg`}
-                  width={menu.iconWidth}
-                  height={menu.iconHeight}
-                  alt={menu.iconLink}
-                  className="cursor-pointer"
-                />
+                <div className="w-[20px] h-[20px] flex items-center justify-center">
+                  <Image
+                    priority
+                    src={`/images/${menu.iconLink}.svg`}
+                    width={menu.iconWidth}
+                    height={menu.iconHeight}
+                    alt={menu.iconLink}
+                    className="cursor-pointer"
+                  />
+                </div>
                 <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#121212]">
                   {menu.name}
                 </span>
