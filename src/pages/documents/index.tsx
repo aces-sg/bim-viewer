@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
+
 import DocumentCard from "@/components/DocumentCard";
+import CommentsBox from "@/components/CommentsBox";
 
 const documents = [
   { id: 1, name: "Document 2023" },
@@ -14,6 +16,12 @@ const documents = [
 ];
 
 const Documents = () => {
+  const [showCommentsBox, setShowCommentsBox] = useState(false);
+
+  const closeCommentsBox = () => {
+    setShowCommentsBox(false);
+  };
+
   return (
     <>
       <div className="h-full bg-[white] px-[40px] py-[32px]">
@@ -36,6 +44,7 @@ const Documents = () => {
             height={40}
             alt="ChatIcon"
             className="cursor-pointer"
+            onClick={() => setShowCommentsBox(true)}
           />
         </div>
         <div className="flex items-center mb-[16px]">
@@ -57,6 +66,7 @@ const Documents = () => {
           ))}
         </div>
       </div>
+      {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
     </>
   );
 };
