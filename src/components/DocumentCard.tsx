@@ -98,7 +98,7 @@ const DocumentCard: FC<DocuemtnCardProps> = ({ document }) => {
           </div>
           {showMenu && (
             <div
-              className="bg-white absolute w-[200px] top-[55px] right-[10px] z-50 px-[16px] py-[8px] rounded-[8px] shadow-[0px_4px_8px_4px_rgba(0,0,0,0.1)]"
+              className="bg-white absolute w-[200px] top-[55px] right-[10px] z-50 px-[16px] py-[8px] rounded-[8px] shadow-[0px_4px_8px_4px_rgba(0,0,0,0.1)] custom-menu"
               ref={menuRef}
             >
               {menus.map((menu, index) => (
