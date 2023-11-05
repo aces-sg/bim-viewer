@@ -33,7 +33,7 @@ const comments: Comment[] = [
 
 const CommentsBox: FC<CommentsBoxProps> = ({ closeBox }) => {
   return (
-    <div className="fixed top-0 right-0 w-[500px] h-full shadow-[-4px_0px_8px_0px_rgba(0,0,0,0.1)] bg-[#f2f2f2] z-40">
+    <div className="fixed top-0 right-0 sm:w-full md:w-[500px] lg:w-[500px] h-full shadow-[-4px_0px_8px_0px_rgba(0,0,0,0.1)] bg-[#f2f2f2] z-40">
       <div className="bg-white px-[20px] py-[16px] flex items-center justify-between">
         <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#000]">
           Comments

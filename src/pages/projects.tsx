@@ -58,7 +58,7 @@ const Projects = () => {
 
   return (
     <>
-      <div className="h-full px-[40px] py-[32px]">
+      <div className="min-h-full px-[10px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="mb-[20px] flex items-center justify-end">
           <Image
             priority
@@ -70,7 +70,7 @@ const Projects = () => {
             onClick={() => setShowCommentsBox(true)}
           />
         </div>
-        <div className="grid grid-cols-4 gap-[20px]">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
           {projects.map(project => (
             <ProjectCard project={project} key={project.id} />
           ))}

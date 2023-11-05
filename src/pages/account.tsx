@@ -2,15 +2,15 @@ import React from "react";
 
 const Account = () => {
   return (
-    <div className="bg-white w-full h-full">
-      <div className="max-w-[600px] pt-[70px] mx-auto">
+    <div className="bg-white w-full min-h-full">
+      <div className="max-w-[600px] pt-[70px] mx-auto px-[10px]">
         <h3 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212] text-center mb-[20px]">
           Account
         </h3>
         <div className="bg-[#fddb00] w-[60px] h-[60px] mx-auto mb-[20px] flex items-center justify-center rounded-full font-sans font-semibold text-[14px] leading-[21px] text-[#000] cursor-pointer">
           AN
         </div>
-        <div className="grid grid-cols-2 gap-x-[28px]">
+        <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-x-[28px]">
           <div className="">
             <p className="font-sans font-normal text-[16px] leading-[24px] text-[#000] mb-[8px]">
               Name<span className="text-[#dd0000]">*</span>

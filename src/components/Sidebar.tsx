@@ -18,7 +18,7 @@ const Sidebar: FC = () => {
   const isActive = useCallback(
     (link: string) => {
       if (link === "/") return pathname === "/";
-      return pathname.startsWith(link);
+      return pathname?.startsWith(link);
     },
     [pathname],
   );
