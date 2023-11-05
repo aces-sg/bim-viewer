@@ -28,21 +28,7 @@ const comments: Comment[] = [
     time: "5 mins ago",
     description:
       "Lorem ipsum dolor sit amet consectetur. Sit sagittis lorem pellentesque sed. Eget elit nunc accumsan tempor. Augue id sit eleifend fermentum in aenean.",
-  },
-  {
-    id: 4,
-    name: "Francisca Lorraine",
-    time: "5 mins ago",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Sit sagittis lorem pellentesque sed. Eget elit nunc accumsan tempor. Augue id sit eleifend fermentum in aenean.",
-  },
-  {
-    id: 5,
-    name: "James Arthur",
-    time: "5 mins ago",
-    description:
-      "Lorem ipsum dolor sit amet consectetur. Sit sagittis lorem pellentesque sed. Eget elit nunc accumsan tempor. Augue id sit eleifend fermentum in aenean.",
-  },
+  }
 ];
 
 const CommentsBox: FC<CommentsBoxProps> = ({ closeBox }) => {

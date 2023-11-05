@@ -1664,7 +1664,7 @@ dialog::backdrop {
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: var(--secondary-color);
+  /* background-color: var(--secondary-color-100); */
   border-radius: 9999px;
 }
 
