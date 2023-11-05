@@ -6,7 +6,7 @@ interface CustomModalProps {
 
 const CustomModal: FC<CustomModalProps> = ({ children }) => {
   return (
-    <div className="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none flex items-center justify-center">
+    <div className="fixed left-0 top-0 z-[1055] h-full w-full overflow-y-auto overflow-x-hidden outline-none flex items-center justify-center bg-[#0000004d]">
       {children}
     </div>
   );

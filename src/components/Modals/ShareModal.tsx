@@ -37,6 +37,18 @@ const ShareModal: FC<ShareModalProps> = ({ closeModal }) => {
         />
       </div>
       <div className="bg-white p-[20px]">
+        <div className="">
+          <p className="font-sans font-normal text-[16px] leading-[24px] text-[#000] mb-[8px]">
+            Email
+          </p>
+          <div className="mb-[16px]">
+            <input
+              type="text"
+              className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[44px]"
+              placeholder="Email, Comma Separated"
+            />
+          </div>
+        </div>
         <button
           className="w-full h-[56px] text-center bg-[#fddb00] rounded-full font-sans font-semibold text-[16px] leading-[24px] text-[#121212]"
           onClick={handleInvitePeople}
