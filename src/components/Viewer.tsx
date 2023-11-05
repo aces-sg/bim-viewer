@@ -176,7 +176,7 @@ const Viewer = () => {
   return (
     <>
       <div id="viewerContainer" style={viewerContainerStyle}>
-        <h3 className="absolute top-[15px] left-[15px] z-20">
+        <h3 className="absolute top-[15px] left-[15px] z-20 font-sans font-medium text-[24px] leading-[36px] text-[#bcf124]">
           Models loaded: {modelCount}
         </h3>
         <div className="flex items-center justify-between absolute top-[20px] right-[45px] z-20">

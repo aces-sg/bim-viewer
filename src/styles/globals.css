@@ -16,7 +16,7 @@
   }
 }
 
-body {
+/* body {
   color: rgb(var(--foreground-rgb));
   background: linear-gradient(
       to bottom,
@@ -24,23 +24,4 @@ body {
       rgb(var(--background-end-rgb))
     )
     rgb(var(--background-start-rgb));
-}
-
-.active-nav svg path {
-  fill: #121212 !important;
-}
-
-.custom-menu::after {
-  content: " ";
-  position: absolute;
-  width: 0;
-  height: 0;
-  left: auto;
-  right: 20px;
-  top: -7px;
-  bottom: auto;
-  border: 7px solid;
-  border-color: white transparent transparent white;
-  transform: rotate(45deg);
-  box-shadow: -6px -7px 11px 2px #0000000f;
-}
+} */

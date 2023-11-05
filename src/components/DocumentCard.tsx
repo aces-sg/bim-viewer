@@ -85,7 +85,7 @@ const DocumentCard: FC<DocuemtnCardProps> = ({ document }) => {
           </div>
           <div
             onClick={e => handleShowMenu(e)}
-            className="w-[20px] h-[20px] flex items-center justify-center"
+            className="w-[20px] h-[20px] flex items-center justify-center cursor-pointer"
           >
             <Image
               priority
@@ -93,7 +93,6 @@ const DocumentCard: FC<DocuemtnCardProps> = ({ document }) => {
               width={4}
               height={16}
               alt="threeDotIcon"
-              className="cursor-pointer"
             />
           </div>
           {showMenu && (

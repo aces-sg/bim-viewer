@@ -67,7 +67,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           </h5>
           <div
             onClick={handleShowMenu}
-            className="w-[20px] h-[20px] flex items-center justify-center ml-10"
+            className="w-[20px] h-[20px] flex items-center justify-center ml-10 cursor-pointer"
           >
             <Image
               priority
@@ -75,7 +75,6 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
               width={4}
               height={16}
               alt="threeDotIcon"
-              className="cursor-pointer"
             />
           </div>
           {showMenu && (

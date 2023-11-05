@@ -1,4 +1,4 @@
-import React, { FC } from "react";
+import React, { FC, useState } from "react";
 import Image from "next/image";
 import { Comment } from "@/types";
 
@@ -7,6 +7,7 @@ interface CommentCardProps {
 }
 
 const CommentCard: FC<CommentCardProps> = ({ comment }) => {
+  const [showReplyInput, setShowReplyInput] = useState(false);
   return (
     <div className="bg-white p-[16px] mb-[16px]">
       <div className="flex items-center justify-between mb-[16px]">
@@ -25,7 +26,10 @@ const CommentCard: FC<CommentCardProps> = ({ comment }) => {
       <p className="font-sans font-normal text-[16px] leading-[24px] text-[#000] mb-[16px]">
         {comment.description}
       </p>
-      <div className="flex items-center cursor-pointer">
+      <div
+        className="flex items-center cursor-pointer"
+        onClick={() => setShowReplyInput(true)}
+      >
         <Image
           priority
           src="/images/replyIcon.svg"
@@ -38,6 +42,26 @@ const CommentCard: FC<CommentCardProps> = ({ comment }) => {
           Reply
         </span>
       </div>
+      {showReplyInput && (
+        <div className="flex items-center mt-[16px]">
+          <input
+            type="text"
+            className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px]"
+            placeholder="Write a Message"
+          />
+          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]">
+            <Image
+              priority
+              src="/images/planeIcon.svg"
+              width={17.5}
+              height={17.5}
+              alt="planeIcon"
+              className="mr-2"
+            />
+            <span>Reply</span>
+          </button>
+        </div>
+      )}
     </div>
   );
 };

@@ -53,6 +53,24 @@ const CommentsBox: FC<CommentsBoxProps> = ({ closeBox }) => {
           <CommentCard key={index} comment={comment} />
         ))}
       </div>
+      <div className="flex items-center bg-white px-[20px] py-[16px]">
+        <input
+          type="text"
+          className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px]"
+          placeholder="Write a Message"
+        />
+        <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]">
+          <Image
+            priority
+            src="/images/planeIcon.svg"
+            width={17.5}
+            height={17.5}
+            alt="planeIcon"
+            className="mr-2"
+          />
+          <span>Send</span>
+        </button>
+      </div>
     </div>
   );
 };

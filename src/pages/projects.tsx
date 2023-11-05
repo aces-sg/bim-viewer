@@ -58,7 +58,7 @@ const Projects = () => {
 
   return (
     <>
-      <div className="min-h-full px-[10px] md:px-[20px] lg:px-[40px] py-[32px]">
+      <div className="px-[10px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="mb-[20px] flex items-center justify-end">
           <Image
             priority

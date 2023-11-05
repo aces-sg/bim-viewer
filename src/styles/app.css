@@ -1,5 +1,9 @@
 @import url("https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap");
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 :root {
   --primary-color: #bcf124;
   --secondary-color: #6528d7;
@@ -1811,6 +1815,25 @@ dialog::backdrop {
     --tw-bg-opacity: 1;
     background-color: rgb(75 85 99 / var(--tw-bg-opacity));
   }
+}
+
+.active-nav svg path {
+  fill: #121212 !important;
+}
+
+.custom-menu::after {
+  content: " ";
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: auto;
+  right: 20px;
+  top: -7px;
+  bottom: auto;
+  border: 7px solid;
+  border-color: white transparent transparent white;
+  transform: rotate(45deg);
+  box-shadow: -6px -7px 11px 2px #0000000f;
 }
 
 #viewerContainer canvas {
