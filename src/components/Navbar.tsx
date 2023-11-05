@@ -1,6 +1,7 @@
 import React, { FC, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
+import { useRouter } from "next/router";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
@@ -11,6 +12,7 @@ const Navbar: FC = () => {
     { id: 1, name: "Account", iconWidth: 13.5, iconLink: "userAccountIcon" },
     { id: 2, name: "Logout", iconWidth: 15, iconLink: "logoutIcon" },
   ];
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
 
   const handleShowMenu = () => {
@@ -20,6 +22,7 @@ const Navbar: FC = () => {
   const handleMenuOption = (menuOptionId: number) => {
     if (menuOptionId === 1) {
       console.log("handle account");
+      router.push("/account");
     } else {
       console.log("handle logout");
     }
@@ -46,7 +49,7 @@ const Navbar: FC = () => {
       </div>
       {showMenu && (
         <div
-          className="bg-white absolute w-[200px] top-[60px] right-[40px] z-50 px-[16px] py-[8px] rounded-[8px]"
+          className="bg-white absolute w-[200px] top-[60px] right-[40px] z-50 px-[16px] py-[8px] rounded-[8px] shadow-[0px_4px_8px_4px_rgba(0,0,0,0.1)]"
           ref={menuRef}
         >
           {menus.map((menu, index) => (
