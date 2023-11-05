@@ -27,3 +27,10 @@ export interface Comment {
   time: string;
   description: string;
 }
+
+export interface DocumentTreeItem {
+  id: string;
+  name: string;
+  type: string;
+  children?: DocumentTreeItem[];
+}

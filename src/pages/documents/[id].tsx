@@ -2,6 +2,77 @@ import React, { useState } from "react";
 import Image from "next/image";
 
 import CommentsBox from "@/components/CommentsBox";
+import DocumentTree from "@/components/DocumentTree";
+
+import { DocumentTreeItem } from "@/types";
+
+const documentData: DocumentTreeItem[] = [
+  {
+    id: "1",
+    name: "Folder1",
+    type: "folder",
+    children: [
+      {
+        id: "1-1",
+        name: "Folder1-1",
+        type: "folder",
+        children: [],
+      },
+      {
+        id: "1-2",
+        name: "Folder1-2",
+        type: "folder",
+        children: [],
+      },
+      {
+        id: "1-3",
+        name: "Folder1 - File1",
+        type: "file",
+      },
+    ],
+  },
+  {
+    id: "2",
+    name: "Folder2",
+    type: "folder",
+    children: [
+      {
+        id: "2-1",
+        name: "Folder2-1",
+        type: "folder",
+        children: [],
+      },
+      {
+        id: "2-2",
+        name: "Folder2 - File1",
+        type: "file",
+      },
+    ],
+  },
+  {
+    id: "3",
+    name: "Folder3",
+    type: "folder",
+    children: [
+      {
+        id: "3-1",
+        name: "Folder3-1",
+        type: "folder",
+        children: [],
+      },
+      {
+        id: "3-2",
+        name: "Folder3 - File1",
+        type: "file",
+      },
+      {
+        id: "3-3",
+        name: "Folder3 - File2",
+        type: "file",
+      },
+    ],
+  },
+];
 
 const DocumentDetail = () => {
   const [showCommentsBox, setShowCommentsBox] = useState(false);
@@ -47,6 +118,11 @@ const DocumentDetail = () => {
           <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">
             Document 2023
           </h5>
+        </div>
+        <div className="">
+          {documentData.map(documentItem => (
+            <DocumentTree document={documentItem} key={documentItem.id} level={0} />
+          ))}
         </div>
       </div>
       {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
