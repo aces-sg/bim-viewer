@@ -107,10 +107,40 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
             </div>
           )}
         </div>
-        <div className="flex">
-          <p className="font-sans font-normal text-[12px] leading-[18px] text-[#666] capitalize">
+        <div className="flex items-start">
+          <div className="flex -space-x-3 mr-4 min-w-[60px]">
+            <Image
+              className="inline-block rounded-full"
+              src={`/images/users/user1.png`}
+              width={24}
+              height={24}
+              alt=""
+            />
+            <Image
+              className="inline-block rounded-full"
+              src={`/images/users/user2.png`}
+              width={24}
+              height={24}
+              alt=""
+            />
+            <Image
+              className="inline-block rounded-full"
+              src={`/images/users/user3.png`}
+              width={24}
+              height={24}
+              alt=""
+            />
+            <Image
+              className="inline-block rounded-full"
+              src={`/images/users/user4.png`}
+              width={24}
+              height={24}
+              alt=""
+            />
+          </div>
+          <span className="font-sans font-normal text-[12px] leading-[18px] text-[#666] capitalize">
             {project.description}
-          </p>
+          </span>
         </div>
       </div>
       {showInviteModal && (
