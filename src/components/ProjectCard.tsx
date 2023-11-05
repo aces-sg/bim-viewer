@@ -65,7 +65,10 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
           <h5 className="font-sans font-semibold text-[16px] leading-[24px] text-[#000] capitalize">
             {project.title}
           </h5>
-          <div onClick={handleShowMenu}>
+          <div
+            onClick={handleShowMenu}
+            className="w-[20px] h-[20px] flex items-center justify-center"
+          >
             <Image
               priority
               src="/images/threeDot.svg"
