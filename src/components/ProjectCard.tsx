@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/no-img-element */
 import React, { FC, useState } from "react";
 import Image from "next/image";
 
@@ -108,30 +109,30 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
         </div>
         <div className="flex items-start">
           <div className="flex -space-x-3 mr-4 min-w-[60px]">
-            <Image
+            <img
               className="inline-block rounded-full"
-              src={`/images/users/user1.png`}
+              src="/images/user1.png"
               width={24}
               height={24}
               alt=""
             />
-            <Image
+            <img
               className="inline-block rounded-full"
-              src={`/images/users/user2.png`}
+              src="/images/user2.png"
               width={24}
               height={24}
               alt=""
             />
-            <Image
+            <img
               className="inline-block rounded-full"
-              src={`/images/users/user3.png`}
+              src="/images/user3.png"
               width={24}
               height={24}
               alt=""
             />
-            <Image
+            <img
               className="inline-block rounded-full"
-              src={`/images/users/user4.png`}
+              src="/images/user4.png"
               width={24}
               height={24}
               alt=""
