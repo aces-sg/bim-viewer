@@ -6,7 +6,7 @@ const MenuIcon = () => {
       width="20px"
       height="20px"
       viewBox="0 0 12 12"
-      enable-background="new 0 0 12 12"
+      enableBackground="new 0 0 12 12"
       version="1.1"
       xmlSpace="preserve"
       xmlns="http://www.w3.org/2000/svg"

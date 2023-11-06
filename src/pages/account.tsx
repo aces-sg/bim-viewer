@@ -3,7 +3,7 @@ import React from "react";
 const Account = () => {
   return (
     <div className="bg-white w-full min-h-full">
-      <div className="max-w-[600px] pt-[70px] mx-auto px-[10px]">
+      <div className="max-w-[600px] mx-auto px-[15px] py-[70px]">
         <h3 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212] text-center mb-[20px]">
           Account
         </h3>

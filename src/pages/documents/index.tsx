@@ -24,7 +24,7 @@ const Documents = () => {
 
   return (
     <>
-      <div className="bg-white px-[10px] md:px-[20px] lg:px-[40px] py-[32px]">
+      <div className="bg-white px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="flex items-center justify-between mb-[32px]">
           <button className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]">
             <Image

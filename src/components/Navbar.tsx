@@ -5,8 +5,7 @@ import { useRouter } from "next/router";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
-import LeftArrowIcon from "./icons/LeftArrowIcon";
-import MenuIcon from "./icons/MenuIcon";
+import { LeftArrowIcon, MenuIcon } from "./icons";
 
 interface NavbarProps {
   handleShowSidebar: () => void;
@@ -38,7 +37,7 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
   });
 
   return (
-    <div className="bg-white px-[10px]  md:px-[40px] lg:px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2] relative">
+    <div className="bg-white px-[10px] md:px-[20px] lg:px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2] relative">
       <div className="flex items-center">
         <div
           className="md:hidden lg:hidden mr-[16px]"
