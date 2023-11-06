@@ -16,11 +16,11 @@ const Layout: FC<LayoutProps> = ({ children }) => {
 
   const sidebarRef = useOutsideClick(() => {
     if (width && width > 768) return;
-    console.log('aaa::');
+    console.log("aaa::");
     setShowSidebar(false);
   });
 
-  const handleShowSidebar = () => {    
+  const handleShowSidebar = () => {
     setShowSidebar(true);
   };
 

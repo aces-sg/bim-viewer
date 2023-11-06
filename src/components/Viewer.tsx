@@ -176,11 +176,11 @@ const Viewer = () => {
   return (
     <>
       <div id="viewerContainer" style={viewerContainerStyle}>
-        <h3 className="absolute top-[15px] left-[15px] z-20 font-sans font-medium text-[24px] leading-[36px] text-[#bcf124]">
+        <h3 className="absolute top-[15px] left-[15px] z-20 font-sans font-medium text-[16px] md:text-[24px] lg:text-[24px] leading-[36px] text-[#bcf124]">
           Models loaded: {modelCount}
         </h3>
-        <div className="flex items-center justify-between absolute top-[20px] right-[45px] z-20">
-          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]">
+        <div className="flex items-center justify-between absolute top-[20px] right-[15px] md:right-[45px] lg:right-[45px] z-20">
+          <button className="flex items-center justify-center w-[100px] md:w-[129px] lg:w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[12px] md:text-[16px] lg:text-[16px] leading-[24px] text-[#000]">
             <Image
               priority
               src="/images/plusUserIcon.svg"
@@ -197,7 +197,7 @@ const Viewer = () => {
             width={40}
             height={40}
             alt="PlusIcon"
-            className="cursor-pointer ml-5"
+            className="cursor-pointer ml-1 md:m1-5 lg:m1-5"
             onClick={() => setShowCommentsBox(true)}
           />
         </div>
