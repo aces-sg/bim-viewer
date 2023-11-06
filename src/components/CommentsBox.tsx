@@ -53,7 +53,7 @@ const CommentsBox: FC<CommentsBoxProps> = ({ closeBox }) => {
           <CommentCard key={index} comment={comment} />
         ))}
       </div>
-      <div className="fixed w-[490px] bottom-0 flex items-center bg-white px-[20px] py-[16px]">
+      <div className="fixed sm:w-full md:w-[490px] lg:w-[490px] bottom-0 flex items-center bg-white px-[20px] py-[16px]">
         <input
           type="text"
           className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px]"

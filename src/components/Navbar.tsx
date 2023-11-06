@@ -6,8 +6,13 @@ import { useRouter } from "next/router";
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 import LeftArrowIcon from "./icons/LeftArrowIcon";
+import MenuIcon from "./icons/MenuIcon";
 
-const Navbar: FC = () => {
+interface NavbarProps {
+  handleShowSidebar: () => void;
+}
+
+const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
   const menus = [
     { id: 1, name: "Account", iconWidth: 13.5, iconLink: "userAccountIcon" },
     { id: 2, name: "Logout", iconWidth: 15, iconLink: "logoutIcon" },
@@ -21,7 +26,6 @@ const Navbar: FC = () => {
 
   const handleMenuOption = (menuOptionId: number) => {
     if (menuOptionId === 1) {
-      console.log("handle account");
       router.push("/account");
     } else {
       console.log("handle logout");
@@ -34,13 +38,21 @@ const Navbar: FC = () => {
   });
 
   return (
-    <div className="bg-white px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2] relative">
-      <Link href="https://www.bim.com.sg" className="flex items-center">
-        <LeftArrowIcon />
-        <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">
-          Back To Homepage
-        </span>
-      </Link>
+    <div className="bg-white px-[10px]  md:px-[40px] lg:px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2] relative">
+      <div className="flex items-center">
+        <div
+          className="md:hidden lg:hidden mr-[16px]"
+          onClick={handleShowSidebar}
+        >
+          <MenuIcon />
+        </div>
+        <Link href="https://www.bim.com.sg" className="flex items-center">
+          <LeftArrowIcon />
+          <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">
+            Back To Homepage
+          </span>
+        </Link>
+      </div>
       <div
         className="bg-[#fddb00] w-[40px] h-[40px] flex items-center justify-center rounded-full font-sans font-semibold text-[14px] leading-[21px] text-[#000] cursor-pointer"
         onClick={handleShowMenu}
