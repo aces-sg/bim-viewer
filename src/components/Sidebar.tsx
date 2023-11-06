@@ -24,7 +24,7 @@ const Sidebar: FC = () => {
   );
 
   return (
-    <div className="border-r-[1px] border-solid border-[#d2d2d2] bg-white w-[100px] fixed h-full z-20">
+    <div className="border-r-[1px] border-solid border-[#d2d2d2] bg-white w-[100px] fixed h-full z-[100]">
       <div className="my-[20px]">
         <Link
           href="https://www.bim.com.sg"
