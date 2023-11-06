@@ -16,7 +16,18 @@ const documentData: DocumentTreeItem[] = [
         id: "1-1",
         name: "Folder1-1",
         type: "folder",
-        children: [],
+        children: [
+          {
+            id: "1-1-1",
+            name: "Folder(1-1) - File1",
+            type: "file",
+          },
+          {
+            id: "1-3",
+            name: "Folder(1-1) - File2",
+            type: "file",
+          },
+        ],
       },
       {
         id: "1-2",
@@ -121,7 +132,11 @@ const DocumentDetail = () => {
         </div>
         <div className="">
           {documentData.map(documentItem => (
-            <DocumentTree document={documentItem} key={documentItem.id} level={0} />
+            <DocumentTree
+              document={documentItem}
+              key={documentItem.id}
+              level={0}
+            />
           ))}
         </div>
       </div>
