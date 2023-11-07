@@ -1,8 +1,6 @@
+import React from "react";
 import { Inter } from "next/font/google";
 import ViewerNoSSR from "@/components/ViewerNoSSR";
-import Sidebar from "@/components/Sidebar";
-import Navbar from "@/components/Navbar";
-import React from "react";
 
 const inter = Inter({ subsets: ["latin"] });
 

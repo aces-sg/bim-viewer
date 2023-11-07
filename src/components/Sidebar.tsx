@@ -34,7 +34,7 @@ const Sidebar: FC = () => {
             priority
             src="/images/logoIcon.svg"
             width={68}
-            height={18}
+            height={14.5}
             alt="logoIcon"
             className="cursor-pointer"
           />
