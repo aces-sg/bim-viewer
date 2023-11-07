@@ -1,6 +1,8 @@
 import React, { FC } from "react";
 import Image from "next/image";
 
+import { useOutsideClick } from "@/hooks/useOutsideClick";
+
 interface InviteModalProps {
   closeModal: () => void;
 }
@@ -10,8 +12,12 @@ const InviteModal: FC<InviteModalProps> = ({ closeModal }) => {
     closeModal();
   };
 
+  const modalRef = useOutsideClick(() => {
+    closeModal();
+  });
+
   return (
-    <div className="w-[500px]">
+    <div className="w-[500px]" ref={modalRef}>
       <div className="bg-[#fddb00] flex items-center justify-between px-[20px] py-[18px]">
         <div className="flex items-center">
           <Image
