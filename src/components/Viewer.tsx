@@ -169,7 +169,7 @@ const Viewer = () => {
   const viewerContainerStyle: React.CSSProperties = {
     width: "100%",
     height: "100vh",
-    position: "relative"
+    position: "relative",
   };
 
   return (

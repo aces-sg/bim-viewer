@@ -26,19 +26,18 @@ const Sidebar: FC = () => {
   return (
     <div className="border-r-[1px] border-solid border-[#d2d2d2] bg-white w-[100px] fixed h-full z-[100]">
       <div className="my-[20px]">
-        <Link
-          href="https://www.bim.com.sg"
-          className="flex flex-col items-center"
-        >
+        <a href="https://www.bim.com.sg" className="flex flex-col items-center">
           <Image
             priority
             src="/images/logoIcon.svg"
             width={68}
             height={14.5}
             alt="logoIcon"
-            className="cursor-pointer"
+            className={
+              "hover:bg-transparent" + OBC.Button.Class.Base + "material-icons"
+            }
           />
-        </Link>
+        </a>
       </div>
       {links.map((linkItem, index) => (
         <div key={linkItem.id} className={index === 0 ? "m-0" : "mt-[20px]"}>
