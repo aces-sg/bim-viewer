@@ -1848,4 +1848,5 @@ dialog::backdrop {
 
 #viewerContainer > #bottom-toolbar-container {
   height: 80px !important;
+  bottom: 70px !important;
 }

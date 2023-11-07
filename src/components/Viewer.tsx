@@ -168,7 +168,7 @@ const Viewer = () => {
 
   const viewerContainerStyle: React.CSSProperties = {
     width: "100%",
-    height: "100%",
+    height: "100vh",
     position: "relative"
   };
 
@@ -196,7 +196,7 @@ const Viewer = () => {
             width={40}
             height={40}
             alt="PlusIcon"
-            className="cursor-pointer ml-1 md:m1-5 lg:m1-5"
+            className="cursor-pointer sm:ml-1 md:ml-5 lg:ml-5"
             onClick={() => setShowCommentsBox(true)}
           />
         </div>
