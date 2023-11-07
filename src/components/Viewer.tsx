@@ -196,7 +196,7 @@ const Viewer = () => {
             width={40}
             height={40}
             alt="PlusIcon"
-            className="cursor-pointer sm:ml-1 md:ml-5 lg:ml-5"
+            className="cursor-pointer ml-2 md:ml-5 lg:ml-5"
             onClick={() => setShowCommentsBox(true)}
           />
         </div>
