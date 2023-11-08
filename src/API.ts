@@ -2,10 +2,17 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateSubmissionInput = {
+export type CreateProjectInput = {
   id?: string | null,
-  modelId: string,
-  modelUrl: string,
+  name?: string | null,
+  description?: string | null,
+  submissions?: Array< SubmissionInput | null > | null,
+};
+
+export type SubmissionInput = {
+  id?: string | null,
+  modelId?: string | null,
+  modelUrl?: string | null,
   name?: string | null,
   email?: string | null,
   phone?: string | null,
@@ -13,54 +20,15 @@ export type CreateSubmissionInput = {
   description?: string | null,
 };
 
-export type Submission = {
-  __typename: "Submission",
-  id: string,
-  name?: string | null,
-  email?: string | null,
-  phone?: string | null,
-  commpany?: string | null,
-  description?: string | null,
+export type ModelProjectConditionInput = {
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelProjectConditionInput | null > | null,
+  or?: Array< ModelProjectConditionInput | null > | null,
+  not?: ModelProjectConditionInput | null,
 };
 
-export type CreateTodoInput = {
-  id?: string | null,
-};
-
-export type ModelTodoConditionInput = {
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
-};
-
-export type Todo = {
-  __typename: "Todo",
-  id: string,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateTodoInput = {
-  id: string,
-};
-
-export type DeleteTodoInput = {
-  id: string,
-};
-
-export type SubmissionsResult = {
-  __typename: "SubmissionsResult",
-  items?:  Array<Submission | null > | null,
-};
-
-export type ModelTodoFilterInput = {
-  id?: ModelIDInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
-};
-
-export type ModelIDInput = {
+export type ModelStringInput = {
   ne?: string | null,
   eq?: string | null,
   le?: string | null,
@@ -100,118 +68,202 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection",
-  items:  Array<Todo | null >,
+export type Project = {
+  __typename: "Project",
+  id: string,
+  name?: string | null,
+  description?: string | null,
+  submissions?:  Array<Submission | null > | null,
+  createdAt: string,
+  updatedAt: string,
+};
+
+export type Submission = {
+  __typename: "Submission",
+  id: string,
+  modelId?: string | null,
+  modelUrl?: string | null,
+  name?: string | null,
+  email?: string | null,
+  phone?: string | null,
+  commpany?: string | null,
+  description?: string | null,
+};
+
+export type UpdateProjectInput = {
+  id: string,
+  name?: string | null,
+  description?: string | null,
+  submissions?: Array< SubmissionInput | null > | null,
+};
+
+export type DeleteProjectInput = {
+  id: string,
+};
+
+export type ModelProjectFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelProjectFilterInput | null > | null,
+  or?: Array< ModelProjectFilterInput | null > | null,
+  not?: ModelProjectFilterInput | null,
+};
+
+export type ModelIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+  size?: ModelSizeInput | null,
+};
+
+export type ModelProjectConnection = {
+  __typename: "ModelProjectConnection",
+  items:  Array<Project | null >,
   nextToken?: string | null,
 };
 
-export type TriggerNotificationMutationVariables = {
-  input?: string | null,
+export type CreateProjectMutationVariables = {
+  input: CreateProjectInput,
+  condition?: ModelProjectConditionInput | null,
 };
 
-export type TriggerNotificationMutation = {
-  triggerNotification?: string | null,
-};
-
-export type CreateSubmissionMutationVariables = {
-  input?: CreateSubmissionInput | null,
-};
-
-export type CreateSubmissionMutation = {
-  createSubmission?:  {
-    __typename: "Submission",
+export type CreateProjectMutation = {
+  createProject?:  {
+    __typename: "Project",
     id: string,
     name?: string | null,
-    email?: string | null,
-    phone?: string | null,
-    commpany?: string | null,
     description?: string | null,
-  } | null,
-};
-
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
-};
-
-export type CreateTodoMutation = {
-  createTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
-};
-
-export type UpdateTodoMutation = {
-  updateTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
-};
-
-export type DeleteTodoMutation = {
-  deleteTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListSubmissionsQuery = {
-  listSubmissions?:  {
-    __typename: "SubmissionsResult",
-    items?:  Array< {
+    submissions?:  Array< {
       __typename: "Submission",
       id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
       name?: string | null,
       email?: string | null,
       phone?: string | null,
       commpany?: string | null,
       description?: string | null,
     } | null > | null,
-  } | null,
-};
-
-export type GetTodoQueryVariables = {
-  id: string,
-};
-
-export type GetTodoQuery = {
-  getTodo?:  {
-    __typename: "Todo",
-    id: string,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
+export type UpdateProjectMutationVariables = {
+  input: UpdateProjectInput,
+  condition?: ModelProjectConditionInput | null,
+};
+
+export type UpdateProjectMutation = {
+  updateProject?:  {
+    __typename: "Project",
+    id: string,
+    name?: string | null,
+    description?: string | null,
+    submissions?:  Array< {
+      __typename: "Submission",
+      id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
+      name?: string | null,
+      email?: string | null,
+      phone?: string | null,
+      commpany?: string | null,
+      description?: string | null,
+    } | null > | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteProjectMutationVariables = {
+  input: DeleteProjectInput,
+  condition?: ModelProjectConditionInput | null,
+};
+
+export type DeleteProjectMutation = {
+  deleteProject?:  {
+    __typename: "Project",
+    id: string,
+    name?: string | null,
+    description?: string | null,
+    submissions?:  Array< {
+      __typename: "Submission",
+      id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
+      name?: string | null,
+      email?: string | null,
+      phone?: string | null,
+      commpany?: string | null,
+      description?: string | null,
+    } | null > | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type GetProjectQueryVariables = {
+  id: string,
+};
+
+export type GetProjectQuery = {
+  getProject?:  {
+    __typename: "Project",
+    id: string,
+    name?: string | null,
+    description?: string | null,
+    submissions?:  Array< {
+      __typename: "Submission",
+      id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
+      name?: string | null,
+      email?: string | null,
+      phone?: string | null,
+      commpany?: string | null,
+      description?: string | null,
+    } | null > | null,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type ListProjectsQueryVariables = {
+  filter?: ModelProjectFilterInput | null,
   limit?: number | null,
   nextToken?: string | null,
 };
 
-export type ListTodosQuery = {
-  listTodos?:  {
-    __typename: "ModelTodoConnection",
+export type ListProjectsQuery = {
+  listProjects?:  {
+    __typename: "ModelProjectConnection",
     items:  Array< {
-      __typename: "Todo",
+      __typename: "Project",
       id: string,
+      name?: string | null,
+      description?: string | null,
+      submissions?:  Array< {
+        __typename: "Submission",
+        id: string,
+        modelId?: string | null,
+        modelUrl?: string | null,
+        name?: string | null,
+        email?: string | null,
+        phone?: string | null,
+        commpany?: string | null,
+        description?: string | null,
+      } | null > | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -219,28 +271,67 @@ export type ListTodosQuery = {
   } | null,
 };
 
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
+export type OnCreateProjectSubscription = {
+  onCreateProject?:  {
+    __typename: "Project",
     id: string,
+    name?: string | null,
+    description?: string | null,
+    submissions?:  Array< {
+      __typename: "Submission",
+      id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
+      name?: string | null,
+      email?: string | null,
+      phone?: string | null,
+      commpany?: string | null,
+      description?: string | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
+export type OnUpdateProjectSubscription = {
+  onUpdateProject?:  {
+    __typename: "Project",
     id: string,
+    name?: string | null,
+    description?: string | null,
+    submissions?:  Array< {
+      __typename: "Submission",
+      id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
+      name?: string | null,
+      email?: string | null,
+      phone?: string | null,
+      commpany?: string | null,
+      description?: string | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
+export type OnDeleteProjectSubscription = {
+  onDeleteProject?:  {
+    __typename: "Project",
     id: string,
+    name?: string | null,
+    description?: string | null,
+    submissions?:  Array< {
+      __typename: "Submission",
+      id: string,
+      modelId?: string | null,
+      modelUrl?: string | null,
+      name?: string | null,
+      email?: string | null,
+      phone?: string | null,
+      commpany?: string | null,
+      description?: string | null,
+    } | null > | null,
     createdAt: string,
     updatedAt: string,
   } | null,
