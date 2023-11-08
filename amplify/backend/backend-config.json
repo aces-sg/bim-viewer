@@ -6,14 +6,7 @@
       "lastPushTimeStamp": "2023-10-13T00:25:37.414Z"
     }
   },
-  "storage": {
-    "Submission65p3lcy62bfuhbghoxvj7fgb7mdev": {
-      "service": "DynamoDB",
-      "serviceType": "imported",
-      "providerPlugin": "awscloudformation",
-      "dependsOn": []
-    }
-  },
+  "storage": {},
   "api": {
     "bimviewer": {
       "service": "AppSync",

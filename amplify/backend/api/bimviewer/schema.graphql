@@ -7,8 +7,25 @@ type Todo @model {
   id: ID!
 }
 
+type User @model {
+  id: ID!
+  name: String
+  email: String
+  company: String
+  project: [Project]
+}
+
+type Project @model {
+  id: ID!
+  name: String
+  description: String
+  submissions: [Submission]
+}
+
 type Submission {
   id: ID!
+  modelId: String
+  modelUrl: String
   name: String
   email: String
   phone: String
@@ -18,25 +35,14 @@ type Submission {
 
 type SubmissionsResult {
   items: [Submission]
-}
-
-input CreateSubmissionInput {
-  id: ID
-  modelId: String!
-  modelUrl: String!
-  name: String
-  email: String
-  phone: String
-  commpany: String
-  description: String
+  nextToken: String
 }
 
 type Mutation {
   triggerNotification(input: String): String
     @function(name: "ServerlessCdkProd-ServerlessStack-sub-function")
-  createSubmission(input: CreateSubmissionInput): Submission
 }
 
 type Query {
-  listSubmissions: SubmissionsResult
+  listSubmissionResults: SubmissionsResult
 }

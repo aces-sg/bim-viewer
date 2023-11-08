@@ -44,5 +44,41 @@
         }
       }
     }
+  },
+  "test": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-bimviewer-test-182659-authRole",
+      "UnauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-test-182659-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::517820625953:role/amplify-bimviewer-test-182659-authRole",
+      "Region": "ap-southeast-1",
+      "DeploymentBucketName": "amplify-bimviewer-test-182659-deployment",
+      "UnauthRoleName": "amplify-bimviewer-test-182659-unauthRole",
+      "StackName": "amplify-bimviewer-test-182659",
+      "StackId": "arn:aws:cloudformation:ap-southeast-1:517820625953:stack/amplify-bimviewer-test-182659/59af3820-7e21-11ee-874f-0613f4693478",
+      "AmplifyAppId": "d2bqotf9sbgkzl"
+    },
+    "categories": {
+      "auth": {
+        "bimviewereb9fad2a": {
+          "userPoolId": "ap-southeast-1_2XSwgLCua",
+          "userPoolName": "bim11d6741b_userpool_11d6741b-dev",
+          "webClientId": "q49pbhmvqqtbs33fbapgf7nkv",
+          "nativeClientId": "7ro5fej4lu3kpfckj4l2sj3g97",
+          "identityPoolId": "ap-southeast-1:8e8aaea4-45d3-4737-a922-5bfb8e860c6b",
+          "identityPoolName": "bim11d6741b_identitypool_11d6741b__dev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-authRole",
+          "authRoleName": "amplify-bim-dev-90405-authRole",
+          "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-unauthRole",
+          "unauthRoleName": "amplify-bim-dev-90405-unauthRole"
+        }
+      },
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2bqotf9sbgkzl",
+          "type": "cicd"
+        }
+      }
+    }
   }
 }
