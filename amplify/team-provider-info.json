@@ -10,6 +10,23 @@
       "StackName": "amplify-bimviewer-dev-174038",
       "StackId": "arn:aws:cloudformation:ap-southeast-1:517820625953:stack/amplify-bimviewer-dev-174038/e0510680-7e1a-11ee-874f-0613f4693478",
       "AmplifyAppId": "d23eiy03wm24mz"
+    },
+    "categories": {
+      "auth": {
+        "bimviewer25fe1189": {
+          "userPoolId": "ap-southeast-1_2XSwgLCua",
+          "userPoolName": "bim11d6741b_userpool_11d6741b-dev",
+          "webClientId": "q49pbhmvqqtbs33fbapgf7nkv",
+          "nativeClientId": "7ro5fej4lu3kpfckj4l2sj3g97",
+          "identityPoolId": "ap-southeast-1:8e8aaea4-45d3-4737-a922-5bfb8e860c6b",
+          "identityPoolName": "bim11d6741b_identitypool_11d6741b__dev",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-authRole",
+          "authRoleName": "amplify-bim-dev-90405-authRole",
+          "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-unauthRole",
+          "unauthRoleName": "amplify-bim-dev-90405-unauthRole"
+        }
+      }
     }
   }
 }
