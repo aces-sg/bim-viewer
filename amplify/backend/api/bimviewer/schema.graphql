@@ -3,12 +3,17 @@
 input AMPLIFY {
   globalAuthRule: AuthRule = { allow: public }
 } # FOR TESTING ONLY!
-type Todo @model {
+type Project @model {
   id: ID!
+  name: String
+  description: String
+  submissions: [Submission]
 }
 
 type Submission {
   id: ID!
+  modelId: String
+  modelUrl: String
   name: String
   email: String
   phone: String
@@ -18,25 +23,5 @@ type Submission {
 
 type SubmissionsResult {
   items: [Submission]
-}
-
-input CreateSubmissionInput {
-  id: ID
-  modelId: String!
-  modelUrl: String!
-  name: String
-  email: String
-  phone: String
-  commpany: String
-  description: String
-}
-
-type Mutation {
-  triggerNotification(input: String): String
-    @function(name: "ServerlessCdkProd-ServerlessStack-sub-function")
-  createSubmission(input: CreateSubmissionInput): Submission
-}
-
-type Query {
-  listSubmissions: SubmissionsResult
+  nextToken: String
 }
