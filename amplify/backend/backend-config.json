@@ -26,7 +26,7 @@
     }
   },
   "auth": {
-    "bimviewereb9fad2a": {
+    "bimviewer88371676": {
       "service": "Cognito",
       "serviceType": "imported",
       "providerPlugin": "awscloudformation",

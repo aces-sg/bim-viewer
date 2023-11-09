@@ -58,8 +58,14 @@
       "AmplifyAppId": "d2bqotf9sbgkzl"
     },
     "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "d2bqotf9sbgkzl",
+          "type": "cicd"
+        }
+      },
       "auth": {
-        "bimviewereb9fad2a": {
+        "bimviewer88371676": {
           "userPoolId": "ap-southeast-1_2XSwgLCua",
           "userPoolName": "bim11d6741b_userpool_11d6741b-dev",
           "webClientId": "q49pbhmvqqtbs33fbapgf7nkv",
@@ -71,12 +77,6 @@
           "authRoleName": "amplify-bim-dev-90405-authRole",
           "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-unauthRole",
           "unauthRoleName": "amplify-bim-dev-90405-unauthRole"
-        }
-      },
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d2bqotf9sbgkzl",
-          "type": "cicd"
         }
       }
     }
