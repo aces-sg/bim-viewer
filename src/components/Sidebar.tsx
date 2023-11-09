@@ -1,4 +1,4 @@
-import { FC, useCallback } from "react";
+import { FC, useCallback, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import * as OBC from "openbim-components";
@@ -22,6 +22,13 @@ const Sidebar: FC = () => {
     },
     [pathname],
   );
+
+  useEffect(() => {
+    if (pathname !== "/") {
+      const controls = document.querySelectorAll(".dg.main.a");
+      controls.forEach(control => control.remove());
+    }
+  }, [pathname]);
 
   return (
     <div className="border-r-[1px] border-solid border-[#d2d2d2] bg-white w-[100px] fixed h-full z-[100]">

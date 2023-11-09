@@ -1850,3 +1850,7 @@ dialog::backdrop {
   height: 80px !important;
   bottom: 70px !important;
 }
+
+.absolute.bottom-8.left-8.transition-transform {
+  bottom: 90px !important;
+}
