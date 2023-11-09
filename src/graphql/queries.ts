@@ -19,31 +19,6 @@ export const listSubmissionResults = /* GraphQL */ `
     }
   }
 `;
-export const getTodo = /* GraphQL */ `
-  query GetTodo($id: ID!) {
-    getTodo(id: $id) {
-      id
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const listTodos = /* GraphQL */ `
-  query ListTodos(
-    $filter: ModelTodoFilterInput
-    $limit: Int
-    $nextToken: String
-  ) {
-    listTodos(filter: $filter, limit: $limit, nextToken: $nextToken) {
-      items {
-        id
-        createdAt
-        updatedAt
-      }
-      nextToken
-    }
-  }
-`;
 export const getUser = /* GraphQL */ `
   query GetUser($id: ID!) {
     getUser(id: $id) {

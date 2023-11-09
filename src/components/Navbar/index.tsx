@@ -1,11 +1,16 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
+import { Auth } from "aws-amplify";
+import navigate from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
-import { LeftArrowIcon, MenuIcon } from "./icons";
+import { LeftArrowIcon, MenuIcon } from "../icons";
+
+import headerData from "./header";
+import { get } from "http";
 
 interface NavbarProps {
   handleShowSidebar: () => void;
@@ -26,9 +31,12 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
   const handleMenuOption = (menuOptionId: number) => {
     if (menuOptionId === 1) {
       router.push("/account");
-    } else {
-      console.log("handle logout");
     }
+
+    if (menuOptionId === 2) {
+      router.push(`${process.env.NEXT_PUBLIC_LOGIN_URL}`);
+    }
+
     setShowMenu(false);
   };
 

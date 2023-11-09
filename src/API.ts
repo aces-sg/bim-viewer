@@ -2,31 +2,6 @@
 /* eslint-disable */
 //  This file was automatically generated and should not be edited.
 
-export type CreateTodoInput = {
-  id?: string | null,
-};
-
-export type ModelTodoConditionInput = {
-  and?: Array< ModelTodoConditionInput | null > | null,
-  or?: Array< ModelTodoConditionInput | null > | null,
-  not?: ModelTodoConditionInput | null,
-};
-
-export type Todo = {
-  __typename: "Todo",
-  id: string,
-  createdAt: string,
-  updatedAt: string,
-};
-
-export type UpdateTodoInput = {
-  id: string,
-};
-
-export type DeleteTodoInput = {
-  id: string,
-};
-
 export type CreateUserInput = {
   id?: string | null,
   name?: string | null,
@@ -170,11 +145,14 @@ export type SubmissionsResult = {
   nextToken?: string | null,
 };
 
-export type ModelTodoFilterInput = {
+export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
+  name?: ModelStringInput | null,
+  email?: ModelStringInput | null,
+  company?: ModelStringInput | null,
+  and?: Array< ModelUserFilterInput | null > | null,
+  or?: Array< ModelUserFilterInput | null > | null,
+  not?: ModelUserFilterInput | null,
 };
 
 export type ModelIDInput = {
@@ -191,22 +169,6 @@ export type ModelIDInput = {
   attributeExists?: boolean | null,
   attributeType?: ModelAttributeTypes | null,
   size?: ModelSizeInput | null,
-};
-
-export type ModelTodoConnection = {
-  __typename: "ModelTodoConnection",
-  items:  Array<Todo | null >,
-  nextToken?: string | null,
-};
-
-export type ModelUserFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  email?: ModelStringInput | null,
-  company?: ModelStringInput | null,
-  and?: Array< ModelUserFilterInput | null > | null,
-  or?: Array< ModelUserFilterInput | null > | null,
-  not?: ModelUserFilterInput | null,
 };
 
 export type ModelUserConnection = {
@@ -236,48 +198,6 @@ export type TriggerNotificationMutationVariables = {
 
 export type TriggerNotificationMutation = {
   triggerNotification?: string | null,
-};
-
-export type CreateTodoMutationVariables = {
-  input: CreateTodoInput,
-  condition?: ModelTodoConditionInput | null,
-};
-
-export type CreateTodoMutation = {
-  createTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type UpdateTodoMutationVariables = {
-  input: UpdateTodoInput,
-  condition?: ModelTodoConditionInput | null,
-};
-
-export type UpdateTodoMutation = {
-  updateTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type DeleteTodoMutationVariables = {
-  input: DeleteTodoInput,
-  condition?: ModelTodoConditionInput | null,
-};
-
-export type DeleteTodoMutation = {
-  deleteTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
 };
 
 export type CreateUserMutationVariables = {
@@ -487,38 +407,6 @@ export type ListSubmissionResultsQuery = {
   } | null,
 };
 
-export type GetTodoQueryVariables = {
-  id: string,
-};
-
-export type GetTodoQuery = {
-  getTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type ListTodosQueryVariables = {
-  filter?: ModelTodoFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListTodosQuery = {
-  listTodos?:  {
-    __typename: "ModelTodoConnection",
-    items:  Array< {
-      __typename: "Todo",
-      id: string,
-      createdAt: string,
-      updatedAt: string,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
 export type GetUserQueryVariables = {
   id: string,
 };
@@ -639,33 +527,6 @@ export type ListProjectsQuery = {
       updatedAt: string,
     } | null >,
     nextToken?: string | null,
-  } | null,
-};
-
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
-
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
   } | null,
 };
 
