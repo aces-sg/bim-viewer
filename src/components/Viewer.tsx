@@ -3,8 +3,10 @@ import Image from "next/image";
 import * as OBC from "openbim-components";
 import * as THREE from "three";
 import CommentsBox from "@/components/CommentsBox";
+import { usePathname } from "next/navigation";
 
 const Viewer = () => {
+  const pathname = usePathname();
   const [modelCount, setModelCount] = useState(0);
   const [showCommentsBox, setShowCommentsBox] = useState(false);
 
