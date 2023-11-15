@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from "react";
 import Image from "next/image";
-import type { GetServerSideProps } from "next";
 import {
   Amplify,
   API,
-  Auth,
-  withSSRContext,
   graphqlOperation,
 } from "aws-amplify";
 
@@ -17,8 +14,6 @@ import CommentsBox from "@/components/CommentsBox";
 
 import { Project } from "@/types";
 
-// Amplify.configure({ ...awsExports, ssr: true });
-
 let myAppConfig = {
   aws_appsync_graphqlEndpoint:
     "https://afwhe7xgwrdmfkq5tiiv7xqpqu.appsync-api.ap-southeast-1.amazonaws.com/graphql",
@@ -27,49 +22,6 @@ let myAppConfig = {
   aws_appsync_apiKey: "da2-e2hggodm3fb2dlzbby3ihtu5ci",
 };
 Amplify.configure(myAppConfig);
-
-const projects: Project[] = [
-  {
-    id: 1,
-    title: "Design Idea for Park",
-    description: "Michael Harris, Amanda, Sarah Williams, and 5 Others",
-  },
-  {
-    id: 2,
-    title: "plans for oil drilling in the sea",
-    description: "Carlos, Benny Friday, Paul Lewington",
-  },
-  {
-    id: 3,
-    title: "building construction at a city center hotel",
-    description: "Christine Rodriguez, Fernando Alonso, Patrich Schick",
-  },
-  {
-    id: 4,
-    title: "Two island bridge construction planning team",
-    description: "Rena Gonzalez, Paul Lemington, Wilson Senna",
-  },
-  {
-    id: 5,
-    title: "toll road repair planning",
-    description: "Sarah West, Indira Winawan, Park Jung Hun",
-  },
-  {
-    id: 6,
-    title: "development planning team near the school",
-    description: "Carlos, Benny Friday, Paul Lewington",
-  },
-  {
-    id: 7,
-    title: "Rescue team at marine drilling site",
-    description: "Carlos, Benny Friday, Paul Lewington",
-  },
-  {
-    id: 8,
-    title: "Dive team for oil drilling site",
-    description: "Carlos, Benny Friday, Paul Lewington",
-  },
-];
 
 let mockInput = {
   name: "test",
@@ -84,14 +36,11 @@ let mockInput = {
   ],
 };
 
-const Projects = ({ projects = [] }) => {
+const Projects = () => {
   const [showCommentsBox, setShowCommentsBox] = useState(false);
 
   async function listAllProjects() {
     try {
-      // let res = await API.graphql({
-      //   query: listProjects,
-      // });
       const response = await API.graphql(graphqlOperation(listProjects));
       // setProjects(res.data.listProjects.items);
       console.log("res::", response);
