@@ -6,10 +6,8 @@ import { CustomModal, InviteModal, ShareModal } from "./Modals";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
-import { Project } from "@/types";
-
 interface ProjectCardProps {
-  project: Project;
+  project: any;
 }
 
 const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
@@ -64,7 +62,7 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
       <div className="bg-white rounded-[8px] p-[20px] border-[1px] border-solid border-[#aaa]">
         <div className="flex items-start justify-between mb-[16px] relative">
           <h5 className="font-sans font-semibold text-[16px] leading-[24px] text-[#000] capitalize">
-            {project.title}
+            {project.name}
           </h5>
           <div
             onClick={handleShowMenu}
