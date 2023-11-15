@@ -141,8 +141,8 @@ export const listProjects = /* GraphQL */ `
           commpany
           description
         }
-        createdAt
-        updatedAt
+        # createdAt
+        # updatedAt
       }
       nextToken
     }
