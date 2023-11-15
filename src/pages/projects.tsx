@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import Image from "next/image";
-import {
-  Amplify,
-  API,
-  graphqlOperation,
-} from "aws-amplify";
+import { Amplify, API, graphqlOperation } from "aws-amplify";
 
 import { listProjects } from "@/graphql/queries";
 import { createProject } from "@/graphql/mutations";
 
 import ProjectCard from "@/components/ProjectCard";
 import CommentsBox from "@/components/CommentsBox";
+import * as LR from "@uploadcare/blocks";
 
 import { Project } from "@/types";
 
@@ -36,7 +33,31 @@ let mockInput = {
   ],
 };
 
+LR.registerBlocks(LR);
+
+LR.FileUploaderRegular.shadowStyles = /* CSS */ `
+  :host lr-simple-btn button {
+    background-color: transparent !important;
+    border: none !important;
+
+    &:hover {
+      background-color: transparent !important;
+    }
+  }
+
+  :host lr-drop-area {
+    // background: #0061fe;
+    // color: white;
+    // min-height: 40px;
+  }
+
+  :host lr-copyright {
+    display: none;
+  }
+`;
+
 const Projects = () => {
+  const widgetRef = useRef();
   const [showCommentsBox, setShowCommentsBox] = useState(false);
 
   async function listAllProjects() {
@@ -74,8 +95,18 @@ const Projects = () => {
   return (
     <>
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
+        <lr-config
+          ctx-name="my-uploader"
+          pubkey={process.env.GATSBY_UPLOADCARE_KEY}
+        />
         <div className="mb-[20px] flex items-center justify-between">
-          <button className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]">
+          <lr-file-uploader-regular
+            ref={widgetRef}
+            ctx-name="my-uploader"
+            class="uploaderCfg"
+            css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"
+          ></lr-file-uploader-regular>
+          {/* <button className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]">
             <Image
               priority
               src="/images/plusIcon.svg"
@@ -85,7 +116,7 @@ const Projects = () => {
               className="mr-2"
             />
             <span>Add</span>
-          </button>
+          </button> */}
           <Image
             priority
             src="/images/chatIcon.svg"

@@ -3467,6 +3467,11 @@
   dependencies:
     tslib "^2.4.0"
 
+"@symbiotejs/symbiote@^1.11.7":
+  version "1.11.7"
+  resolved "https://registry.npmjs.org/@symbiotejs/symbiote/-/symbiote-1.11.7.tgz"
+  integrity sha512-fUOJwzuldeApJ533YeTdrfnpp4nsA+ss1eiNBodX7RHf4LnhPB2Z9HP4fF3m2YhKYnxK0whjXaKA+wrxTRP5qA==
+
 "@turf/boolean-clockwise@6.5.0":
   version "6.5.0"
   resolved "https://registry.npmjs.org/@turf/boolean-clockwise/-/boolean-clockwise-6.5.0.tgz"
@@ -3690,6 +3695,22 @@
   dependencies:
     "@typescript-eslint/types" "6.9.1"
     eslint-visitor-keys "^3.4.1"
+
+"@uploadcare/blocks@^0.29.1":
+  version "0.29.1"
+  resolved "https://registry.npmjs.org/@uploadcare/blocks/-/blocks-0.29.1.tgz"
+  integrity sha512-wHBGxcLoWU7VRM+imu70ye5tDChLx9do8feW9M0SfqWTWzNO0fRZTc9I2Sy86lm2jfrBYjYTE5++Wx9VNfLD4g==
+  dependencies:
+    "@symbiotejs/symbiote" "^1.11.7"
+    "@uploadcare/upload-client" "^6.8.0"
+
+"@uploadcare/upload-client@^6.8.0":
+  version "6.10.0"
+  resolved "https://registry.npmjs.org/@uploadcare/upload-client/-/upload-client-6.10.0.tgz"
+  integrity sha512-GEmOpsp3SnhMoq8xJiu1A0aZzeFR9LeOqyGR1/H9iuQN/ScfPbWOkx2Q7phbkhhh9oV2637dalT7U2Ixg5MVRQ==
+  dependencies:
+    form-data "^4.0.0"
+    ws "^8.2.3"
 
 "@webassemblyjs/ast@^1.11.5", "@webassemblyjs/ast@1.11.6":
   version "1.11.6"
@@ -8995,6 +9016,11 @@ ws@^7.5.1:
   version "7.5.9"
   resolved "https://registry.npmjs.org/ws/-/ws-7.5.9.tgz"
   integrity sha512-F+P9Jil7UiSKSkppIiD94dN07AwvFixvLIj1Og1Rl9GGMuNipJnV9JzjD6XuqmAeiswGvUmNLjr5cFuXwNS77Q==
+
+ws@^8.2.3:
+  version "8.14.2"
+  resolved "https://registry.npmjs.org/ws/-/ws-8.14.2.tgz"
+  integrity sha512-wEBG1ftX4jcglPxgFCMJmZ2PLtSbJ2Peg6TmpJFTbe9GZYOQCDPdMYu/Tm0/bGZkw8paZnJY45J4K2PZrLYq8g==
 
 xtend@~4.0.1:
   version "4.0.2"
