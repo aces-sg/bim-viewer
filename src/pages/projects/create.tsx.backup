@@ -6,10 +6,9 @@ import React, {
   useMemo,
   createRef,
 } from "react";
-import Image from "next/image";
 import { useRouter } from "next/navigation";
-import * as LR from "@uploadcare/blocks";
-// import { Widget, WidgetAPI } from "@uploadcare/react-widget";
+// import * as LR from "@uploadcare/blocks";
+import { Widget, WidgetAPI } from "@uploadcare/react-widget";
 import { Amplify, API } from "aws-amplify";
 
 // Graphql
@@ -19,37 +18,7 @@ import { awsConfig } from "@/awsConfig";
 
 Amplify.configure(awsConfig);
 
-LR.registerBlocks(LR);
-
-LR.FileUploaderRegular.shadowStyles = /* CSS */ `
-  :host lr-simple-btn {
-    width: 100%;
-    height: 40px;     
-  }
-
-  :host lr-simple-btn button {
-    width: 100%;
-    height: 100%;
-    border-radius: 40px;
-    background-color: #fddb00;
-
-    &:hover {
-      background-color: #fddb00;
-    }
-  }
-
-  :host lr-simple-btn button span {
-    font-size: 16px;
-    line-height: 20px;
-    font-weight: 600;
-    font-family: "Poppins", sans-serif;
-    text-transform: capitalize;
-  }
-
-  :host lr-copyright {
-    display: none;
-  }
-`;
+// LR.registerBlocks(LR);
 
 interface ProjectItem {
   name: string;
@@ -60,6 +29,7 @@ interface ProjectItem {
 const CreateProject = () => {
   const widgetRef = useRef();
   const router = useRouter();
+  const widgetApi = createRef<WidgetAPI>();
 
   const [uploadedFiles, setUploadedFiles] = useState<any[]>([]);
   const [projectData, setProjectData] = useState<ProjectItem>({
@@ -97,30 +67,34 @@ const CreateProject = () => {
       updateSubmission([...uploadCareFiles]);
       setUploadedFiles([...uploadedFiles, ...e.detail.data]);
     });
-
-    window.addEventListener("LR_REMOVE", e => {
-      let uploadCareFiles = e.detail.data;
-      console.log("call LR_REMOVE::", uploadCareFiles);
-      updateSubmission([...uploadCareFiles]);
-      setUploadedFiles([...uploadedFiles, ...e.detail.data]);
-    });  
   }, [uploadedFiles]);
 
   const handleCreateProject = async () => {
-    try {
-      const response = await API.graphql({
-        query: createProject,
-        variables: {
-          input: projectData,
-        },
-      });
-      console.log("create res::", response);
-      if (response) {
-        router.push("/projects");
-      }
-    } catch (err) {
-      console.log("failed create Project", err);
+    const bbbb = document.getElementById('bbbb');
+    if (bbbb) {
+      console.log('bbbb::', bbbb);
     }
+    // if (widgetRef?.current) {
+    //   console.log('aaa::', widgetRef.current);
+    //   const aaa = widgetRef.current;
+    //   if (aaa) {
+        
+    //   }      
+    // }
+    // try {
+    //   const response = await API.graphql({
+    //     query: createProject,
+    //     variables: {
+    //       input: projectData,
+    //     },
+    //   });
+    //   console.log("create res::", response);
+    //   if (response) {
+    //     router.push("/projects");
+    //   }
+    // } catch (err) {
+    //   console.log("failed create Project", err);
+    // }
   };
 
   const handleChange = (value: string, fieldName: string) => {
@@ -133,6 +107,16 @@ const CreateProject = () => {
     return projectData.name && projectData.description ? true : false;
   }, [projectData.description, projectData.name]);
 
+  const handleOpenDialog = () => {
+    if (widgetApi?.current) {
+      widgetApi.current.openDialog();
+    }
+  };
+
+  const handleConfigEvent = () => {
+    console.log('call handleConfigEvent::');
+  };
+
   return (
     <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
       <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">
@@ -143,7 +127,7 @@ const CreateProject = () => {
           <div className="mb-[10px]">
             <label
               htmlFor="projectName"
-              className="font-sans font-bold text-[14px] leading-[30px] text-[#121212]"
+              className="font-sans font-normal text-[14px] leading-[30px] text-[#121212]"
             >
               Project Name
             </label>
@@ -159,7 +143,7 @@ const CreateProject = () => {
           <div className="mb-[10px]">
             <label
               htmlFor="projectDescription"
-              className="font-sans font-bold text-[14px] leading-[30px] text-[#121212]"
+              className="font-sans font-normal text-[14px] leading-[30px] text-[#121212]"
             >
               Project Description
             </label>
@@ -172,48 +156,33 @@ const CreateProject = () => {
               onChange={e => handleChange(e.target.value, "description")}
             />
           </div>
-          <div className="my-[20px]">
-            {projectData?.submissions?.length > 0 && (
-              <div>
-                <p className="font-sans font-bold text-[14px] leading-[30px] text-[#121212] mb-[10px]">
-                  Submissions
-                </p>
-                <div>
-                  {projectData?.submissions?.map((submission, index) => (
-                    <div className="flex items-center mb-[5px]" key={index}>
-                      <div className="w-[24px] h-[24px] flex items-center justify-center mr-[10px]">
-                        <Image
-                          priority
-                          src={`/images/fileIcon.svg`}
-                          width={16}
-                          height={20}
-                          alt="ChatIcon"
-                        />
-                      </div>
-                      <span className="font-sans font-normal text-[14px] leading-[30px] text-[#121212]">
-                        {submission.name}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-            <div className="my-[20px]">
-              <lr-config
+          {/* <div className="my-[20px]">
+            <div>
+              <lr-config              
                 ctx-name="my-uploader"
                 pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLICKEY}
-                sourceList="local, dropbox, gdrive"
-                store={false}                
+                onEvent={handleConfigEvent}
               />
               <lr-file-uploader-regular
                 ref={widgetRef}
                 ctx-name="my-uploader"
-                class="uploaderCfg"                
-                css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"         
-                nodeValue={null}
-              ></lr-file-uploader-regular>              
-            </div>
-          </div>
+                class="uploaderCfg"
+                id="bbbb"
+                css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"
+                onEvent={handleConfigEvent}
+              >
+              </lr-file-uploader-regular>              
+            </div>            
+          </div> */}
+          <Widget
+            ref={widgetApi}
+            publicKey="00c2103a1e0f72c0ed7b"
+            // preloader={null}
+            // multiple={true}
+            onChange={info => console.log('Upload completed:', info)}
+            // onDialogClose={info => console.log('onDialogClose:', info?.files)}
+            tabs='file gdrive dropbox'
+          />
           <div className="mt-4">
             <button
               onClick={handleCreateProject}
@@ -222,7 +191,7 @@ const CreateProject = () => {
             >
               Create Project
             </button>
-          </div>
+          </div>          
         </div>
       </div>
     </div>
