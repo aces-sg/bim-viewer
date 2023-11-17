@@ -143,43 +143,43 @@ const Viewer = () => {
     });
 
     // Creating AreaMeasurement Dimensions Tool
-    const areaMeasurementDimensions = new OBC.AreaMeasurement(viewer);
-    viewerContainer.ondblclick = () => areaMeasurementDimensions.create();
-    viewerContainer.oncontextmenu = () =>
-      areaMeasurementDimensions.endCreation();
-    window.onkeydown = event => {
-      if (event.code === "Delete" || event.code === "Backspace") {
-        areaMeasurementDimensions.delete();
-      }
-    };
+    // const areaMeasurementDimensions = new OBC.AreaMeasurement(viewer);
+    // viewerContainer.ondblclick = () => areaMeasurementDimensions.create();
+    // viewerContainer.oncontextmenu = () =>
+    //   areaMeasurementDimensions.endCreation();
+    // window.onkeydown = event => {
+    //   if (event.code === "Delete" || event.code === "Backspace") {
+    //     areaMeasurementDimensions.delete();
+    //   }
+    // };
 
     // Creating && Deleting LengthMeasurement Dimensions Tool
-    const lengthMeasurementDimensions = new OBC.LengthMeasurement(viewer);
-    lengthMeasurementDimensions.snapDistance = 1;
-    viewerContainer.ondblclick = () => lengthMeasurementDimensions.create();
-    window.onkeydown = event => {
-      if (event.code === "Delete" || event.code === "Backspace") {
-        lengthMeasurementDimensions.delete();
-      }
-    };
+    // const lengthMeasurementDimensions = new OBC.LengthMeasurement(viewer);
+    // lengthMeasurementDimensions.snapDistance = 1;
+    // viewerContainer.ondblclick = () => lengthMeasurementDimensions.create();
+    // window.onkeydown = event => {
+    //   if (event.code === "Delete" || event.code === "Backspace") {
+    //     lengthMeasurementDimensions.delete();
+    //   }
+    // };
 
     // Creating && Deleting SimpleClipper Tool
-    const clipper = new OBC.SimpleClipper(viewer);
-    viewerContainer.ondblclick = () => clipper.create();
-    window.onkeydown = event => {
-      if (event.code === "Delete" || event.code === "Backspace") {
-        clipper.delete();
-      }
-    };
+    // const clipper = new OBC.SimpleClipper(viewer);
+    // viewerContainer.ondblclick = () => clipper.create();
+    // window.onkeydown = event => {
+    //   if (event.code === "Delete" || event.code === "Backspace") {
+    //     clipper.delete();
+    //   }
+    // };
 
     // Creating && Deleting EdgesClipper Tool
-    const edgesClipper = new OBC.EdgesClipper(viewer);
-    viewerContainer.ondblclick = () => edgesClipper.create();
-    window.onkeydown = event => {
-      if (event.code === "Delete" || event.code === "Backspace") {
-        edgesClipper.delete();
-      }
-    };
+    // const edgesClipper = new OBC.EdgesClipper(viewer);
+    // viewerContainer.ondblclick = () => edgesClipper.create();
+    // window.onkeydown = event => {
+    //   if (event.code === "Delete" || event.code === "Backspace") {
+    //     edgesClipper.delete();
+    //   }
+    // };
 
     ////////////// Creating mainToolbar and setting its menus //////////////////
     const mainToolbar = new OBC.Toolbar(viewer);
@@ -195,13 +195,13 @@ const Viewer = () => {
       // Camera menu
       cameraComponent.uiElement.get("main"),
       // AreaMeasurement menu
-      areaMeasurementDimensions.uiElement.get("main"),
+      // areaMeasurementDimensions.uiElement.get("main"),
       // LengthMeasurement menu
-      lengthMeasurementDimensions.uiElement.get("main"),
+      // lengthMeasurementDimensions.uiElement.get("main"),
       // SimpleClipper menu
-      clipper.uiElement.get("main"),
+      // clipper.uiElement.get("main"),
       // EdgesClipper menu
-      edgesClipper.uiElement.get("main"),
+      // edgesClipper.uiElement.get("main"),
     );
 
     viewer.ui.addToolbar(mainToolbar);

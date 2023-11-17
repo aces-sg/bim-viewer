@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, {
   useState,
   useRef,
@@ -60,16 +61,13 @@ interface ProjectItem {
 const CreateProject = () => {
   const widgetRef = useRef();
   const router = useRouter();
-
-  const [uploadedFiles, setUploadedFiles] = useState<any[]>([]);
   const [projectData, setProjectData] = useState<ProjectItem>({
     name: "",
     description: "",
     submissions: [],
   });
 
-  async function updateSubmission(uploadCareFiles: any) {
-    console.log(uploadCareFiles);
+  async function updateSubmission(uploadCareFiles: any, type: string) {
     let formattedFiles = uploadCareFiles.map((file: any) => {
       return {
         id: file.uuid,
@@ -79,32 +77,32 @@ const CreateProject = () => {
       };
     });
 
-    setProjectData(projectData => {
-      return { ...projectData, submissions: formattedFiles };
-    });
+    if (type === "add") {
+      setProjectData(projectData => {
+        return { ...projectData, submissions: formattedFiles };
+      });
+    } else {
+      const newSubmissions = projectData.submissions.filter(
+        submission =>
+          !formattedFiles.map((file: any) => file.id).includes(submission.id),
+      );
+      setProjectData(projectData => {
+        return { ...projectData, submissions: newSubmissions };
+      });
+    }
   }
 
   useEffect(() => {
-    const filesObj = localStorage.getItem("files");
-    if (filesObj) {
-      const currentFiles = JSON.parse(filesObj);
-      setUploadedFiles(currentFiles);
-    }
-
     window.addEventListener("LR_UPLOAD_FINISH", e => {
       let uploadCareFiles = e.detail.data;
-      console.log("call LR_UPLOAD_FINISH::");
-      updateSubmission([...uploadCareFiles]);
-      setUploadedFiles([...uploadedFiles, ...e.detail.data]);
+      updateSubmission([...uploadCareFiles], "add");
     });
 
     window.addEventListener("LR_REMOVE", e => {
       let uploadCareFiles = e.detail.data;
-      console.log("call LR_REMOVE::", uploadCareFiles);
-      updateSubmission([...uploadCareFiles]);
-      setUploadedFiles([...uploadedFiles, ...e.detail.data]);
-    });  
-  }, [uploadedFiles]);
+      updateSubmission([...uploadCareFiles], "delete");
+    });
+  }, [updateSubmission]);
 
   const handleCreateProject = async () => {
     try {
@@ -114,7 +112,6 @@ const CreateProject = () => {
           input: projectData,
         },
       });
-      console.log("create res::", response);
       if (response) {
         router.push("/projects");
       }
@@ -203,15 +200,15 @@ const CreateProject = () => {
                 ctx-name="my-uploader"
                 pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLICKEY}
                 sourceList="local, dropbox, gdrive"
-                store={false}                
+                store={false}
               />
               <lr-file-uploader-regular
                 ref={widgetRef}
                 ctx-name="my-uploader"
-                class="uploaderCfg"                
-                css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"         
+                class="uploaderCfg"
+                css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"
                 nodeValue={null}
-              ></lr-file-uploader-regular>              
+              ></lr-file-uploader-regular>
             </div>
           </div>
           <div className="mt-4">
