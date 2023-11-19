@@ -19,11 +19,11 @@
   },
   "auth": {
     "bimviewer88371676": {
-      "customAuth": false,
-      "dependsOn": [],
-      "providerPlugin": "awscloudformation",
       "service": "Cognito",
-      "serviceType": "imported"
+      "serviceType": "imported",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
     }
   },
   "hosting": {
