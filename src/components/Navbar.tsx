@@ -1,4 +1,4 @@
-import React, { FC, useState } from "react";
+import React, { FC, useState, useEffect } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
@@ -36,6 +36,14 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
     setShowMenu(false);
   });
 
+  const handleBack = () => {
+
+    if (router.pathname === "/") {
+      return;
+    }
+    router.back();
+  }
+
   return (
     <div className="bg-white px-[10px] md:px-[20px] lg:px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2] relative">
       <div className="flex items-center">
@@ -45,7 +53,7 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
         >
           <MenuIcon />
         </div>
-        <Link href="https://www.bim.com.sg" className="flex items-center">
+        <Link href="/" onClick={() => handleBack()} className="flex items-center">
           <LeftArrowIcon />
           <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">
             Back To Homepage

@@ -18,9 +18,10 @@ const DocumentTree: FC<DocumentTreeProps> = ({ document, level }) => {
         <div className="w-[24px] h-[24px] flex items-center justify-center mr-[16px]">
           <Image
             priority
-            src={`/images/${
-              document.type === "file" ? "fileIcon" : "folderIcon"
-            }.svg`}
+            // src={`/images/${
+            //   document.type === "file" ? "fileIcon" : "folderIcon"
+            // }.svg`}
+            src={`/images/fileIcon.svg`}
             width={document.type === "file" ? 16 : 20}
             height={24}
             alt="ChatIcon"
