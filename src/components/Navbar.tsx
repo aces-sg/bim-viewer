@@ -1,7 +1,9 @@
 import React, { FC, useState, useEffect } from "react";
+import { Auth } from "aws-amplify";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
+import { redirect } from "next/navigation";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
@@ -23,11 +25,19 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
     setShowMenu(true);
   };
 
-  const handleMenuOption = (menuOptionId: number) => {
+  const handleMenuOption = async (menuOptionId: number) => {
     if (menuOptionId === 1) {
       router.push("/account");
-    } else {
-      console.log("handle logout");
+    } else if (menuOptionId === 2) {
+      // Assuming 2 is the ID for logout
+      try {
+        let res = await Auth.currentAuthenticatedUser();
+        console.log("Successfully logged out", res);
+        // Redirect to the sign-in page or homepage after logout
+      } catch (error) {
+        console.error("Error signing out: ", error);
+      }
+      router.push(`${process.env.NEXT_PUBLIC_LOGIN_URL}`);
     }
     setShowMenu(false);
   };
@@ -35,6 +45,13 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
   const menuRef = useOutsideClick(() => {
     setShowMenu(false);
   });
+
+  const handleBack = () => {
+    if (router.pathname === "/") {
+      return;
+    }
+    router.back();
+  };
 
   return (
     <div className="bg-white px-[10px] md:px-[20px] lg:px-[40px] py-[8px] flex items-center justify-between border-b-[1px] border-solid border-[#d2d2d2] relative">
@@ -45,7 +62,11 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
         >
           <MenuIcon />
         </div>
-        <Link href="https://www.bim.com.sg" className="flex items-center">
+        <Link
+          href="/"
+          onClick={() => handleBack()}
+          className="flex items-center"
+        >
           <LeftArrowIcon />
           <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">
             Back To Homepage

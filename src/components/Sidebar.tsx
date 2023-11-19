@@ -12,7 +12,6 @@ const Sidebar: FC = () => {
   const links = [
     { id: 1, link: "/", name: "View", icon: <ViewerIcon /> },
     { id: 2, link: "/projects", name: "Projects", icon: <ProjectIcon /> },
-    { id: 3, link: "/documents", name: "Files", icon: <FolderIcon /> },
   ];
 
   const isActive = useCallback(
