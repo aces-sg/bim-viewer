@@ -1,6 +1,6 @@
 import { Auth } from "aws-amplify";
 
-import { useContext, useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 
 export const isBrowser = () => typeof window !== "undefined";
 
@@ -48,7 +48,7 @@ export const isLoggedIn = async () => {
 };
 
 export const useIsLoggedIn = () => {
-  const [isLoggedInState, setLoggedIn] = useState(null);
+  const [isLoggedInState, setLoggedIn] = useState<boolean | null>(null);
   useEffect(() => {
     const initialize = async () => {
       setLoggedIn(await isLoggedIn());
@@ -101,22 +101,7 @@ export const useIsSuper = () => {
   return isSuperRole;
 };
 
-export const signOut = async () => {
-  if (!isBrowser) return;
-  const dispatch = useContext(GlobalDispatchContext);
-  try {
-    await Auth.signOut();
-  } catch (err) {
-    console.log(err);
-  } finally {
-    dispatch({
-      type: "SET_USER",
-      message: "",
-    });
-  }
-};
-
-export const confirmSignUp = async ({ username, code }) => {
+export const confirmSignUp = async ({ username, code }: any) => {
   try {
     await Auth.confirmSignUp(username, code);
   } catch (error) {

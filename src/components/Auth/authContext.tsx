@@ -5,10 +5,11 @@ import { getUserName, useUserName } from "../../hooks/auth";
 
 interface AuthContextType {
   user: any;
-  sub: String;
+  sub: any;
   signIn: (username: string, password: string) => void;
   isLoading: boolean;
   signOut: () => void;
+  children?: React.ReactNode;
 }
 
 interface Result {
@@ -18,7 +19,7 @@ interface Result {
 
 const AuthContext = createContext({} as AuthContextType);
 
-function AuthProvider({ children }) {
+function AuthProvider({ children }: { children: React.ReactNode }) {
   const [user, setUser] = useState({});
   const [isLoading, setIsLoading] = useState(true);
 
@@ -50,7 +51,7 @@ function AuthProvider({ children }) {
     isLoading,
     signIn,
     signOut,
-    sub: user?.sub,
+    sub: user,
   };
 
   useEffect(() => {
