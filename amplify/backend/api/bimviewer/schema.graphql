@@ -15,7 +15,7 @@ type User @model {
   project: [Project]
 }
 
-type Project @model {
+type Project @model @auth(rules: [{ allow: owner }]) {
   id: ID!
   name: String
   description: String

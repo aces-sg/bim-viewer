@@ -67,6 +67,7 @@ export const getUser = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -91,6 +92,7 @@ export const listUsers = /* GraphQL */ `
           description
           createdAt
           updatedAt
+          owner
         }
         createdAt
         updatedAt
@@ -117,6 +119,7 @@ export const getProject = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
@@ -143,6 +146,7 @@ export const listProjects = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       nextToken
     }

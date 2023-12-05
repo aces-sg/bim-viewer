@@ -1,7 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import * as auth from "./auth";
-import { Auth } from "aws-amplify";
-import { getUserName, useUserName } from "../../hooks/auth";
+import {
+  CognitoUserPool
+} from "amazon-cognito-identity-js";
+import awsmobile from "../../aws-exports";
 
 interface AuthContextType {
   user: any;
@@ -17,6 +19,11 @@ interface Result {
   message: string;
 }
 
+const userPool = new CognitoUserPool({
+  UserPoolId: awsmobile.aws_user_pools_id,
+  ClientId: awsmobile.aws_user_pools_web_client_id,
+});
+
 const AuthContext = createContext({} as AuthContextType);
 
 function AuthProvider({ children }: { children: React.ReactNode }) {
@@ -25,16 +32,15 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
 
   const getCurrentUser = async () => {
     try {
-      const user = await Auth.currentAuthenticatedUser();
-      console.log("in loop", user);
+      const user = await auth.getCurrentUser();
       setUser(user);
     } catch (err) {
       // not logged in
-      console.log("error logging in", err);
+      console.log(err);
       setUser({});
     }
   };
-
+  
   const signIn = async (username: string, password: string) => {
     // debugger
     await auth.signIn(username, password);

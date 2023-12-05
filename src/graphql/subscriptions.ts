@@ -3,8 +3,8 @@
 // this is an auto generated file. This will be overwritten
 
 export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
-    onCreateTodo(filter: $filter) {
+  subscription OnCreateTodo {
+    onCreateTodo {
       id
       createdAt
       updatedAt
@@ -12,8 +12,8 @@ export const onCreateTodo = /* GraphQL */ `
   }
 `;
 export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
-    onUpdateTodo(filter: $filter) {
+  subscription OnUpdateTodo {
+    onUpdateTodo {
       id
       createdAt
       updatedAt
@@ -21,8 +21,8 @@ export const onUpdateTodo = /* GraphQL */ `
   }
 `;
 export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
-    onDeleteTodo(filter: $filter) {
+  subscription OnDeleteTodo {
+    onDeleteTodo {
       id
       createdAt
       updatedAt
@@ -30,8 +30,8 @@ export const onDeleteTodo = /* GraphQL */ `
   }
 `;
 export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
-    onCreateUser(filter: $filter) {
+  subscription OnCreateUser {
+    onCreateUser {
       id
       name
       email
@@ -52,6 +52,7 @@ export const onCreateUser = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -59,8 +60,8 @@ export const onCreateUser = /* GraphQL */ `
   }
 `;
 export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
-    onUpdateUser(filter: $filter) {
+  subscription OnUpdateUser {
+    onUpdateUser {
       id
       name
       email
@@ -81,6 +82,7 @@ export const onUpdateUser = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -88,8 +90,8 @@ export const onUpdateUser = /* GraphQL */ `
   }
 `;
 export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
-    onDeleteUser(filter: $filter) {
+  subscription OnDeleteUser {
+    onDeleteUser {
       id
       name
       email
@@ -110,6 +112,7 @@ export const onDeleteUser = /* GraphQL */ `
         }
         createdAt
         updatedAt
+        owner
       }
       createdAt
       updatedAt
@@ -117,8 +120,8 @@ export const onDeleteUser = /* GraphQL */ `
   }
 `;
 export const onCreateProject = /* GraphQL */ `
-  subscription OnCreateProject($filter: ModelSubscriptionProjectFilterInput) {
-    onCreateProject(filter: $filter) {
+  subscription OnCreateProject($owner: String) {
+    onCreateProject(owner: $owner) {
       id
       name
       description
@@ -134,12 +137,13 @@ export const onCreateProject = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onUpdateProject = /* GraphQL */ `
-  subscription OnUpdateProject($filter: ModelSubscriptionProjectFilterInput) {
-    onUpdateProject(filter: $filter) {
+  subscription OnUpdateProject($owner: String) {
+    onUpdateProject(owner: $owner) {
       id
       name
       description
@@ -155,12 +159,13 @@ export const onUpdateProject = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;
 export const onDeleteProject = /* GraphQL */ `
-  subscription OnDeleteProject($filter: ModelSubscriptionProjectFilterInput) {
-    onDeleteProject(filter: $filter) {
+  subscription OnDeleteProject($owner: String) {
+    onDeleteProject(owner: $owner) {
       id
       name
       description
@@ -176,6 +181,7 @@ export const onDeleteProject = /* GraphQL */ `
       }
       createdAt
       updatedAt
+      owner
     }
   }
 `;

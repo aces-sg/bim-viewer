@@ -3,12 +3,21 @@ import {
   CognitoUserPool,
   CognitoUser,
   AuthenticationDetails,
+  CookieStorage,
 } from "amazon-cognito-identity-js";
-import { cognitoConfig } from "./cognitoConfig";
+import awsmobile from "../../aws-exports";
+
+let cookieConfig = {
+  domain: process.env.NEXT_PUBLIC_COOKIE_DOMAIN,
+  secure: false,
+  path: "/",
+  expires: 365,
+};
 
 const userPool = new CognitoUserPool({
-  UserPoolId: cognitoConfig.UserPoolId,
-  ClientId: cognitoConfig.ClientId,
+  UserPoolId: awsmobile.aws_user_pools_id,
+  ClientId: awsmobile.aws_user_pools_web_client_id,
+  Storage: new CookieStorage(cookieConfig),
 });
 
 const AccountContext = createContext();
@@ -26,7 +35,7 @@ export function signUp(email, password) {
           return;
         }
         resolve(result.user);
-      },
+      }
     );
   });
 }
@@ -60,19 +69,20 @@ export function signIn(email, password) {
     const cognitoUser = new CognitoUser({
       Username: email,
       Pool: userPool,
+      Storage: new CookieStorage(cookieConfig),
     });
 
     cognitoUser.authenticateUser(authenticationDetails, {
-      onSuccess: result => {
+      onSuccess: (result) => {
         console.log("login success", result);
-        navigate("/");
+        navigate("http://localhost:3000");
         resolve(result);
       },
-      onFailure: err => {
+      onFailure: (err) => {
         console.log("login failure", err);
         reject(err);
       },
-      newPasswordRequired: data => {
+      newPasswordRequired: (data) => {
         console.log("new password required", data);
         reject(data);
       },
@@ -91,14 +101,18 @@ export function forgotPassword(username) {
       onSuccess: () => {
         resolve();
       },
-      onFailure: err => {
+      onFailure: (err) => {
         reject(err);
       },
     });
   });
 }
 
-export function confirmPassword(username, confirmationCode, newPassword) {
+export function confirmPassword(
+  username,
+  confirmationCode,
+  newPassword
+) {
   return new Promise((resolve, reject) => {
     const cognitoUser = new CognitoUser({
       Username: username,
@@ -109,7 +123,7 @@ export function confirmPassword(username, confirmationCode, newPassword) {
       onSuccess: () => {
         resolve();
       },
-      onFailure: err => {
+      onFailure: (err) => {
         reject(err);
       },
     });

@@ -1,5 +1,11 @@
 {
   "AppSyncApiName": "bimviewer",
   "DynamoDBBillingMode": "PAY_PER_REQUEST",
-  "DynamoDBEnableServerSideEncryption": false
+  "DynamoDBEnableServerSideEncryption": false,
+  "AuthCognitoUserPoolId": {
+    "Fn::GetAtt": [
+      "authbimviewer88371676",
+      "Outputs.UserPoolId"
+    ]
+  }
 }
