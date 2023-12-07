@@ -136,7 +136,7 @@ export type CreateProjectInput = {
 };
 
 export type SubmissionInput = {
-  id?: string | null,
+  id: string,
   modelId?: string | null,
   modelUrl?: string | null,
   name?: string | null,
@@ -231,6 +231,59 @@ export type ModelProjectConnection = {
   nextToken?: string | null,
 };
 
+export type ModelSubscriptionTodoFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionTodoFilterInput | null > | null,
+  or?: Array< ModelSubscriptionTodoFilterInput | null > | null,
+};
+
+export type ModelSubscriptionIDInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionUserFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  company?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionUserFilterInput | null > | null,
+  or?: Array< ModelSubscriptionUserFilterInput | null > | null,
+};
+
+export type ModelSubscriptionStringInput = {
+  ne?: string | null,
+  eq?: string | null,
+  le?: string | null,
+  lt?: string | null,
+  ge?: string | null,
+  gt?: string | null,
+  contains?: string | null,
+  notContains?: string | null,
+  between?: Array< string | null > | null,
+  beginsWith?: string | null,
+  in?: Array< string | null > | null,
+  notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionProjectFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionProjectFilterInput | null > | null,
+  or?: Array< ModelSubscriptionProjectFilterInput | null > | null,
+};
+
 export type TriggerNotificationMutationVariables = {
   input?: string | null,
 };
@@ -298,17 +351,6 @@ export type CreateUserMutation = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -335,17 +377,6 @@ export type UpdateUserMutation = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -372,17 +403,6 @@ export type DeleteUserMutation = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -476,6 +496,9 @@ export type DeleteProjectMutation = {
   } | null,
 };
 
+export type ListSubmissionResultsQueryVariables = {
+};
+
 export type ListSubmissionResultsQuery = {
   listSubmissionResults?:  {
     __typename: "SubmissionsResult",
@@ -542,17 +565,6 @@ export type GetUserQuery = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -577,15 +589,6 @@ export type ListUsersQuery = {
       name?: string | null,
       email?: string | null,
       company?: string | null,
-      project?:  Array< {
-        __typename: "Project",
-        id: string,
-        name?: string | null,
-        description?: string | null,
-        createdAt: string,
-        updatedAt: string,
-        owner?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
     } | null >,
@@ -634,23 +637,16 @@ export type ListProjectsQuery = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
+};
+
+export type OnCreateTodoSubscriptionVariables = {
+  filter?: ModelSubscriptionTodoFilterInput | null,
 };
 
 export type OnCreateTodoSubscription = {
@@ -662,6 +658,10 @@ export type OnCreateTodoSubscription = {
   } | null,
 };
 
+export type OnUpdateTodoSubscriptionVariables = {
+  filter?: ModelSubscriptionTodoFilterInput | null,
+};
+
 export type OnUpdateTodoSubscription = {
   onUpdateTodo?:  {
     __typename: "Todo",
@@ -671,6 +671,10 @@ export type OnUpdateTodoSubscription = {
   } | null,
 };
 
+export type OnDeleteTodoSubscriptionVariables = {
+  filter?: ModelSubscriptionTodoFilterInput | null,
+};
+
 export type OnDeleteTodoSubscription = {
   onDeleteTodo?:  {
     __typename: "Todo",
@@ -678,6 +682,10 @@ export type OnDeleteTodoSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnCreateUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
 };
 
 export type OnCreateUserSubscription = {
@@ -692,17 +700,6 @@ export type OnCreateUserSubscription = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -710,6 +707,10 @@ export type OnCreateUserSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnUpdateUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
 };
 
 export type OnUpdateUserSubscription = {
@@ -724,17 +725,6 @@ export type OnUpdateUserSubscription = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -742,6 +732,10 @@ export type OnUpdateUserSubscription = {
     createdAt: string,
     updatedAt: string,
   } | null,
+};
+
+export type OnDeleteUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
 };
 
 export type OnDeleteUserSubscription = {
@@ -756,17 +750,6 @@ export type OnDeleteUserSubscription = {
       id: string,
       name?: string | null,
       description?: string | null,
-      submissions?:  Array< {
-        __typename: "Submission",
-        id: string,
-        modelId?: string | null,
-        modelUrl?: string | null,
-        name?: string | null,
-        email?: string | null,
-        phone?: string | null,
-        commpany?: string | null,
-        description?: string | null,
-      } | null > | null,
       createdAt: string,
       updatedAt: string,
       owner?: string | null,
@@ -777,6 +760,7 @@ export type OnDeleteUserSubscription = {
 };
 
 export type OnCreateProjectSubscriptionVariables = {
+  filter?: ModelSubscriptionProjectFilterInput | null,
   owner?: string | null,
 };
 
@@ -804,6 +788,7 @@ export type OnCreateProjectSubscription = {
 };
 
 export type OnUpdateProjectSubscriptionVariables = {
+  filter?: ModelSubscriptionProjectFilterInput | null,
   owner?: string | null,
 };
 
@@ -831,6 +816,7 @@ export type OnUpdateProjectSubscription = {
 };
 
 export type OnDeleteProjectSubscriptionVariables = {
+  filter?: ModelSubscriptionProjectFilterInput | null,
   owner?: string | null,
 };
 

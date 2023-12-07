@@ -2,186 +2,204 @@
 /* eslint-disable */
 // this is an auto generated file. This will be overwritten
 
-export const onCreateTodo = /* GraphQL */ `
-  subscription OnCreateTodo {
-    onCreateTodo {
-      id
-      createdAt
-      updatedAt
-    }
+import * as APITypes from "../API";
+type GeneratedSubscription<InputType, OutputType> = string & {
+  __generatedSubscriptionInput: InputType;
+  __generatedSubscriptionOutput: OutputType;
+};
+
+export const onCreateTodo = /* GraphQL */ `subscription OnCreateTodo($filter: ModelSubscriptionTodoFilterInput) {
+  onCreateTodo(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+    __typename
   }
-`;
-export const onUpdateTodo = /* GraphQL */ `
-  subscription OnUpdateTodo {
-    onUpdateTodo {
-      id
-      createdAt
-      updatedAt
-    }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateTodoSubscriptionVariables,
+  APITypes.OnCreateTodoSubscription
+>;
+export const onUpdateTodo = /* GraphQL */ `subscription OnUpdateTodo($filter: ModelSubscriptionTodoFilterInput) {
+  onUpdateTodo(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+    __typename
   }
-`;
-export const onDeleteTodo = /* GraphQL */ `
-  subscription OnDeleteTodo {
-    onDeleteTodo {
-      id
-      createdAt
-      updatedAt
-    }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateTodoSubscriptionVariables,
+  APITypes.OnUpdateTodoSubscription
+>;
+export const onDeleteTodo = /* GraphQL */ `subscription OnDeleteTodo($filter: ModelSubscriptionTodoFilterInput) {
+  onDeleteTodo(filter: $filter) {
+    id
+    createdAt
+    updatedAt
+    __typename
   }
-`;
-export const onCreateUser = /* GraphQL */ `
-  subscription OnCreateUser {
-    onCreateUser {
-      id
-      name
-      email
-      company
-      project {
-        id
-        name
-        description
-        submissions {
-          id
-          modelId
-          modelUrl
-          name
-          email
-          phone
-          commpany
-          description
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onUpdateUser = /* GraphQL */ `
-  subscription OnUpdateUser {
-    onUpdateUser {
-      id
-      name
-      email
-      company
-      project {
-        id
-        name
-        description
-        submissions {
-          id
-          modelId
-          modelUrl
-          name
-          email
-          phone
-          commpany
-          description
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onDeleteUser = /* GraphQL */ `
-  subscription OnDeleteUser {
-    onDeleteUser {
-      id
-      name
-      email
-      company
-      project {
-        id
-        name
-        description
-        submissions {
-          id
-          modelId
-          modelUrl
-          name
-          email
-          phone
-          commpany
-          description
-        }
-        createdAt
-        updatedAt
-        owner
-      }
-      createdAt
-      updatedAt
-    }
-  }
-`;
-export const onCreateProject = /* GraphQL */ `
-  subscription OnCreateProject($owner: String) {
-    onCreateProject(owner: $owner) {
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteTodoSubscriptionVariables,
+  APITypes.OnDeleteTodoSubscription
+>;
+export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+  onCreateUser(filter: $filter) {
+    id
+    name
+    email
+    company
+    project {
       id
       name
       description
-      submissions {
-        id
-        modelId
-        modelUrl
-        name
-        email
-        phone
-        commpany
-        description
-      }
       createdAt
       updatedAt
       owner
+      __typename
     }
+    createdAt
+    updatedAt
+    __typename
   }
-`;
-export const onUpdateProject = /* GraphQL */ `
-  subscription OnUpdateProject($owner: String) {
-    onUpdateProject(owner: $owner) {
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateUserSubscriptionVariables,
+  APITypes.OnCreateUserSubscription
+>;
+export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+  onUpdateUser(filter: $filter) {
+    id
+    name
+    email
+    company
+    project {
       id
       name
       description
-      submissions {
-        id
-        modelId
-        modelUrl
-        name
-        email
-        phone
-        commpany
-        description
-      }
       createdAt
       updatedAt
       owner
+      __typename
     }
+    createdAt
+    updatedAt
+    __typename
   }
-`;
-export const onDeleteProject = /* GraphQL */ `
-  subscription OnDeleteProject($owner: String) {
-    onDeleteProject(owner: $owner) {
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateUserSubscriptionVariables,
+  APITypes.OnUpdateUserSubscription
+>;
+export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+  onDeleteUser(filter: $filter) {
+    id
+    name
+    email
+    company
+    project {
       id
       name
       description
-      submissions {
-        id
-        modelId
-        modelUrl
-        name
-        email
-        phone
-        commpany
-        description
-      }
       createdAt
       updatedAt
       owner
+      __typename
     }
+    createdAt
+    updatedAt
+    __typename
   }
-`;
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteUserSubscriptionVariables,
+  APITypes.OnDeleteUserSubscription
+>;
+export const onCreateProject = /* GraphQL */ `subscription OnCreateProject(
+  $filter: ModelSubscriptionProjectFilterInput
+  $owner: String
+) {
+  onCreateProject(filter: $filter, owner: $owner) {
+    id
+    name
+    description
+    submissions {
+      id
+      modelId
+      modelUrl
+      name
+      email
+      phone
+      commpany
+      description
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateProjectSubscriptionVariables,
+  APITypes.OnCreateProjectSubscription
+>;
+export const onUpdateProject = /* GraphQL */ `subscription OnUpdateProject(
+  $filter: ModelSubscriptionProjectFilterInput
+  $owner: String
+) {
+  onUpdateProject(filter: $filter, owner: $owner) {
+    id
+    name
+    description
+    submissions {
+      id
+      modelId
+      modelUrl
+      name
+      email
+      phone
+      commpany
+      description
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateProjectSubscriptionVariables,
+  APITypes.OnUpdateProjectSubscription
+>;
+export const onDeleteProject = /* GraphQL */ `subscription OnDeleteProject(
+  $filter: ModelSubscriptionProjectFilterInput
+  $owner: String
+) {
+  onDeleteProject(filter: $filter, owner: $owner) {
+    id
+    name
+    description
+    submissions {
+      id
+      modelId
+      modelUrl
+      name
+      email
+      phone
+      commpany
+      description
+      __typename
+    }
+    createdAt
+    updatedAt
+    owner
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteProjectSubscriptionVariables,
+  APITypes.OnDeleteProjectSubscription
+>;

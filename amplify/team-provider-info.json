@@ -32,6 +32,9 @@
           "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-dev-90405-unauthRole",
           "unauthRoleName": "amplify-bim-dev-90405-unauthRole"
         }
+      },
+      "api": {
+        "bimviewer": {}
       }
     }
   },

@@ -15,7 +15,17 @@ type User @model {
   project: [Project]
 }
 
-type Project @model @auth(rules: [{ allow: owner }]) {
+type Project
+  @model
+  @auth(
+    rules: [
+      {
+        allow: owner
+        ownerField: "owner"
+        operations: [create, update, delete, read]
+      }
+    ]
+  ) {
   id: ID!
   name: String
   description: String

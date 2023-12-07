@@ -1,9 +1,8 @@
 export type AmplifyDependentResourcesAttributes = {
-    "api": {
-        "bimviewer": {
-            "GraphQLAPIKeyOutput": "string",
-            "GraphQLAPIIdOutput": "string",
-            "GraphQLAPIEndpointOutput": "string"
-        }
+  "api": {
+    "bimviewer": {
+      "GraphQLAPIEndpointOutput": "string",
+      "GraphQLAPIIdOutput": "string"
     }
+  }
 }

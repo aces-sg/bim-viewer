@@ -21,7 +21,10 @@ const Projects = () => {
   useEffect(() => {
     const getAllProjects = async () => {
       try {
-        const response: any = await API.graphql(graphqlOperation(listProjects));
+        const response: any = await API.graphql({
+          query: listProjects,
+          authMode: "AMAZON_COGNITO_USER_POOLS",
+        });
         setProjects(response?.data?.listProjects?.items);
       } catch (err) {
         console.log("failed to get projects: ", err);

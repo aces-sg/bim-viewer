@@ -3,28 +3,21 @@
     "bimviewer": {
       "dependsOn": [
         {
-          "category": "auth",
-          "resourceName": "bimviewer88371676",
           "attributes": [
             "UserPoolId"
-          ]
+          ],
+          "category": "auth",
+          "resourceName": "bimviewer88371676"
         }
       ],
       "output": {
         "authConfig": {
-          "additionalAuthenticationProviders": [
-            {
-              "authenticationType": "AMAZON_COGNITO_USER_POOLS",
-              "userPoolConfig": {
-                "userPoolId": "authbimviewer88371676"
-              }
-            }
-          ],
+          "additionalAuthenticationProviders": [],
           "defaultAuthentication": {
-            "apiKeyConfig": {
-              "apiKeyExpirationDays": 7
-            },
-            "authenticationType": "API_KEY"
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authbimviewer88371676"
+            }
           }
         }
       },

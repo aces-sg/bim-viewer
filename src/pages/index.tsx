@@ -13,7 +13,6 @@ interface tHomeProps {
 async function getUser() {
   try {
     let res = await auth.getCurrentUser();
-    console.log("user: ", res);
   } catch (e) {
     console.log("failed to get user", e);
   }
@@ -24,8 +23,8 @@ const Home: React.FC<tHomeProps> = props => {
 
   useEffect(() => {
     getUser();
-  }, [])
-  
+  }, []);
+
   return <ViewerNoSSR />;
 };
 

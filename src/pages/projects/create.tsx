@@ -92,18 +92,6 @@ const CreateProject = () => {
     }
   }
 
-  useEffect(() => {
-    window.addEventListener("LR_UPLOAD_FINISH", e => {
-      let uploadCareFiles = e.detail.data;
-      updateSubmission([...uploadCareFiles], "add");
-    });
-
-    window.addEventListener("LR_REMOVE", e => {
-      let uploadCareFiles = e.detail.data;
-      updateSubmission([...uploadCareFiles], "delete");
-    });
-  }, [updateSubmission]);
-
   const handleCreateProject = async () => {
     try {
       const response = await API.graphql({
@@ -111,6 +99,7 @@ const CreateProject = () => {
         variables: {
           input: projectData,
         },
+        authMode: "AMAZON_COGNITO_USER_POOLS",
       });
       if (response) {
         router.push("/projects");
@@ -129,6 +118,18 @@ const CreateProject = () => {
   const isFormValid = useMemo(() => {
     return projectData.name && projectData.description ? true : false;
   }, [projectData.description, projectData.name]);
+
+  useEffect(() => {
+    window.addEventListener("LR_UPLOAD_FINISH", e => {
+      let uploadCareFiles = e.detail.data;
+      updateSubmission([...uploadCareFiles], "add");
+    });
+
+    window.addEventListener("LR_REMOVE", e => {
+      let uploadCareFiles = e.detail.data;
+      updateSubmission([...uploadCareFiles], "delete");
+    });
+  }, [updateSubmission]);
 
   return (
     <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">

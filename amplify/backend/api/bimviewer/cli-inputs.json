@@ -3,16 +3,11 @@
   "serviceConfiguration": {
     "apiName": "bimviewer",
     "serviceName": "AppSync",
-    "gqlSchemaPath": "/home/tangytang/Projects/bim-viewer/amplify/backend/api/bimviewer/schema.graphql",
     "defaultAuthType": {
-      "mode": "API_KEY",
-      "expirationTime": 7
+      "mode": "AMAZON_COGNITO_USER_POOLS",
+      "cognitoUserPoolId": "authbimviewer88371676"
     },
-    "additionalAuthTypes": [
-      {
-        "mode": "AMAZON_COGNITO_USER_POOLS",
-        "cognitoUserPoolId": "authbimviewer88371676"
-      }
-    ]
+    "additionalAuthTypes": [],
+    "conflictResolution": {}
   }
 }

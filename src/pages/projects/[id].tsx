@@ -28,6 +28,7 @@ const DocumentDetail = () => {
           variables: {
             id: id,
           },
+          authMode: "AMAZON_COGNITO_USER_POOLS",
         });
         setSubmissions(response.data.getProject.submissions);
         setProjectName(response.data.getProject.name);
@@ -44,6 +45,8 @@ const DocumentDetail = () => {
   const closeCommentsBox = () => {
     setShowCommentsBox(false);
   };
+
+  console.log("submissions are ", submissions);
 
   return (
     <>
