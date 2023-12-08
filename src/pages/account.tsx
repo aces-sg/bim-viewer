@@ -1,6 +1,24 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useForm } from "react-hook-form";
+import { User } from "@/API";
+import { getCurrentUser } from "@/components/Auth/auth";
 
 const Account = () => {
+  const [user, setUser] = useState<User | null>(null);
+
+  async function getUser() {
+    try {
+      let res = await getCurrentUser();
+      setUser(res);
+    } catch (err) {
+      console.log("failed to get user");
+    }
+  }
+
+  useEffect(() => {
+    getUser();
+  }, []);
+
   return (
     <div className="bg-white w-full min-h-full">
       <div className="max-w-[600px] mx-auto px-[15px] py-[70px]">
@@ -20,6 +38,7 @@ const Account = () => {
                 type="text"
                 className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[44px]"
                 placeholder="Name"
+                value={`${user?.email}`}
               />
             </div>
           </div>
