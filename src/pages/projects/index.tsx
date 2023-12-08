@@ -9,6 +9,7 @@ import { listProjects } from "@/graphql/queries";
 // Components
 import ProjectCard from "@/components/ProjectCard";
 import CommentsBox from "@/components/CommentsBox";
+import PrivateRoute from "@/components/Auth/PrivateRoute";
 
 import { awsConfig } from "@/awsConfig";
 
@@ -39,7 +40,7 @@ const Projects = () => {
   };
 
   return (
-    <>
+    <PrivateRoute>
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="mb-[20px] flex items-center justify-between">
           <Link href="/projects/create">
@@ -74,7 +75,7 @@ const Projects = () => {
         </div>
       </div>
       {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
-    </>
+    </PrivateRoute>
   );
 };
 

@@ -3,11 +3,12 @@ import { Auth } from "aws-amplify";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
-import { redirect } from "next/navigation";
+import { signOut } from "./Auth/auth";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
 
 import { LeftArrowIcon, MenuIcon } from "./icons";
+import { urls } from "./Auth/data";
 
 interface NavbarProps {
   handleShowSidebar: () => void;
@@ -39,6 +40,9 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
       }
       router.push(`${process.env.NEXT_PUBLIC_LOGIN_URL}`);
     }
+    if (menuOptionId === 2) {
+      signOut();
+    }
     setShowMenu(false);
   };
 
@@ -47,7 +51,7 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
   });
 
   const handleBack = () => {
-    if (router.pathname === "/") {
+    if (router.pathname === `${urls.homePage}`) {
       return;
     }
     router.back();
@@ -62,11 +66,7 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
         >
           <MenuIcon />
         </div>
-        <Link
-          href="/"
-          onClick={() => handleBack()}
-          className="flex items-center"
-        >
+        <Link href={`${urls.homePage}`} className="flex items-center">
           <LeftArrowIcon />
           <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">
             Back To Homepage
