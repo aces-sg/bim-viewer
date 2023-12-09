@@ -37,7 +37,7 @@ const Documents = () => {
             />
             <span>Add</span>
           </button>
-          <Image
+          {/* <Image
             priority
             src="/images/chatIcon.svg"
             width={40}
@@ -45,7 +45,7 @@ const Documents = () => {
             alt="ChatIcon"
             className="cursor-pointer"
             onClick={() => setShowCommentsBox(true)}
-          />
+          /> */}
         </div>
         <div className="flex items-center mb-[16px]">
           <Image

@@ -77,7 +77,7 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
         className="bg-[#fddb00] w-[40px] h-[40px] flex items-center justify-center rounded-full font-sans font-semibold text-[14px] leading-[21px] text-[#000] cursor-pointer"
         onClick={handleShowMenu}
       >
-        AN
+        An
       </div>
       {showMenu && (
         <div

@@ -20,6 +20,16 @@ const DocumentDetail = () => {
   const [projectName, setProjectName] = useState("");
   const [submissions, setSubmissions] = useState<any[]>();
 
+  const [showCommentsBox, setShowCommentsBox] = useState(false);
+
+  const closeCommentsBox = () => {
+    setShowCommentsBox(false);
+  };
+
+  const handleAdd = () => {
+    router.push(`/projects/${id}/update`);
+  }
+
   useEffect(() => {
     const getProjectData = async () => {
       try {
@@ -40,19 +50,13 @@ const DocumentDetail = () => {
     getProjectData();
   }, [id]);
 
-  const [showCommentsBox, setShowCommentsBox] = useState(false);
-
-  const closeCommentsBox = () => {
-    setShowCommentsBox(false);
-  };
-
-  console.log("submissions are ", submissions);
+  
 
   return (
     <>
       <div className="bg-white px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="flex items-center justify-between mb-[32px]">
-          <button className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]">
+          <button className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]" onClick={() => handleAdd()}>
             <Image
               priority
               src="/images/plusIcon.svg"
@@ -63,7 +67,7 @@ const DocumentDetail = () => {
             />
             <span>Add</span>
           </button>
-          <Image
+          {/* <Image
             priority
             src="/images/chatIcon.svg"
             width={40}
@@ -71,7 +75,7 @@ const DocumentDetail = () => {
             alt="ChatIcon"
             className="cursor-pointer"
             onClick={() => setShowCommentsBox(true)}
-          />
+          /> */}
         </div>
         <div className="flex items-center mb-[16px]">
           <Image
@@ -96,6 +100,7 @@ const DocumentDetail = () => {
               />
             ))}
         </div>
+      
       </div>
     </>
   );

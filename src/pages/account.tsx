@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useForm } from "react-hook-form";
 import { User } from "@/API";
 import { getCurrentUser } from "@/components/Auth/auth";
 
@@ -26,7 +25,7 @@ const Account = () => {
           Account
         </h3>
         <div className="bg-[#fddb00] w-[60px] h-[60px] mx-auto mb-[20px] flex items-center justify-center rounded-full font-sans font-semibold text-[14px] leading-[21px] text-[#000] cursor-pointer">
-          AN
+          P
         </div>
         <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-x-[28px]">
           <div className="">

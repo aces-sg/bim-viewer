@@ -19,6 +19,10 @@ const Projects = () => {
   const [projects, setProjects] = useState<any[]>();
   const [showCommentsBox, setShowCommentsBox] = useState(false);
 
+  const closeCommentsBox = () => {
+    setShowCommentsBox(false);
+  };
+
   useEffect(() => {
     const getAllProjects = async () => {
       try {
@@ -33,11 +37,7 @@ const Projects = () => {
     };
 
     getAllProjects();
-  }, []);
-
-  const closeCommentsBox = () => {
-    setShowCommentsBox(false);
-  };
+  }, [projects]);
 
   return (
     <PrivateRoute>
@@ -56,7 +56,7 @@ const Projects = () => {
               <span>Add</span>
             </button>
           </Link>
-          <Image
+          {/* <Image
             priority
             src="/images/chatIcon.svg"
             width={40}
@@ -64,7 +64,7 @@ const Projects = () => {
             alt="ChatIcon"
             className="cursor-pointer"
             onClick={() => setShowCommentsBox(true)}
-          />
+          /> */}
         </div>
 
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">

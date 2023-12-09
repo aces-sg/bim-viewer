@@ -13,7 +13,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment }) => {
       <div className="flex items-center justify-between mb-[16px]">
         <div className="flex items-center">
           <div className="bg-[#fddb00] w-[28px] h-[28px] flex items-center justify-center rounded-full font-sans font-semibold text-[12px] leading-[18px] text-[#000] cursor-pointer">
-            AN
+            P
           </div>
           <span className="ml-2 font-sans font-semibold text-[14px] leading-[21px] text-[#000]">
             {comment.name}
