@@ -23,21 +23,21 @@ const Projects = () => {
     setShowCommentsBox(false);
   };
 
-  useEffect(() => {
-    const getAllProjects = async () => {
-      try {
-        const response: any = await API.graphql({
-          query: listProjects,
-          authMode: "AMAZON_COGNITO_USER_POOLS",
-        });
-        setProjects(response?.data?.listProjects?.items);
-      } catch (err) {
-        console.log("failed to get projects: ", err);
-      }
-    };
+  async function listAllProjects() {
+    try {
+      const response: any = await API.graphql({
+        query: listProjects,
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      });
+      setProjects(response?.data?.listProjects?.items);
+    } catch (err) {
+      console.log("failed to get projects: ", err);
+    }
+  }
 
-    getAllProjects();
-  }, [projects]);
+  useEffect(() => {
+    listAllProjects();
+  }, [setProjects]);
 
   return (
     <PrivateRoute>

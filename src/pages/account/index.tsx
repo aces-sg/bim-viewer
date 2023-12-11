@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { API, Amplify } from "aws-amplify";
 import { set, useForm } from "react-hook-form";
 import PhoneInput from "react-phone-number-input";
-import { UpdateUserInput, User } from "@/API";
+import { User } from "@/API";
 import { getUser } from "@/graphql/queries";
 import { getCurrentUser } from "@/components/Auth/auth";
 import { updateUser, createUser } from "@/graphql/mutations";
@@ -11,8 +11,8 @@ import { awsConfig } from "@/awsConfig";
 Amplify.configure(awsConfig);
 
 interface UpdateUserInput {
-  id: string;
   name: string;
+  phone: string;
   email: string;
   company: string;
 }
@@ -24,7 +24,7 @@ const Account = () => {
   async function getUserDetails() {
     try {
       let res = await getCurrentUser();
-      let userDetails = await API.graphql({
+      let userDetails: any = await API.graphql({
         query: getUser,
         variables: {
           id: res.sub,
@@ -37,8 +37,7 @@ const Account = () => {
     }
   }
 
-  async function updateUserInput(input: UpdateUserInput) {
-    console.log("input is", input);
+  async function updateUserInput(input: any) {
     try {
       let res: any = await API.graphql({
         query: updateUser,
