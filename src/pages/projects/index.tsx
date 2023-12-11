@@ -37,7 +37,7 @@ const Projects = () => {
 
   useEffect(() => {
     listAllProjects();
-  }, [setProjects]);
+  }, []);
 
   return (
     <PrivateRoute>

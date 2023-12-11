@@ -1,6 +1,6 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { FC, useState } from "react";
-import { API } from "aws-amplify"
+import { API } from "aws-amplify";
 import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import { deleteProject } from "@/graphql/mutations";
 import { CustomModal, InviteModal, ShareModal } from "./Modals";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { isBrowser } from "@/hooks/auth";
 
 interface ProjectCardProps {
   project: any;
@@ -43,8 +44,8 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
     }
 
     if (menuOptionId === 2) {
-      console.log('deleting project...', project.id)
-      removeProject(project.id)
+      console.log("deleting project...", project.id);
+      removeProject(project.id);
     }
     setShowMenu(false);
   };
@@ -66,16 +67,18 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   };
 
   async function removeProject(id: string) {
+    if (!isBrowser) return;
     try {
       let res = await API.graphql({
         query: deleteProject,
         variables: { input: { id } },
         authMode: "AMAZON_COGNITO_USER_POOLS",
-      })
-      console.log('success deleting project', res)
+      });
+      console.log("success deleting project", res);
     } catch (err) {
       console.log("failed to delete project:", err);
     }
+    window.location.reload();
   }
 
   return (
@@ -128,16 +131,16 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
             )}
           </div>
           <Link href={`/projects/${project.id}`}>
-          <div className="flex items-start">
-            <div className="flex mr-2">
-              <img
-                className="inline-block rounded-full"
-                src="/favicon.ico"
-                width={24}
-                height={24}
-                alt=""
-              />
-              {/* <img
+            <div className="flex items-start">
+              <div className="flex mr-2">
+                <img
+                  className="inline-block rounded-full"
+                  src="/favicon.ico"
+                  width={24}
+                  height={24}
+                  alt=""
+                />
+                {/* <img
                 className="inline-block rounded-full"
                 src="/images/user2.png"
                 width={24}
@@ -158,11 +161,11 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
                 height={24}
                 alt=""
               /> */}
+              </div>
+              <span className="font-sans font-normal text-[12px] leading-[18px] text-[#666] capitalize">
+                {project.description}
+              </span>
             </div>
-            <span className="font-sans font-normal text-[12px] leading-[18px] text-[#666] capitalize">
-              {project.description}
-            </span>
-          </div>
           </Link>
         </div>
       </div>
