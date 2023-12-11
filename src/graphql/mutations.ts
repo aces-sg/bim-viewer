@@ -67,6 +67,8 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
   createUser(input: $input, condition: $condition) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -80,6 +82,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }
@@ -94,6 +97,8 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
   updateUser(input: $input, condition: $condition) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -107,6 +112,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }
@@ -121,6 +127,8 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
   deleteUser(input: $input, condition: $condition) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -134,6 +142,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }

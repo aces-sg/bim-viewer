@@ -44,10 +44,15 @@ export const onDeleteTodo = /* GraphQL */ `subscription OnDeleteTodo($filter: Mo
   APITypes.OnDeleteTodoSubscriptionVariables,
   APITypes.OnDeleteTodoSubscription
 >;
-export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
-  onCreateUser(filter: $filter) {
+export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $ownerId: String
+) {
+  onCreateUser(filter: $filter, ownerId: $ownerId) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -61,6 +66,7 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: Mo
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }
@@ -68,10 +74,15 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: Mo
   APITypes.OnCreateUserSubscriptionVariables,
   APITypes.OnCreateUserSubscription
 >;
-export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
-  onUpdateUser(filter: $filter) {
+export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $ownerId: String
+) {
+  onUpdateUser(filter: $filter, ownerId: $ownerId) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -85,6 +96,7 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: Mo
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }
@@ -92,10 +104,15 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: Mo
   APITypes.OnUpdateUserSubscriptionVariables,
   APITypes.OnUpdateUserSubscription
 >;
-export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
-  onDeleteUser(filter: $filter) {
+export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
+  $filter: ModelSubscriptionUserFilterInput
+  $ownerId: String
+) {
+  onDeleteUser(filter: $filter, ownerId: $ownerId) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -109,6 +126,7 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: Mo
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }
