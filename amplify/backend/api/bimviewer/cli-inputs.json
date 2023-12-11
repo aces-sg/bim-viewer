@@ -7,7 +7,14 @@
       "mode": "AMAZON_COGNITO_USER_POOLS",
       "cognitoUserPoolId": "authbimviewer88371676"
     },
-    "additionalAuthTypes": [],
+    "additionalAuthTypes": [
+      {
+        "mode": "API_KEY",
+        "expirationTime": 7,
+        "apiKeyExpirationDate": "2023-12-15T06:57:08.992Z",
+        "keyDescription": ""
+      }
+    ],
     "conflictResolution": {}
   }
 }

@@ -30,12 +30,16 @@ export type DeleteTodoInput = {
 export type CreateUserInput = {
   id?: string | null,
   name?: string | null,
+  phone?: string | null,
+  manager?: string | null,
   email?: string | null,
   company?: string | null,
 };
 
 export type ModelUserConditionInput = {
   name?: ModelStringInput | null,
+  phone?: ModelStringInput | null,
+  manager?: ModelStringInput | null,
   email?: ModelStringInput | null,
   company?: ModelStringInput | null,
   and?: Array< ModelUserConditionInput | null > | null,
@@ -87,11 +91,14 @@ export type User = {
   __typename: "User",
   id: string,
   name?: string | null,
+  phone?: string | null,
+  manager?: string | null,
   email?: string | null,
   company?: string | null,
   project?:  Array<Project | null > | null,
   createdAt: string,
   updatedAt: string,
+  ownerId?: string | null,
 };
 
 export type Project = {
@@ -120,6 +127,8 @@ export type Submission = {
 export type UpdateUserInput = {
   id: string,
   name?: string | null,
+  phone?: string | null,
+  manager?: string | null,
   email?: string | null,
   company?: string | null,
 };
@@ -203,6 +212,8 @@ export type ModelTodoConnection = {
 export type ModelUserFilterInput = {
   id?: ModelIDInput | null,
   name?: ModelStringInput | null,
+  phone?: ModelStringInput | null,
+  manager?: ModelStringInput | null,
   email?: ModelStringInput | null,
   company?: ModelStringInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
@@ -255,6 +266,8 @@ export type ModelSubscriptionIDInput = {
 export type ModelSubscriptionUserFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   name?: ModelSubscriptionStringInput | null,
+  phone?: ModelSubscriptionStringInput | null,
+  manager?: ModelSubscriptionStringInput | null,
   email?: ModelSubscriptionStringInput | null,
   company?: ModelSubscriptionStringInput | null,
   and?: Array< ModelSubscriptionUserFilterInput | null > | null,
@@ -344,6 +357,8 @@ export type CreateUserMutation = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -357,6 +372,7 @@ export type CreateUserMutation = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
@@ -370,6 +386,8 @@ export type UpdateUserMutation = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -383,6 +401,7 @@ export type UpdateUserMutation = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
@@ -396,6 +415,8 @@ export type DeleteUserMutation = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -409,6 +430,7 @@ export type DeleteUserMutation = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
@@ -558,6 +580,8 @@ export type GetUserQuery = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -571,6 +595,7 @@ export type GetUserQuery = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
@@ -587,10 +612,13 @@ export type ListUsersQuery = {
       __typename: "User",
       id: string,
       name?: string | null,
+      phone?: string | null,
+      manager?: string | null,
       email?: string | null,
       company?: string | null,
       createdAt: string,
       updatedAt: string,
+      ownerId?: string | null,
     } | null >,
     nextToken?: string | null,
   } | null,
@@ -686,6 +714,7 @@ export type OnDeleteTodoSubscription = {
 
 export type OnCreateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  ownerId?: string | null,
 };
 
 export type OnCreateUserSubscription = {
@@ -693,6 +722,8 @@ export type OnCreateUserSubscription = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -706,11 +737,13 @@ export type OnCreateUserSubscription = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
 export type OnUpdateUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  ownerId?: string | null,
 };
 
 export type OnUpdateUserSubscription = {
@@ -718,6 +751,8 @@ export type OnUpdateUserSubscription = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -731,11 +766,13 @@ export type OnUpdateUserSubscription = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
+  ownerId?: string | null,
 };
 
 export type OnDeleteUserSubscription = {
@@ -743,6 +780,8 @@ export type OnDeleteUserSubscription = {
     __typename: "User",
     id: string,
     name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
     email?: string | null,
     company?: string | null,
     project?:  Array< {
@@ -756,6 +795,7 @@ export type OnDeleteUserSubscription = {
     } | null > | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 

@@ -59,6 +59,8 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
   getUser(id: $id) {
     id
     name
+    phone
+    manager
     email
     company
     project {
@@ -72,6 +74,7 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
     }
     createdAt
     updatedAt
+    ownerId
     __typename
   }
 }
@@ -85,10 +88,13 @@ export const listUsers = /* GraphQL */ `query ListUsers(
     items {
       id
       name
+      phone
+      manager
       email
       company
       createdAt
       updatedAt
+      ownerId
       __typename
     }
     nextToken
