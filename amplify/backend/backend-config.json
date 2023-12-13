@@ -7,7 +7,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ],
       "output": {
@@ -21,14 +21,28 @@
               },
               "authenticationType": "API_KEY"
             }
-          ]
+          ],
+          "defaultAuthentication": {
+            "authenticationType": "AMAZON_COGNITO_USER_POOLS",
+            "userPoolConfig": {
+              "userPoolId": "authbimviewer88371676"
+            }
+          }
         }
       },
       "providerPlugin": "awscloudformation",
       "service": "AppSync"
     }
   },
-  "auth": {},
+  "auth": {
+    "bimviewer88371676": {
+      "customAuth": false,
+      "dependsOn": [],
+      "providerPlugin": "awscloudformation",
+      "service": "Cognito",
+      "serviceType": "imported"
+    }
+  },
   "hosting": {
     "amplifyhosting": {
       "service": "amplifyhosting",
@@ -36,91 +50,91 @@
     }
   },
   "parameters": {
-    "AMPLIFY_auth_bimviewere7bb305b_allowUnauthenticatedIdentities": {
+    "AMPLIFY_auth_bimviewer88371676_allowUnauthenticatedIdentities": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_authRoleArn": {
+    "AMPLIFY_auth_bimviewer88371676_authRoleArn": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_authRoleName": {
+    "AMPLIFY_auth_bimviewer88371676_authRoleName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_identityPoolId": {
+    "AMPLIFY_auth_bimviewer88371676_identityPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_identityPoolName": {
+    "AMPLIFY_auth_bimviewer88371676_identityPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_nativeClientId": {
+    "AMPLIFY_auth_bimviewer88371676_nativeClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_unauthRoleArn": {
+    "AMPLIFY_auth_bimviewer88371676_unauthRoleArn": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_unauthRoleName": {
+    "AMPLIFY_auth_bimviewer88371676_unauthRoleName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_userPoolId": {
+    "AMPLIFY_auth_bimviewer88371676_userPoolId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_userPoolName": {
+    "AMPLIFY_auth_bimviewer88371676_userPoolName": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
-    "AMPLIFY_auth_bimviewere7bb305b_webClientId": {
+    "AMPLIFY_auth_bimviewer88371676_webClientId": {
       "usedBy": [
         {
           "category": "auth",
-          "resourceName": "bimviewere7bb305b"
+          "resourceName": "bimviewer88371676"
         }
       ]
     },
