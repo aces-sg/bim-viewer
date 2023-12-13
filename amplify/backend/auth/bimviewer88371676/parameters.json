@@ -6,7 +6,6 @@
   "usernameAttributes": [
     "email"
   ],
-  "authProvidersUserPool": [],
   "requiredAttributes": [
     "email"
   ],
