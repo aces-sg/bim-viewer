@@ -70,6 +70,19 @@
           "authRoleName": "amplify-bim-test-82214-authRole",
           "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-test-82214-unauthRole",
           "unauthRoleName": "amplify-bim-test-82214-unauthRole"
+        },
+        "bimviewer065261ee": {
+          "userPoolId": "ap-southeast-1_yR9fNhfKK",
+          "userPoolName": "bim11d6741b_userpool_11d6741b-test",
+          "webClientId": "1he2eeormri2phltjiigvpov44",
+          "nativeClientId": "3raoo4h81acln24gdrt4p7hbbi",
+          "identityPoolId": "ap-southeast-1:b1007f4c-1102-4737-88e2-b83edab6709e",
+          "identityPoolName": "bim11d6741b_identitypool_11d6741b__test",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-test-82214-authRole",
+          "authRoleName": "amplify-bim-test-82214-authRole",
+          "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-test-82214-unauthRole",
+          "unauthRoleName": "amplify-bim-test-82214-unauthRole"
         }
       }
     }
