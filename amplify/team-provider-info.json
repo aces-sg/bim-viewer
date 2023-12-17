@@ -25,7 +25,8 @@
           "userPoolId": "ap-southeast-1_AqL6LlA0n",
           "userPoolName": "bim11d6741b_userpool_11d6741b-production",
           "webClientId": "3et5v4bc7cfecgaebrmnltkvql"
-        }
+        },
+        "bimviewer065261ee": {}
       },
       "hosting": {
         "amplifyhosting": {
