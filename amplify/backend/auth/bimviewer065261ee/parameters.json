@@ -1,5 +1,5 @@
 {
-  "authSelections": "userPoolOnly",
+  "authSelections": "identityPoolAndUserPool",
   "resourceName": "bimviewer065261ee",
   "serviceType": "imported",
   "region": "ap-southeast-1",
