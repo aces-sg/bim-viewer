@@ -2,8 +2,11 @@ import React, { useEffect } from "react";
 import * as auth from "@/components/Auth/auth";
 import { Inter } from "next/font/google";
 import ViewerNoSSR from "@/components/ViewerNoSSR";
+import { awsConfig } from "@/awsConfig";
 
 const inter = Inter({ subsets: ["latin"] });
+
+console.log("config is", awsConfig)
 
 interface tHomeProps {
   posts: number[];

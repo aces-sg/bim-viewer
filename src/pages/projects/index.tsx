@@ -15,6 +15,8 @@ import { awsConfig } from "@/awsConfig";
 
 Amplify.configure(awsConfig);
 
+console.log("config deatails", awsConfig);
+
 const Projects = () => {
   const [projects, setProjects] = useState<any[]>();
   const [showCommentsBox, setShowCommentsBox] = useState(false);

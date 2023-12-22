@@ -7,7 +7,7 @@
             "UserPoolId"
           ],
           "category": "auth",
-          "resourceName": "bimviewer88371676"
+          "resourceName": "bimviewer125e9cc6"
         }
       ],
       "output": {
@@ -25,7 +25,7 @@
           "defaultAuthentication": {
             "authenticationType": "AMAZON_COGNITO_USER_POOLS",
             "userPoolConfig": {
-              "userPoolId": "authbimviewer88371676"
+              "userPoolId": "authbimviewer125e9cc6"
             }
           }
         }
@@ -35,7 +35,7 @@
     }
   },
   "auth": {
-    "bimviewer88371676": {
+    "bimviewer125e9cc6": {
       "customAuth": false,
       "dependsOn": [],
       "providerPlugin": "awscloudformation",
@@ -43,13 +43,96 @@
       "serviceType": "imported"
     }
   },
-  "hosting": {
-    "amplifyhosting": {
-      "service": "amplifyhosting",
-      "type": "cicd"
-    }
-  },
+  "hosting": {},
   "parameters": {
+    "AMPLIFY_auth_bimviewer125e9cc6_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_unauthRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_userPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_userPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer125e9cc6_webClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer125e9cc6"
+        }
+      ]
+    },
     "AMPLIFY_auth_bimviewer88371676_allowUnauthenticatedIdentities": {
       "usedBy": [
         {
@@ -135,22 +218,6 @@
         {
           "category": "auth",
           "resourceName": "bimviewer88371676"
-        }
-      ]
-    },
-    "AMPLIFY_hosting_amplifyhosting_appId": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
-        }
-      ]
-    },
-    "AMPLIFY_hosting_amplifyhosting_type": {
-      "usedBy": [
-        {
-          "category": "hosting",
-          "resourceName": "amplifyhosting"
         }
       ]
     }
