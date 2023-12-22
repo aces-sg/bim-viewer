@@ -17,8 +17,8 @@ Amplify.configure(awsConfig);
 const DocumentDetail = () => {
   const router = useRouter();
   const { id } = router.query;
-  const [projectName, setProjectName] = useState("");
-  const [submissions, setSubmissions] = useState<any[]>();
+  const [project, setProject] = useState<any>();
+  const { name, description, submissions } = project || {};
 
   const [showCommentsBox, setShowCommentsBox] = useState(false);
 
@@ -40,11 +40,11 @@ const DocumentDetail = () => {
           },
           authMode: "AMAZON_COGNITO_USER_POOLS",
         });
-        setSubmissions(response.data.getProject.submissions);
-        setProjectName(response.data.getProject.name);
+        setProject(response.data.getProject);
       } catch (err) {
         console.log("failed to query submissions", err);
       }
+      console.log(project)
     };
 
     getProjectData();
@@ -58,15 +58,15 @@ const DocumentDetail = () => {
             className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]"
             onClick={() => handleAdd()}
           >
-            <Image
+            {/* <Image
               priority
               src="/images/plusIcon.svg"
               width={14}
               height={14}
               alt="PlusIcon"
               className="mr-2"
-            />
-            <span>Add</span>
+            /> */}
+            <span>Update</span>
           </button>
           {/* <Image
             priority
@@ -88,12 +88,17 @@ const DocumentDetail = () => {
             className="mr-[16px]"
           />
           <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">
-            {projectName}
+            {name}
           </h5>
+        </div>
+        <div className="mb-[16px]">
+          <p className="font-sans font-normal text-[16px] leading-[24px] text-[#121212]">
+            {description}
+          </p>
         </div>
         <div className="">
           {submissions &&
-            submissions.map(documentItem => (
+            submissions.map((documentItem: any) => (
               <DocumentTree
                 document={documentItem}
                 key={documentItem.id}
