@@ -10,6 +10,7 @@ frontend:
     preBuild:
       commands:
         - yarn install --frozen-lockfile
+        - env | grep -e NEXT_PUBLIC
     build:
       commands:
         - yarn build
