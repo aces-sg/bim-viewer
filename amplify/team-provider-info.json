@@ -12,12 +12,6 @@
       "AmplifyAppId": "d2bqotf9sbgkzl"
     },
     "categories": {
-      "hosting": {
-        "amplifyhosting": {
-          "appId": "d2bqotf9sbgkzl",
-          "type": "cicd"
-        }
-      },
       "auth": {
         "bimviewer88371676": {
           "userPoolId": "ap-southeast-1_yR9fNhfKK",
@@ -33,7 +27,19 @@
           "unauthRoleName": "amplify-bim-test-82214-unauthRole"
         },
         "bimviewer065261ee": {},
-        "bimviewer125e9cc6": {}
+        "bimviewer125e9cc6": {
+          "userPoolId": "ap-southeast-1_AqL6LlA0n",
+          "userPoolName": "bim11d6741b_userpool_11d6741b-production",
+          "webClientId": "3et5v4bc7cfecgaebrmnltkvql",
+          "nativeClientId": "3dia0vnrs88291son1cvu8aihc",
+          "identityPoolId": "ap-southeast-1:38206704-ddb6-46a7-8561-3a0010ee5f64",
+          "identityPoolName": "bim11d6741b_identitypool_11d6741b__production",
+          "allowUnauthenticatedIdentities": false,
+          "authRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-production-175248-authRole",
+          "authRoleName": "amplify-bim-production-175248-authRole",
+          "unauthRoleArn": "arn:aws:iam::517820625953:role/amplify-bim-production-175248-unauthRole",
+          "unauthRoleName": "amplify-bim-production-175248-unauthRole"
+        }
       }
     }
   },
