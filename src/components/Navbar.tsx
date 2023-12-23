@@ -66,12 +66,12 @@ const Navbar: FC<NavbarProps> = ({ handleShowSidebar }) => {
         >
           <MenuIcon />
         </div>
-        <Link href={`${urls.homePage}`} className="flex items-center">
+        <div className="flex items-center" style={{ cursor: "pointer"}} onClick={() => handleBack()}>
           <LeftArrowIcon />
           <span className="ml-2 font-sans font-normal text-[14px] leading-[21px] text-[#666]">
-            Back To Homepage
+            Back
           </span>
-        </Link>
+        </div>
       </div>
       <div
         className="bg-[#fddb00] w-[40px] h-[40px] flex items-center justify-center rounded-full font-sans font-semibold text-[14px] leading-[21px] text-[#000] cursor-pointer"

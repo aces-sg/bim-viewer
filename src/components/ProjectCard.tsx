@@ -17,13 +17,13 @@ interface ProjectCardProps {
 
 const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   const menus = [
-    {
-      id: 1,
-      name: "Invite",
-      iconWidth: 18.3,
-      iconHeight: 13.3,
-      iconLink: "inviteIcon",
-    },
+    // {
+    //   id: 1,
+    //   name: "Invite",
+    //   iconWidth: 18.3,
+    //   iconHeight: 13.3,
+    //   iconLink: "inviteIcon",
+    // },
     {
       id: 2,
       name: "Delete",

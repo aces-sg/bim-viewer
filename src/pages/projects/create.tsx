@@ -8,7 +8,7 @@ import React, {
     createRef,
   } from "react";
   import Image from "next/image";
-  import { useRouter } from "next/navigation";
+  import { useRouter } from "next/router";
   import * as LR from "@uploadcare/blocks";
   // import { Widget, WidgetAPI } from "@uploadcare/react-widget";
   import { Amplify, API } from "aws-amplify";
@@ -61,6 +61,8 @@ import React, {
   const CreateProject = () => {
     const widgetRef = useRef();
     const router = useRouter();
+    const { id } = router.query;
+
     const [projectData, setProjectData] = useState<ProjectItem>({
       name: "",
       description: "",
@@ -116,8 +118,9 @@ import React, {
     };
   
     const isFormValid = useMemo(() => {
+      if (projectData.submissions.length === 0) return false;
       return projectData.name && projectData.description ? true : false;
-    }, [projectData.description, projectData.name]);
+    }, [projectData.description, projectData.name, projectData.submissions]);
   
     useEffect(() => {
       window.addEventListener("LR_UPLOAD_FINISH", e => {
@@ -129,8 +132,10 @@ import React, {
         let uploadCareFiles = e.detail.data;
         updateSubmission([...uploadCareFiles], "delete");
       });
+
+
     }, [updateSubmission]);
-  
+    
     return (
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">

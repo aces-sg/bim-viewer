@@ -12,10 +12,10 @@ export const awsConfig = {
     userPoolId: awsmobile.aws_user_pools_id,
     userPoolWebClientId: awsmobile.aws_user_pools_web_client_id,
     cookieStorage: {
-      domain: "localhost",
-      secure: false,
+      domain: process.env.NODE_ENV !== "development" ? ".example.com" : "localhost",
+      secure: process.env.NODE_ENV !== "development" ? true : false,
       path: "/",
-      expires: 365,
+      expires: 30,
     },
   },
 };
