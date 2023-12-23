@@ -18,8 +18,6 @@ import { awsConfig } from "@/awsConfig";
 
 Amplify.configure(awsConfig);
 
-console.log("config deatails", awsConfig);
-
 const Projects = () => {
   const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState<any[]>();
