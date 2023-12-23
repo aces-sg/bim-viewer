@@ -50,7 +50,63 @@
     }
   },
   "parameters": {
+    "AMPLIFY_auth_bimviewer065261ee_allowUnauthenticatedIdentities": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer065261ee_authRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer065261ee_authRoleName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer065261ee_identityPoolId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer065261ee_identityPoolName": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
     "AMPLIFY_auth_bimviewer065261ee_nativeClientId": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer065261ee_unauthRoleArn": {
+      "usedBy": [
+        {
+          "category": "auth",
+          "resourceName": "bimviewer065261ee"
+        }
+      ]
+    },
+    "AMPLIFY_auth_bimviewer065261ee_unauthRoleName": {
       "usedBy": [
         {
           "category": "auth",

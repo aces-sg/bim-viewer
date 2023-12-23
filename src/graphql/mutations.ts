@@ -80,6 +80,7 @@ export const createUser = /* GraphQL */ `mutation CreateUser(
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId
@@ -110,6 +111,7 @@ export const updateUser = /* GraphQL */ `mutation UpdateUser(
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId
@@ -140,6 +142,7 @@ export const deleteUser = /* GraphQL */ `mutation DeleteUser(
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId

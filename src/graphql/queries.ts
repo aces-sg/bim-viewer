@@ -72,6 +72,7 @@ export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId
@@ -92,6 +93,7 @@ export const listUsers = /* GraphQL */ `query ListUsers(
       manager
       email
       company
+      onboarding
       createdAt
       updatedAt
       ownerId

@@ -34,6 +34,7 @@ export type CreateUserInput = {
   manager?: string | null,
   email?: string | null,
   company?: string | null,
+  onboarding?: boolean | null,
 };
 
 export type ModelUserConditionInput = {
@@ -42,6 +43,7 @@ export type ModelUserConditionInput = {
   manager?: ModelStringInput | null,
   email?: ModelStringInput | null,
   company?: ModelStringInput | null,
+  onboarding?: ModelBooleanInput | null,
   and?: Array< ModelUserConditionInput | null > | null,
   or?: Array< ModelUserConditionInput | null > | null,
   not?: ModelUserConditionInput | null,
@@ -87,6 +89,13 @@ export type ModelSizeInput = {
   between?: Array< number | null > | null,
 };
 
+export type ModelBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
+  attributeExists?: boolean | null,
+  attributeType?: ModelAttributeTypes | null,
+};
+
 export type User = {
   __typename: "User",
   id: string,
@@ -96,6 +105,7 @@ export type User = {
   email?: string | null,
   company?: string | null,
   project?:  Array<Project | null > | null,
+  onboarding?: boolean | null,
   createdAt: string,
   updatedAt: string,
   ownerId?: string | null,
@@ -131,6 +141,7 @@ export type UpdateUserInput = {
   manager?: string | null,
   email?: string | null,
   company?: string | null,
+  onboarding?: boolean | null,
 };
 
 export type DeleteUserInput = {
@@ -216,6 +227,7 @@ export type ModelUserFilterInput = {
   manager?: ModelStringInput | null,
   email?: ModelStringInput | null,
   company?: ModelStringInput | null,
+  onboarding?: ModelBooleanInput | null,
   and?: Array< ModelUserFilterInput | null > | null,
   or?: Array< ModelUserFilterInput | null > | null,
   not?: ModelUserFilterInput | null,
@@ -270,6 +282,7 @@ export type ModelSubscriptionUserFilterInput = {
   manager?: ModelSubscriptionStringInput | null,
   email?: ModelSubscriptionStringInput | null,
   company?: ModelSubscriptionStringInput | null,
+  onboarding?: ModelSubscriptionBooleanInput | null,
   and?: Array< ModelSubscriptionUserFilterInput | null > | null,
   or?: Array< ModelSubscriptionUserFilterInput | null > | null,
 };
@@ -287,6 +300,11 @@ export type ModelSubscriptionStringInput = {
   beginsWith?: string | null,
   in?: Array< string | null > | null,
   notIn?: Array< string | null > | null,
+};
+
+export type ModelSubscriptionBooleanInput = {
+  ne?: boolean | null,
+  eq?: boolean | null,
 };
 
 export type ModelSubscriptionProjectFilterInput = {
@@ -370,6 +388,7 @@ export type CreateUserMutation = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,
@@ -399,6 +418,7 @@ export type UpdateUserMutation = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,
@@ -428,6 +448,7 @@ export type DeleteUserMutation = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,
@@ -593,6 +614,7 @@ export type GetUserQuery = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,
@@ -616,6 +638,7 @@ export type ListUsersQuery = {
       manager?: string | null,
       email?: string | null,
       company?: string | null,
+      onboarding?: boolean | null,
       createdAt: string,
       updatedAt: string,
       ownerId?: string | null,
@@ -735,6 +758,7 @@ export type OnCreateUserSubscription = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,
@@ -764,6 +788,7 @@ export type OnUpdateUserSubscription = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,
@@ -793,6 +818,7 @@ export type OnDeleteUserSubscription = {
       updatedAt: string,
       owner?: string | null,
     } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
     ownerId?: string | null,

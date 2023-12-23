@@ -64,6 +64,7 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId
@@ -94,6 +95,7 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId
@@ -124,6 +126,7 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
       owner
       __typename
     }
+    onboarding
     createdAt
     updatedAt
     ownerId
