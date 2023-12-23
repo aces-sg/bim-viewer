@@ -25,6 +25,7 @@ type User
   email: String
   company: String
   project: [Project]
+  onboarding: Boolean
 }
 
 type Project

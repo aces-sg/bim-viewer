@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { Amplify, API, graphqlOperation } from "aws-amplify";
+import { CustomModal, NotificationModal } from "@/components/Modals";
+import { NotificationModalProps } from "@/components/Modals/NotificationModal";
 
 // Graphql
 import { listProjects } from "@/graphql/queries";
@@ -18,8 +21,15 @@ Amplify.configure(awsConfig);
 console.log("config deatails", awsConfig);
 
 const Projects = () => {
+  const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState<any[]>();
   const [showCommentsBox, setShowCommentsBox] = useState(false);
+  const [showNote, setShowNote] = useState<NotificationModalProps | null>({
+    type: false,
+    message: "",
+    closeModal: () => setShowNote(null),
+  });
+  const router = useRouter();
 
   const closeCommentsBox = () => {
     setShowCommentsBox(false);
@@ -35,11 +45,18 @@ const Projects = () => {
     } catch (err) {
       console.log("failed to get projects: ", err);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
     listAllProjects();
   }, []);
+
+  useEffect(() => {
+    if (isLoading === false && projects?.length === 0) {
+      router.push("/projects/create");
+    }
+  }, [projects]);
 
   return (
     <PrivateRoute>
