@@ -166,10 +166,9 @@ import React, {
               >
                 Project Description
               </label>
-              <input
+              <textarea
                 id="projectDescription"
-                type="text"
-                className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[44px]"
+                className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[100px]"
                 placeholder="Project Description"
                 value={projectData.description}
                 onChange={e => handleChange(e.target.value, "description")}

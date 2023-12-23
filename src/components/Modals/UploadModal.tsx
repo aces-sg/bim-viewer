@@ -18,7 +18,7 @@ const UploadModal: FC<UploadModalProps> = ({ type, closeModal }) => {
   });
 
   return (
-    <div className="w-[500px]" ref={modalRef}>
+    <div className="w-[400px]" ref={modalRef}>
       <div className="bg-[#fddb00] flex items-center justify-between px-[20px] py-[18px]">
         <div className="flex items-center">
           <Image
