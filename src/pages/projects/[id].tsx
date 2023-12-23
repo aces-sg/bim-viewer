@@ -44,7 +44,6 @@ const DocumentDetail = () => {
       } catch (err) {
         console.log("failed to query submissions", err);
       }
-      console.log(project)
     };
 
     getProjectData();
@@ -54,18 +53,18 @@ const DocumentDetail = () => {
     <>
       <div className="bg-white px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="flex items-center justify-between mb-[32px]">
-          <button
+        <button
             className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]"
             onClick={() => handleAdd()}
           >
-            {/* <Image
+            <Image
               priority
-              src="/images/plusIcon.svg"
-              width={14}
-              height={14}
-              alt="PlusIcon"
+              src="/images/update.svg"
+              width={20}
+              height={20}
+              alt="Update Icon"
               className="mr-2"
-            /> */}
+            />
             <span>Update</span>
           </button>
           {/* <Image
@@ -98,7 +97,7 @@ const DocumentDetail = () => {
         </div>
         <div className="">
           {submissions &&
-            submissions.map((documentItem: any) => (
+            submissions.map((documentItem: DocumentTreeItem ) => (
               <DocumentTree
                 document={documentItem}
                 key={documentItem.id}
@@ -106,6 +105,7 @@ const DocumentDetail = () => {
               />
             ))}
         </div>
+        
       </div>
     </>
   );

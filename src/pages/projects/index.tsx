@@ -53,7 +53,7 @@ const Projects = () => {
                 alt="PlusIcon"
                 className="mr-2"
               />
-              <span>Add</span>
+              <span>Create</span>
             </button>
           </Link>
           {/* <Image

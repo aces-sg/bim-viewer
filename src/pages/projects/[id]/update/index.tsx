@@ -110,7 +110,6 @@ import React, {
     }
   
     const handleUpdateProject = async () => {
-      console.log(projectData)
       try {
         const response = await API.graphql({
           query: updateProject,
@@ -241,10 +240,18 @@ import React, {
             <div className="mt-4">
               <button
                 onClick={handleUpdateProject}
-                className="w-full bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] disabled:opacity-20"
+                className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]"
                 disabled={!isFormValid}
               >
-                Update Project
+                <Image
+              priority
+              src="/images/update.svg"
+              width={20}
+              height={20}
+              alt="Update Icon"
+              className="mr-2"
+            />
+                <span>Update Project</span>
               </button>
             </div>
           </div>
