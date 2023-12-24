@@ -6,8 +6,6 @@ import { awsConfig } from "@/awsConfig";
 
 const inter = Inter({ subsets: ["latin"] });
 
-console.log("config is", awsConfig)
-
 interface tHomeProps {
   posts: number[];
   formattedDate: string;
