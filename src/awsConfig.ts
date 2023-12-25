@@ -12,8 +12,8 @@ export const awsConfig = {
     userPoolId: awsmobile.aws_user_pools_id,
     userPoolWebClientId: awsmobile.aws_user_pools_web_client_id,
     cookieStorage: {
-      domain: process.env.NODE_ENV !== "development" ? ".example.com" : "localhost",
-      secure: process.env.NODE_ENV !== "development" ? true : false,
+      domain: "localhost",
+      secure: false,
       path: "/",
       expires: 30,
     },
