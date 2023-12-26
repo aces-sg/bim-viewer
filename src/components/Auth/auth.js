@@ -181,7 +181,6 @@ export function isLoggedIn() {
     // If no user is currently stored in the user pool, the user isn't logged in.
     if (!cognitoUser) {
       resolve(false);
-      router.push(`${urls.loginPage}`);
       return;
     }
 
