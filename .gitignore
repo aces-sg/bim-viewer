@@ -40,6 +40,7 @@ next-env.d.ts
 .idea
 .vscode
 
+# env variables
 .env*
 .env.production
 

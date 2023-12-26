@@ -12,7 +12,7 @@ import { listProjects } from "@/graphql/queries";
 // Components
 import ProjectCard from "@/components/ProjectCard";
 import CommentsBox from "@/components/CommentsBox";
-import PrivateRoute from "@/components/Auth/PrivateRoute";
+import ProtectedRoute from "@/components/Auth/ProtectedRoute";
 
 import { awsConfig } from "@/awsConfig";
 
@@ -57,7 +57,7 @@ const Projects = () => {
   }, [projects]);
 
   return (
-    <PrivateRoute>
+    <ProtectedRoute>
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="mb-[20px] flex items-center justify-between">
           <Link href="/projects/create">
@@ -73,15 +73,6 @@ const Projects = () => {
               <span>Create</span>
             </button>
           </Link>
-          {/* <Image
-            priority
-            src="/images/chatIcon.svg"
-            width={40}
-            height={40}
-            alt="ChatIcon"
-            className="cursor-pointer"
-            onClick={() => setShowCommentsBox(true)}
-          /> */}
         </div>
 
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
@@ -92,7 +83,7 @@ const Projects = () => {
         </div>
       </div>
       {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
-    </PrivateRoute>
+    </ProtectedRoute>
   );
 };
 
