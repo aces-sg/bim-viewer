@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2015",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -19,19 +15,14 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "react": [ "./node_modules/@types/react" ],
-      "@/*": [
-        "./src/*"
+      "react": ["./node_modules/@types/react"],
+      "@/*": ["./src/*"],
+      "@next/third-parties/google": [
+        "./node_modules/@next/third-parties/dist/google"
       ]
     },
     "types": ["@uploadcare/blocks/types/jsx"]
   },
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }
