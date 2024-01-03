@@ -26,6 +26,7 @@ yarn-error.log*
 
 # local env files
 .env*.local
+.env*
 
 # vercel
 .vercel
@@ -38,6 +39,8 @@ next-env.d.ts
 
 .idea
 .vscode
+
+.env.production
 
 #amplify-do-not-edit-begin
 amplify/\#current-cloud-backend

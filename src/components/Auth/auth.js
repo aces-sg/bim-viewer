@@ -5,11 +5,14 @@ import {
   AuthenticationDetails,
   CookieStorage,
 } from "amazon-cognito-identity-js";
-import awsmobile from "../../aws-exports";
+import { useRouter } from "next/router";
+import { urls } from "./data";
+import { awsConfig } from "@/awsConfig";
 
 const userPool = new CognitoUserPool({
-  UserPoolId: awsmobile.aws_user_pools_id,
-  ClientId: awsmobile.aws_user_pools_web_client_id,
+  UserPoolId: awsConfig.aws_user_pools_id,
+  ClientId: awsConfig.aws_user_pools_web_client_id,
+  Storage: new CookieStorage(awsConfig.Auth.cookieStorage),
 });
 
 const AccountContext = createContext();
@@ -66,8 +69,7 @@ export function signIn(email, password) {
 
     cognitoUser.authenticateUser(authenticationDetails, {
       onSuccess: result => {
-        console.log("login success", result);
-        navigate("http://localhost:3000");
+        navigate(`${urls.landingPage}`);
         resolve(result);
       },
       onFailure: err => {
@@ -122,7 +124,7 @@ export function signOut() {
   const cognitoUser = userPool.getCurrentUser();
   if (cognitoUser) {
     cognitoUser.signOut();
-    navigate("/");
+    navigate(`${urls.loginPage}`);
   }
 }
 
@@ -176,10 +178,11 @@ export function getSession() {
 export function isLoggedIn() {
   return new Promise((resolve, reject) => {
     const cognitoUser = userPool.getCurrentUser();
+    const router = useRouter();
     // If no user is currently stored in the user pool, the user isn't logged in.
     if (!cognitoUser) {
       resolve(false);
-      navigate("/user/login");
+      router.push(`${urls.loginPage}`);
       return;
     }
 

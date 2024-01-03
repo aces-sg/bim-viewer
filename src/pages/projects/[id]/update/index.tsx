@@ -8,13 +8,14 @@ import React, {
     createRef,
   } from "react";
   import Image from "next/image";
-  import { useRouter } from "next/navigation";
+  import { useRouter } from "next/router";
   import * as LR from "@uploadcare/blocks";
   // import { Widget, WidgetAPI } from "@uploadcare/react-widget";
   import { Amplify, API } from "aws-amplify";
   
   // Graphql
-  import { createProject } from "@/graphql/mutations";
+  import { createProject, updateProject } from "@/graphql/mutations";
+  import { getProject } from "@/graphql/queries";
   
   import { awsConfig } from "@/awsConfig";
   
@@ -58,9 +59,10 @@ import React, {
     submissions: any[];
   }
   
-  const CreateProject = () => {
+  const UpdateProject = () => {
     const widgetRef = useRef();
     const router = useRouter();
+    const { id } = router.query;
     const [projectData, setProjectData] = useState<ProjectItem>({
       name: "",
       description: "",
@@ -91,21 +93,41 @@ import React, {
         });
       }
     }
+
+    async function getProjectData() {
+      try {
+        let response: any = await API.graphql({
+          query: getProject,
+          variables: {
+            id: id,
+          },
+          authMode: "AMAZON_COGNITO_USER_POOLS",
+        });
+        setProjectData(response.data.getProject);
+      } catch (err) {
+        console.log("failed to query submissions", err);
+      }
+    }
   
-    const handleCreateProject = async () => {
+    const handleUpdateProject = async () => {
       try {
         const response = await API.graphql({
-          query: createProject,
+          query: updateProject,
           variables: {
-            input: projectData,
+            input: {
+              id: id,
+              name: projectData.name,
+              description: projectData.description,
+              submissions: projectData.submissions
+            }
           },
           authMode: "AMAZON_COGNITO_USER_POOLS",
         });
         if (response) {
-          router.push("/projects");
+          router.push(`/projects/${id}`);
         }
       } catch (err) {
-        console.log("failed create Project", err);
+        console.log("failed update Project", err);
       }
     };
   
@@ -130,11 +152,15 @@ import React, {
         updateSubmission([...uploadCareFiles], "delete");
       });
     }, [updateSubmission]);
+
+    useEffect(() => {
+      getProjectData();
+    }, [])
   
     return (
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">
-          Create Project
+          Update Project
         </h5>
         <div className="grid grid-cols-4 gap-4 my-4">
           <div>
@@ -214,11 +240,11 @@ import React, {
             </div>
             <div className="mt-4">
               <button
-                onClick={handleCreateProject}
+                onClick={handleUpdateProject}
                 className="w-full bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] disabled:opacity-20"
                 disabled={!isFormValid}
               >
-                Create Project
+                Update Project
               </button>
             </div>
           </div>
@@ -227,5 +253,5 @@ import React, {
     );
   };
   
-  export default CreateProject;
+  export default UpdateProject;
   

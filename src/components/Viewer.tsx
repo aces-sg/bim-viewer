@@ -228,17 +228,6 @@ const Viewer = () => {
           Models loaded: {modelCount}
         </h3>
         <div className="flex items-center justify-between absolute top-[20px] right-[15px] md:right-[45px] lg:right-[45px] z-20">
-          <button className="flex items-center justify-center w-[100px] md:w-[129px] lg:w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[12px] md:text-[16px] lg:text-[16px] leading-[24px] text-[#000]">
-            <Image
-              priority
-              src="/images/plusUserIcon.svg"
-              width={22}
-              height={16}
-              alt="PlusIcon"
-              className="mr-2"
-            />
-            <span>Assign</span>
-          </button>
           <Image
             priority
             src="/images/chatIcon.svg"

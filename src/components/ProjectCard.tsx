@@ -1,11 +1,15 @@
 /* eslint-disable @next/next/no-img-element */
 import React, { FC, useState } from "react";
+import { API } from "aws-amplify";
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
+import { deleteProject } from "@/graphql/mutations";
 
 import { CustomModal, InviteModal, ShareModal } from "./Modals";
 
 import { useOutsideClick } from "@/hooks/useOutsideClick";
+import { isBrowser } from "@/hooks/auth";
 
 interface ProjectCardProps {
   project: any;
@@ -22,13 +26,14 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
     },
     {
       id: 2,
-      name: "Share",
-      iconWidth: 15,
-      iconHeight: 16.7,
-      iconLink: "shareIcon",
+      name: "Delete",
+      iconWidth: 18.3,
+      iconHeight: 13.3,
+      iconLink: "closeIcon",
     },
   ];
 
+  const router = useRouter();
   const [showMenu, setShowMenu] = useState(false);
   const [showInviteModal, setShowInviteModal] = useState(false);
   const [showShareModal, setShowShareModal] = useState(false);
@@ -36,8 +41,11 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
   const handleMenuOption = (menuOptionId: number) => {
     if (menuOptionId === 1) {
       setShowInviteModal(true);
-    } else {
-      setShowShareModal(true);
+    }
+
+    if (menuOptionId === 2) {
+      console.log("deleting project...", project.id);
+      removeProject(project.id);
     }
     setShowMenu(false);
   };
@@ -58,9 +66,24 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
     setShowShareModal(false);
   };
 
+  async function removeProject(id: string) {
+    if (!isBrowser) return;
+    try {
+      let res = await API.graphql({
+        query: deleteProject,
+        variables: { input: { id } },
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      });
+      console.log("success deleting project", res);
+    } catch (err) {
+      console.log("failed to delete project:", err);
+    }
+    window.location.reload();
+  }
+
   return (
     <>
-      <Link href={`/projects/${project.id}`}>
+      <div>
         <div className="bg-white rounded-[8px] p-[20px] border-[1px] border-solid border-[#aaa]">
           <div className="flex items-start justify-between mb-[16px] relative">
             <h5 className="font-sans font-semibold text-[16px] leading-[24px] text-[#000] capitalize">
@@ -107,16 +130,17 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
               </div>
             )}
           </div>
-          <div className="flex items-start">
-            <div className="flex -space-x-3 mr-4 min-w-[60px]">
-              <img
-                className="inline-block rounded-full"
-                src="/images/user1.png"
-                width={24}
-                height={24}
-                alt=""
-              />
-              <img
+          <Link href={`/projects/${project.id}`}>
+            <div className="flex items-start">
+              <div className="flex mr-2">
+                <img
+                  className="inline-block rounded-full"
+                  src="/favicon.ico"
+                  width={24}
+                  height={24}
+                  alt=""
+                />
+                {/* <img
                 className="inline-block rounded-full"
                 src="/images/user2.png"
                 width={24}
@@ -136,14 +160,15 @@ const ProjectCard: FC<ProjectCardProps> = ({ project }) => {
                 width={24}
                 height={24}
                 alt=""
-              />
+              /> */}
+              </div>
+              <span className="font-sans font-normal text-[12px] leading-[18px] text-[#666] capitalize">
+                {project.description}
+              </span>
             </div>
-            <span className="font-sans font-normal text-[12px] leading-[18px] text-[#666] capitalize">
-              {project.description}
-            </span>
-          </div>
+          </Link>
         </div>
-      </Link>
+      </div>
       {showInviteModal && (
         <CustomModal>
           <InviteModal closeModal={handleCloseInviteModal} />
