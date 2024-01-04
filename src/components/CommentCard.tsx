@@ -1,9 +1,11 @@
-import React, { FC, useEffect, useState } from "react";
+import React, { FC, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { API } from "aws-amplify";
 import { createComment } from "@/graphql/mutations";
+import { Mention, MentionsInput } from "react-mentions";
 
 interface Comments {
+  mentions: any;
   id: number;
   user: string;
   createdAt: string;
@@ -23,13 +25,40 @@ interface CommentCardProps {
   comment: Comments;
   replies: Reply[];
   onReply: (commentId: number, reply: Reply) => void;
+  userData: any[];
 }
 
-const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
+const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData }) => {
+  type UserData = { id: number, display: string };
+
   const [showReplies, setShowReplies] = useState(false);
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [replyMessage, setReplyMessage] = useState('');
+  const [mentionedUsers, setMentionedUsers] = useState<UserData[]>([]);
 
+  const inputRef = useRef();
+
+  const renderMentionedUsers = (message: string, mentionedUserIds: string[]) => {
+    let renderedMessage = message;
+    mentionedUserIds.forEach((userId) => {
+      const user = userData.find((u) => u.id === userId);
+      if (user) {
+        const name = user.display;
+        const regex = new RegExp(`@${userId}`, 'gi');
+        renderedMessage = renderedMessage.replace(
+          regex,
+          `<span style="background-color: yellow; padding: 2px; border-radius: 3px; display: inline-block;">${name}</span>`
+        );
+      }
+    });
+    return <div dangerouslySetInnerHTML={{ __html: renderedMessage }} />;
+  };
+  
+  const calculateRows = () => {
+    const numberOfLines = replyMessage.split('\n').length;
+    return Math.min(numberOfLines + 1, 5);
+  };
+  
   const handleReply = () => {
     setShowReplyInput(true);
   };
@@ -46,6 +75,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
 
   const handleSendReply = async () => {
     try {
+      const mentionedUserIds = mentionedUsers.map(user => user.id);
       const apiData = {
         body: {
           input: {
@@ -53,7 +83,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
             user: comment.user,
             replyOf: comment.id,
             project: "project-bim",
-            mentions: ""
+            mentions: mentionedUserIds
           }
         }
       };
@@ -75,12 +105,13 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
     } catch (error) {
       console.error('Error creating reply:', error);
     }
+    setMentionedUsers([]);
     setShowReplyInput(false);
     setReplyMessage('');
   };
 
   useEffect(() => {
-  }, []);
+  }, [mentionedUsers]);
 
   const renderReplies = (reply: Reply) => (
     <div key={reply.id} className="ml-[20px] mt-[10px] border-l-[1px] border-solid border-[#aaa] pl-[10px]">
@@ -102,6 +133,15 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
       )}
     </div>
   );
+
+  
+  const handleUserSelection = (user: UserData) => {
+    const isAlreadyMentioned = mentionedUsers.some(mentionedUser => mentionedUser.id === user.id);
+  
+    if (!isAlreadyMentioned) {
+      setMentionedUsers(prevUsers => [...prevUsers, user]);
+    }
+  };
 
   function formatTimeAgo(timestamp: any) {
     const currentDate = new Date();
@@ -152,7 +192,13 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
         </p>
       </div>
       <p className="font-sans font-normal text-[16px] leading-[24px] text-[#000] mb-[16px]">
-        {comment.message}
+      <div className="comment-message">
+        {comment.mentions && comment.mentions.length > 0 ? (
+          renderMentionedUsers(comment.message, comment.mentions)
+        ) : (
+          comment.message
+        )}
+      </div>
       </p>
       <div
         className="flex items-center cursor-pointer"
@@ -192,13 +238,91 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
         })}
       {showReplyInput && (
         <div className="flex items-center mt-[16px]">
-          <input
-            type="text"
-            className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px]"
-            placeholder="Write a Message"
-            value={replyMessage}
-            onChange={(e) => setReplyMessage(e.target.value)}
+          <MentionsInput
+          className="rounded-[8px] sm:w-full md:w-[480px] lg:w-[350px]"
+          inputRef={inputRef}
+          value={replyMessage}
+          onChange={(e) => setReplyMessage(e.target.value)}
+          rows={calculateRows()}
+          style={{
+            control: {
+              backgroundColor: "#fff",
+              fontSize: 14,
+              fontWeight: "normal",
+              maxHeight: "200px",
+            },
+            "&multiLine": {
+              control: {
+                fontFamily: "monospace"
+              },
+              highlighter: {
+                padding: 9,
+                border: "1px solid transparent",
+                maxHeight: "200px",
+                overflowY: 'hidden'
+              },
+              input: {
+                padding: 9,
+                border: "1px solid silver",
+                overflowY: "auto",
+              },
+            },
+            "&singleLine": {
+              control: {
+                fontFamily: "monospace"
+              },
+              highlighter: {
+                padding: 9,
+                border: "1px solid transparent",
+                maxHeight: "200px",
+                overflowY: 'hidden'
+              },
+              input: {
+                padding: 9,
+                border: "1px solid silver",
+                overflowY: "auto",
+              },
+            },
+            suggestions: {
+              list: {
+                backgroundColor: "white",
+                border: "1px solid rgba(0,0,0,0.15)",
+                fontSize: 14,
+                maxHeight: "200px",
+                overflowY: "scroll",
+              },
+              item: {
+                padding: "5px 15px",
+                borderBottom: "1px solid rgba(0,0,0,0.15)",
+                "&focused": {
+                  backgroundColor: "#fddb00",
+                },
+              },
+            },
+          }}
+          placeholder="Write a Message"
+          forceSuggestionsAboveCursor={true}
+        >
+          <Mention
+            trigger="@"
+            markup="@__display__"
+            appendSpaceOnAdd={true}
+            data={userData}
+            renderSuggestion={(
+              suggestion,
+              search,
+              highlightedDisplay,
+              index,
+              focused,
+            ) => (
+              <div className={`user ${focused ? "focused" : ""}`}>
+                {highlightedDisplay}
+              </div>
+            )}
+            style={{ backgroundColor: "#fddb00" }}
+            onAdd={(id, display) => handleUserSelection({ id, display })}
           />
+        </MentionsInput>
           <button onClick={handleSendReply} className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
             <Image
               priority

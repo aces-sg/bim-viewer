@@ -232,6 +232,7 @@
               comment={comment}
               replies={filteredComments || []}
               onReply={handleReply}
+              userData={userData}
             />
           ))}
         </div>
@@ -303,7 +304,7 @@
         >
           <Mention
             trigger="@"
-            markup="@[__display__](user:id)"
+            markup="@__display__"
             appendSpaceOnAdd={true}
             data={userData}
             renderSuggestion={(
@@ -318,6 +319,7 @@
               </div>
             )}
             style={{ backgroundColor: "#fddb00" }}
+            onAdd={(id, display) => handleUserSelection({ id, display })}
           />
         </MentionsInput>
           <button className="flex self-end fixed right-6 items-center justify-center w-[100px] bg-[#fddb00] rounded-full py-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]" onClick={handleSend}>
