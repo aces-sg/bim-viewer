@@ -14,7 +14,10 @@ type User
       {
         allow: owner
         ownerField: "ownerId"
-        operations: [create, update, delete, read]
+        operations: [create, update, delete]
+      }, {
+        allow: public
+        operations: [read]
       }
     ]
   ) {

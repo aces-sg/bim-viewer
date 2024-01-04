@@ -44,99 +44,6 @@ export const onDeleteTodo = /* GraphQL */ `subscription OnDeleteTodo($filter: Mo
   APITypes.OnDeleteTodoSubscriptionVariables,
   APITypes.OnDeleteTodoSubscription
 >;
-export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
-  $filter: ModelSubscriptionUserFilterInput
-  $ownerId: String
-) {
-  onCreateUser(filter: $filter, ownerId: $ownerId) {
-    id
-    name
-    phone
-    manager
-    email
-    company
-    project {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    onboarding
-    createdAt
-    updatedAt
-    ownerId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnCreateUserSubscriptionVariables,
-  APITypes.OnCreateUserSubscription
->;
-export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
-  $filter: ModelSubscriptionUserFilterInput
-  $ownerId: String
-) {
-  onUpdateUser(filter: $filter, ownerId: $ownerId) {
-    id
-    name
-    phone
-    manager
-    email
-    company
-    project {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    onboarding
-    createdAt
-    updatedAt
-    ownerId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnUpdateUserSubscriptionVariables,
-  APITypes.OnUpdateUserSubscription
->;
-export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
-  $filter: ModelSubscriptionUserFilterInput
-  $ownerId: String
-) {
-  onDeleteUser(filter: $filter, ownerId: $ownerId) {
-    id
-    name
-    phone
-    manager
-    email
-    company
-    project {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    onboarding
-    createdAt
-    updatedAt
-    ownerId
-    __typename
-  }
-}
-` as GeneratedSubscription<
-  APITypes.OnDeleteUserSubscriptionVariables,
-  APITypes.OnDeleteUserSubscription
->;
 export const onCreateProject = /* GraphQL */ `subscription OnCreateProject(
   $filter: ModelSubscriptionProjectFilterInput
   $owner: String
@@ -274,4 +181,88 @@ export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment($filt
 ` as GeneratedSubscription<
   APITypes.OnDeleteCommentSubscriptionVariables,
   APITypes.OnDeleteCommentSubscription
+>;
+export const onCreateUser = /* GraphQL */ `subscription OnCreateUser($filter: ModelSubscriptionUserFilterInput) {
+  onCreateUser(filter: $filter) {
+    id
+    name
+    phone
+    manager
+    email
+    company
+    project {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    onboarding
+    createdAt
+    updatedAt
+    ownerId
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateUserSubscriptionVariables,
+  APITypes.OnCreateUserSubscription
+>;
+export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser($filter: ModelSubscriptionUserFilterInput) {
+  onUpdateUser(filter: $filter) {
+    id
+    name
+    phone
+    manager
+    email
+    company
+    project {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    onboarding
+    createdAt
+    updatedAt
+    ownerId
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateUserSubscriptionVariables,
+  APITypes.OnUpdateUserSubscription
+>;
+export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser($filter: ModelSubscriptionUserFilterInput) {
+  onDeleteUser(filter: $filter) {
+    id
+    name
+    phone
+    manager
+    email
+    company
+    project {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    onboarding
+    createdAt
+    updatedAt
+    ownerId
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteUserSubscriptionVariables,
+  APITypes.OnDeleteUserSubscription
 >;

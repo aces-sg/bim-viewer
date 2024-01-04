@@ -72,11 +72,6 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
         message: response.data.createComment.message,
       };
 
-      onReply(comment.id, newReply);
-
-      setShowReplyInput(false);
-      setReplyMessage('');
-
     } catch (error) {
       console.error('Error creating reply:', error);
     }
@@ -176,7 +171,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
         </span>
         {replies.filter(reply => reply.replyOf === comment.id).length > 0 && (
           <button
-            className="ml-4 font-sans font-normal text-[16px] leading-[24px] text-[#000] cursor-pointer"
+            className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[4px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]"
             onClick={handleToggleReplies}
           >
             {showReplies
@@ -188,6 +183,13 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
           </button>
         )}
       </div>
+      {showReplies &&
+        replies?.map((reply) => {
+          if (reply.replyOf === comment.id) {
+            return renderReplies(reply);
+          }
+          return null;
+        })}
       {showReplyInput && (
         <div className="flex items-center mt-[16px]">
           <input
@@ -197,29 +199,22 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply }) => {
             value={replyMessage}
             onChange={(e) => setReplyMessage(e.target.value)}
           />
-          <button onClick={handleSendReply} className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]">
+          <button onClick={handleSendReply} className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
             <Image
               priority
               src="/images/planeIcon.svg"
-              width={17.5}
-              height={17.5}
+              width={14.5}
+              height={14.5}
               alt="planeIcon"
               className="mr-2"
             />
             <span>Reply</span>
           </button>
-          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]" onClick={handleCancelReply}>
+          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]" onClick={handleCancelReply}>
             <span>Cancel</span>
           </button>
         </div>
       )}
-      {showReplies &&
-        replies?.map((reply) => {
-          if (reply.replyOf === comment.id) {
-            return renderReplies(reply);
-          }
-          return null;
-        })}
     </div>
   );
 };
