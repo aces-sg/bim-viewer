@@ -236,30 +236,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
           }
           return null;
         })}
-        {console.log("showReplyInput:===========>", showReplyInput)}
-
-        {showReplies && (
-        <div className="flex items-center mt-[16px]">
-          <input
-            type="text"
-            className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px]"
-            placeholder="Write a Message"
-            value={replyMessage}
-            onChange={(e) => setReplyMessage(e.target.value)}
-          />
-          <button onClick={handleSendReply} className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
-            <Image
-              priority
-              src="/images/planeIcon.svg"
-              width={14.5}
-              height={14.5}
-              alt="planeIcon"
-              className="mr-2"
-            />
-            <span>Reply</span>
-          </button>
-        </div>
-      )}
+       
       {showReplyInput && !showReplies && (
         <div className="flex items-center mt-[16px]">
           <MentionsInput
