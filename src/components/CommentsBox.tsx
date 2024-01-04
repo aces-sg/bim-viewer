@@ -1,4 +1,4 @@
-  import React, { FC, useEffect, useState } from "react";
+  import React, { FC, useEffect, useState, useRef } from "react";
   import Image from "next/image";
   import CommentCard from "./CommentCard";
   import { MentionsInput, Mention } from 'react-mentions';
@@ -32,6 +32,24 @@
     const [filteredComments, setFilteredComments] = useState<any[]>();
     const [comments, setComments] = useState<any[]>();
     const [mentionedUsers, setMentionedUsers] = useState<UserData[]>([]);
+
+    const inputRef = useRef();
+
+    useEffect(() => {
+      // Scroll to the end of the input when content changes
+      if (inputRef?.current) {
+        inputRef.current.scrollTop = inputRef.current.scrollHeight;
+      }
+    }, [commentMessage]);
+
+    const handleInputChange = (e) => {
+      setCommentMessage(e.target.value);
+    };
+
+    const calculateRows = () => {
+      const numberOfLines = commentMessage.split('\n').length;
+      return Math.min(numberOfLines + 1, 5);
+    };
 
     async function listAllComments() {
       try {
@@ -217,70 +235,92 @@
             />
           ))}
         </div>
-        <div className="fixed sm:w-full md:w-[490px] lg:w-[490px] bottom-0 flex items-center bg-white px-[20px] py-[16px]">
-          <MentionsInput
-            className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px] flex items-center"
-            placeholder="Write a Message"
-            value={commentMessage}
-            style={{
+        <div className="fixed sm:w-full md:w-[480px] lg:w-[480px] bottom-0 flex items-center bg-white px-[20px] py-[16px]">
+        <MentionsInput
+          className="rounded-[8px] sm:w-full md:w-[480px] lg:w-[350px]"
+          inputRef={inputRef}
+          value={commentMessage}
+          onChange={handleInputChange}
+          rows={calculateRows()}
+          style={{
+            control: {
+              backgroundColor: "#fff",
+              fontSize: 14,
+              fontWeight: "normal",
+              maxHeight: "200px",
+            },
+            "&multiLine": {
               control: {
-                fontSize: 15,
+                fontFamily: "monospace"
               },
-              "&multiLine": {
-                control: {
-                  fontFamily: "monospace",
-                  minHeight: 60,
-                },
-                highlighter: {
-                  display: "none",
-                },
-                input: {
-                  padding: 9,
-                  border: "1px solid silver",
+              highlighter: {
+                padding: 9,
+                border: "1px solid transparent",
+                maxHeight: "200px",
+                overflowY: 'hidden'
+              },
+              input: {
+                padding: 9,
+                border: "1px solid silver",
+                overflowY: "auto",
+              },
+            },
+            "&singleLine": {
+              control: {
+                fontFamily: "monospace"
+              },
+              highlighter: {
+                padding: 9,
+                border: "1px solid transparent",
+                maxHeight: "200px",
+                overflowY: 'hidden'
+              },
+              input: {
+                padding: 9,
+                border: "1px solid silver",
+                overflowY: "auto",
+              },
+            },
+            suggestions: {
+              list: {
+                backgroundColor: "white",
+                border: "1px solid rgba(0,0,0,0.15)",
+                fontSize: 14,
+                maxHeight: "200px",
+                overflowY: "scroll",
+              },
+              item: {
+                padding: "5px 15px",
+                borderBottom: "1px solid rgba(0,0,0,0.15)",
+                "&focused": {
+                  backgroundColor: "#fddb00",
                 },
               },
-              suggestions: {
-                list: {
-                  backgroundColor: "white",
-                  border: "1px solid rgba(0,0,0,0.15)",
-                  fontSize: 15,
-                  maxHeight: "200px",
-                  overflow: "auto",
-                },
-                item: {
-                  padding: "5px 15px",
-                  borderBottom: "1px solid rgba(0,0,0,0.15)",
-                  "&focused": {
-                    backgroundColor: "#fddb00",
-                  },
-                },
-              },
-            }}
-            forceSuggestionsAboveCursor={true}
-            onChange={(e: any, newValue: any, displayValue: any) =>
-              setCommentMessage(displayValue)
-            }
-          >
-            <Mention
-              trigger="@"
-              data={userData}
-              appendSpaceOnAdd={true}
-              renderSuggestion={(
-                suggestion: any,
-                search: any,
-                highlightedDisplay: any,
-                index: any,
-                focused: any,
-              ) => (
-                <div className={`mention-item ${focused ? "focused" : ""}`}>
-                  {highlightedDisplay}
-                </div>
-              )}
-              style={{ backgroundColor: 'red' }}
-              onAdd={(id, display) => handleUserSelection({ id, display })}
-            />
-          </MentionsInput>
-          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]" onClick={handleSend}>
+            },
+          }}
+          placeholder="Write a Message"
+          forceSuggestionsAboveCursor={true}
+        >
+          <Mention
+            trigger="@"
+            markup="@[__display__](user:id)"
+            appendSpaceOnAdd={true}
+            data={userData}
+            renderSuggestion={(
+              suggestion,
+              search,
+              highlightedDisplay,
+              index,
+              focused,
+            ) => (
+              <div className={`user ${focused ? "focused" : ""}`}>
+                {highlightedDisplay}
+              </div>
+            )}
+            style={{ backgroundColor: "#fddb00" }}
+          />
+        </MentionsInput>
+          <button className="flex self-end fixed right-6 items-center justify-center w-[100px] bg-[#fddb00] rounded-full py-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]" onClick={handleSend}>
             <Image
               priority
               src="/images/planeIcon.svg"
