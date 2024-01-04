@@ -70,7 +70,6 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
 
   const handleToggleReplies = () => {
     setShowReplies(!showReplies);
-    setShowReplyInput(false);
   };
 
   const handleSendReply = async () => {
@@ -202,7 +201,6 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
       </p>
       <div
         className="flex items-center cursor-pointer"
-        onClick={() => handleReply()}
       >
         <Image
           priority
@@ -212,21 +210,23 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
           alt="replyIcon"
           className="cursor-pointer mr-2"
         />
-        <span className="font-sans font-normal text-[16px] leading-[24px] text-[#000]">
+        <span className="font-sans font-normal text-[16px] leading-[24px] text-[#000]" onClick={() => setShowReplyInput(true)}>
           Reply
         </span>
         {replies.filter(reply => reply.replyOf === comment.id).length > 0 && (
-          <button
-            className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[4px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]"
-            onClick={handleToggleReplies}
-          >
-            {showReplies
-              ? 'Hide Replies'
-              : `Show ${replies.filter(reply => reply.replyOf === comment.id).length === 1
-                ? '1 Reply'
-                : `${replies.filter(reply => reply.replyOf === comment.id).length} Replies`
-              }`}
-          </button>
+          <span
+          className="underline cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#0070f3] ml-[10px]"
+          onClick={handleToggleReplies}
+        >
+          {showReplies
+            ? 'Hide Replies'
+            : `${
+                replies.filter(reply => reply.replyOf === comment.id).length === 1
+                  ? '1 Reply'
+                  : `${replies.filter(reply => reply.replyOf === comment.id).length} Replies`
+              }`
+          }
+        </span>
         )}
       </div>
       {showReplies &&
@@ -236,7 +236,31 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
           }
           return null;
         })}
-      {showReplyInput && (
+        {console.log("showReplyInput:===========>", showReplyInput)}
+
+        {showReplies && (
+        <div className="flex items-center mt-[16px]">
+          <input
+            type="text"
+            className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[38px]"
+            placeholder="Write a Message"
+            value={replyMessage}
+            onChange={(e) => setReplyMessage(e.target.value)}
+          />
+          <button onClick={handleSendReply} className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
+            <Image
+              priority
+              src="/images/planeIcon.svg"
+              width={14.5}
+              height={14.5}
+              alt="planeIcon"
+              className="mr-2"
+            />
+            <span>Reply</span>
+          </button>
+        </div>
+      )}
+      {showReplyInput && !showReplies && (
         <div className="flex items-center mt-[16px]">
           <MentionsInput
           className="rounded-[8px] sm:w-full md:w-[480px] lg:w-[350px]"
