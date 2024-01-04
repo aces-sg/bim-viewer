@@ -70,6 +70,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
 
   const handleToggleReplies = () => {
     setShowReplies(!showReplies);
+    setShowReplyInput(!showReplies);
   };
 
   const handleSendReply = async () => {
@@ -202,17 +203,19 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
       <div
         className="flex items-center cursor-pointer"
       >
+        <div className="flex" onClick={() => setShowReplyInput(showReplies ? true : !showReplyInput)}>
         <Image
           priority
-          src="/images/replyIcon.svg"
-          width={18}
+          src={showReplyInput && !showReplies ? "/images/closeIcon.svg" : "/images/replyIcon.svg"}
+          width={showReplyInput && !showReplies ? 15 : 18}
           height={15}
           alt="replyIcon"
-          className="cursor-pointer mr-2"
+          className="cursor-pointer mr-1"
         />
-        <span className="font-sans font-normal text-[16px] leading-[24px] text-[#000]" onClick={() => setShowReplyInput(true)}>
-          Reply
+        <span className="font-sans font-normal text-[16px] leading-[24px] text-[#000]">
+          {showReplyInput && !showReplies ? "Cancel" : "Reply"}
         </span>
+        </div>
         {replies.filter(reply => reply.replyOf === comment.id).length > 0 && (
           <span
           className="underline cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#0070f3] ml-[10px]"
@@ -237,7 +240,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
           return null;
         })}
        
-      {showReplyInput && !showReplies && (
+      {showReplyInput && (
         <div className="flex items-center mt-[16px]">
           <MentionsInput
           className="rounded-[8px] sm:w-full md:w-[480px] lg:w-[350px]"
@@ -324,7 +327,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
             onAdd={(id, display) => handleUserSelection({ id, display })}
           />
         </MentionsInput>
-          <button onClick={handleSendReply} className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
+          <button onClick={handleSendReply} className="flex items-center justify-center w-[120px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
             <Image
               priority
               src="/images/planeIcon.svg"
@@ -334,9 +337,6 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
               className="mr-2"
             />
             <span>Reply</span>
-          </button>
-          <button className="flex items-center justify-center w-[129px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]" onClick={handleCancelReply}>
-            <span>Cancel</span>
           </button>
         </div>
       )}
