@@ -3,8 +3,8 @@ import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { Amplify, API, graphqlOperation } from "aws-amplify";
-import { CustomModal, NotificationModal } from "@/components/Modals";
 import { NotificationModalProps } from "@/components/Modals/NotificationModal";
+import { NextSeo } from "next-seo";
 
 // Graphql
 import { listProjects } from "@/graphql/queries";
@@ -58,6 +58,7 @@ const Projects = () => {
 
   return (
     <ProtectedRoute>
+      <NextSeo title="Bimeco Projects" />
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="mb-[20px] flex items-center justify-between">
           <Link href="/projects/create">
