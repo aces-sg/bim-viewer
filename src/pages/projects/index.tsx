@@ -12,6 +12,7 @@ import { listProjects } from "@/graphql/queries";
 // Components
 import ProjectCard from "@/components/ProjectCard";
 import CommentsBox from "@/components/CommentsBox";
+import PrivateRoute from "@/components/Auth/PrivateRoute";
 import ProtectedRoute from "@/components/Auth/ProtectedRoute";
 
 import { awsConfig } from "@/awsConfig";

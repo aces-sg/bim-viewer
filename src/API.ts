@@ -185,17 +185,26 @@ export type DeleteProjectInput = {
   id: string,
 };
 
-export type SubmissionsResult = {
-  __typename: "SubmissionsResult",
-  items?:  Array<Submission | null > | null,
-  nextToken?: string | null,
+export type CreateCommentInput = {
+  id?: string | null,
+  message?: string | null,
+  user?: string | null,
+  replyOf?: string | null,
+  project?: string | null,
+  createdAt?: string | null,
+  mentions?: Array< string | null > | null,
 };
 
-export type ModelTodoFilterInput = {
-  id?: ModelIDInput | null,
-  and?: Array< ModelTodoFilterInput | null > | null,
-  or?: Array< ModelTodoFilterInput | null > | null,
-  not?: ModelTodoFilterInput | null,
+export type ModelCommentConditionInput = {
+  message?: ModelStringInput | null,
+  user?: ModelIDInput | null,
+  replyOf?: ModelIDInput | null,
+  project?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
+  mentions?: ModelIDInput | null,
+  and?: Array< ModelCommentConditionInput | null > | null,
+  or?: Array< ModelCommentConditionInput | null > | null,
+  not?: ModelCommentConditionInput | null,
 };
 
 export type ModelIDInput = {
@@ -214,9 +223,82 @@ export type ModelIDInput = {
   size?: ModelSizeInput | null,
 };
 
+export type Comment = {
+  __typename: "Comment",
+  id: string,
+  message?: string | null,
+  user?: string | null,
+  replyOf?: string | null,
+  project?: string | null,
+  createdAt?: string | null,
+  mentions?: Array< string | null > | null,
+  updatedAt: string,
+};
+
+export type UpdateCommentInput = {
+  id: string,
+  message?: string | null,
+  user?: string | null,
+  replyOf?: string | null,
+  project?: string | null,
+  createdAt?: string | null,
+  mentions?: Array< string | null > | null,
+};
+
+export type DeleteCommentInput = {
+  id: string,
+};
+
+export type SubmissionsResult = {
+  __typename: "SubmissionsResult",
+  items?:  Array<Submission | null > | null,
+  nextToken?: string | null,
+};
+
+export type ModelTodoFilterInput = {
+  id?: ModelIDInput | null,
+  and?: Array< ModelTodoFilterInput | null > | null,
+  or?: Array< ModelTodoFilterInput | null > | null,
+  not?: ModelTodoFilterInput | null,
+};
+
 export type ModelTodoConnection = {
   __typename: "ModelTodoConnection",
   items:  Array<Todo | null >,
+  nextToken?: string | null,
+};
+
+export type ModelProjectFilterInput = {
+  id?: ModelIDInput | null,
+  name?: ModelStringInput | null,
+  description?: ModelStringInput | null,
+  and?: Array< ModelProjectFilterInput | null > | null,
+  or?: Array< ModelProjectFilterInput | null > | null,
+  not?: ModelProjectFilterInput | null,
+};
+
+export type ModelProjectConnection = {
+  __typename: "ModelProjectConnection",
+  items:  Array<Project | null >,
+  nextToken?: string | null,
+};
+
+export type ModelCommentFilterInput = {
+  id?: ModelIDInput | null,
+  message?: ModelStringInput | null,
+  user?: ModelIDInput | null,
+  replyOf?: ModelIDInput | null,
+  project?: ModelStringInput | null,
+  createdAt?: ModelStringInput | null,
+  mentions?: ModelIDInput | null,
+  and?: Array< ModelCommentFilterInput | null > | null,
+  or?: Array< ModelCommentFilterInput | null > | null,
+  not?: ModelCommentFilterInput | null,
+};
+
+export type ModelCommentConnection = {
+  __typename: "ModelCommentConnection",
+  items:  Array<Comment | null >,
   nextToken?: string | null,
 };
 
@@ -236,21 +318,6 @@ export type ModelUserFilterInput = {
 export type ModelUserConnection = {
   __typename: "ModelUserConnection",
   items:  Array<User | null >,
-  nextToken?: string | null,
-};
-
-export type ModelProjectFilterInput = {
-  id?: ModelIDInput | null,
-  name?: ModelStringInput | null,
-  description?: ModelStringInput | null,
-  and?: Array< ModelProjectFilterInput | null > | null,
-  or?: Array< ModelProjectFilterInput | null > | null,
-  not?: ModelProjectFilterInput | null,
-};
-
-export type ModelProjectConnection = {
-  __typename: "ModelProjectConnection",
-  items:  Array<Project | null >,
   nextToken?: string | null,
 };
 
@@ -275,16 +342,12 @@ export type ModelSubscriptionIDInput = {
   notIn?: Array< string | null > | null,
 };
 
-export type ModelSubscriptionUserFilterInput = {
+export type ModelSubscriptionProjectFilterInput = {
   id?: ModelSubscriptionIDInput | null,
   name?: ModelSubscriptionStringInput | null,
-  phone?: ModelSubscriptionStringInput | null,
-  manager?: ModelSubscriptionStringInput | null,
-  email?: ModelSubscriptionStringInput | null,
-  company?: ModelSubscriptionStringInput | null,
-  onboarding?: ModelSubscriptionBooleanInput | null,
-  and?: Array< ModelSubscriptionUserFilterInput | null > | null,
-  or?: Array< ModelSubscriptionUserFilterInput | null > | null,
+  description?: ModelSubscriptionStringInput | null,
+  and?: Array< ModelSubscriptionProjectFilterInput | null > | null,
+  or?: Array< ModelSubscriptionProjectFilterInput | null > | null,
 };
 
 export type ModelSubscriptionStringInput = {
@@ -302,17 +365,33 @@ export type ModelSubscriptionStringInput = {
   notIn?: Array< string | null > | null,
 };
 
+export type ModelSubscriptionCommentFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  message?: ModelSubscriptionStringInput | null,
+  user?: ModelSubscriptionIDInput | null,
+  replyOf?: ModelSubscriptionIDInput | null,
+  project?: ModelSubscriptionStringInput | null,
+  createdAt?: ModelSubscriptionStringInput | null,
+  mentions?: ModelSubscriptionIDInput | null,
+  and?: Array< ModelSubscriptionCommentFilterInput | null > | null,
+  or?: Array< ModelSubscriptionCommentFilterInput | null > | null,
+};
+
+export type ModelSubscriptionUserFilterInput = {
+  id?: ModelSubscriptionIDInput | null,
+  name?: ModelSubscriptionStringInput | null,
+  phone?: ModelSubscriptionStringInput | null,
+  manager?: ModelSubscriptionStringInput | null,
+  email?: ModelSubscriptionStringInput | null,
+  company?: ModelSubscriptionStringInput | null,
+  onboarding?: ModelSubscriptionBooleanInput | null,
+  and?: Array< ModelSubscriptionUserFilterInput | null > | null,
+  or?: Array< ModelSubscriptionUserFilterInput | null > | null,
+};
+
 export type ModelSubscriptionBooleanInput = {
   ne?: boolean | null,
   eq?: boolean | null,
-};
-
-export type ModelSubscriptionProjectFilterInput = {
-  id?: ModelSubscriptionIDInput | null,
-  name?: ModelSubscriptionStringInput | null,
-  description?: ModelSubscriptionStringInput | null,
-  and?: Array< ModelSubscriptionProjectFilterInput | null > | null,
-  or?: Array< ModelSubscriptionProjectFilterInput | null > | null,
 };
 
 export type TriggerNotificationMutationVariables = {
@@ -539,6 +618,63 @@ export type DeleteProjectMutation = {
   } | null,
 };
 
+export type CreateCommentMutationVariables = {
+  input: CreateCommentInput,
+  condition?: ModelCommentConditionInput | null,
+};
+
+export type CreateCommentMutation = {
+  createComment?:  {
+    __typename: "Comment",
+    id: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
+    updatedAt: string,
+  } | null,
+};
+
+export type UpdateCommentMutationVariables = {
+  input: UpdateCommentInput,
+  condition?: ModelCommentConditionInput | null,
+};
+
+export type UpdateCommentMutation = {
+  updateComment?:  {
+    __typename: "Comment",
+    id: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
+    updatedAt: string,
+  } | null,
+};
+
+export type DeleteCommentMutationVariables = {
+  input: DeleteCommentInput,
+  condition?: ModelCommentConditionInput | null,
+};
+
+export type DeleteCommentMutation = {
+  deleteComment?:  {
+    __typename: "Comment",
+    id: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
+    updatedAt: string,
+  } | null,
+};
+
 export type ListSubmissionResultsQueryVariables = {
 };
 
@@ -619,12 +755,6 @@ export type GetUserQuery = {
     updatedAt: string,
     ownerId?: string | null,
   } | null,
-};
-
-export type ListUsersQueryVariables = {
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
 };
 
 export type ListUsersQuery = {
@@ -709,21 +839,42 @@ export type OnCreateTodoSubscription = {
   } | null,
 };
 
-export type OnUpdateTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
-};
-
 export type OnUpdateTodoSubscription = {
   onUpdateTodo?:  {
     __typename: "Todo",
     id: string,
-    createdAt: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
     updatedAt: string,
   } | null,
 };
 
-export type OnDeleteTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
+export type ListCommentsQueryVariables = {
+  filter?: ModelCommentFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type ListCommentsQuery = {
+  listComments?:  {
+    __typename: "ModelCommentConnection",
+    items:  Array< {
+      __typename: "Comment",
+      id: string,
+      message?: string | null,
+      user?: string | null,
+      replyOf?: string | null,
+      project?: string | null,
+      createdAt?: string | null,
+      mentions?: Array< string | null > | null,
+      updatedAt: string,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
 };
 
 export type OnDeleteTodoSubscription = {
@@ -740,29 +891,10 @@ export type OnCreateUserSubscriptionVariables = {
   ownerId?: string | null,
 };
 
-export type OnCreateUserSubscription = {
-  onCreateUser?:  {
-    __typename: "User",
-    id: string,
-    name?: string | null,
-    phone?: string | null,
-    manager?: string | null,
-    email?: string | null,
-    company?: string | null,
-    project?:  Array< {
-      __typename: "Project",
-      id: string,
-      name?: string | null,
-      description?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    onboarding?: boolean | null,
-    createdAt: string,
-    updatedAt: string,
-    ownerId?: string | null,
-  } | null,
+export type ListUsersQueryVariables = {
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
 };
 
 export type OnUpdateUserSubscriptionVariables = {
@@ -795,9 +927,13 @@ export type OnUpdateUserSubscription = {
   } | null,
 };
 
-export type OnDeleteUserSubscriptionVariables = {
-  filter?: ModelSubscriptionUserFilterInput | null,
-  ownerId?: string | null,
+
+export type OnUpdateTodoSubscriptionVariables = {
+  filter?: ModelSubscriptionTodoFilterInput | null,
+};
+
+export type OnDeleteTodoSubscriptionVariables = {
+  filter?: ModelSubscriptionTodoFilterInput | null,
 };
 
 export type OnDeleteUserSubscription = {
@@ -907,4 +1043,87 @@ export type OnDeleteProjectSubscription = {
     updatedAt: string,
     owner?: string | null,
   } | null,
+};
+
+export type OnCreateCommentSubscriptionVariables = {
+  filter?: ModelSubscriptionCommentFilterInput | null,
+};
+
+export type OnCreateCommentSubscription = {
+  onCreateComment?:  {
+    __typename: "Comment",
+    id: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateCommentSubscriptionVariables = {
+  filter?: ModelSubscriptionCommentFilterInput | null,
+};
+
+export type OnUpdateCommentSubscription = {
+  onUpdateComment?:  {
+    __typename: "Comment",
+    id: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnDeleteCommentSubscriptionVariables = {
+  filter?: ModelSubscriptionCommentFilterInput | null,
+};
+
+export type OnDeleteCommentSubscription = {
+  onDeleteComment?:  {
+    __typename: "Comment",
+    id: string,
+    message?: string | null,
+    user?: string | null,
+    replyOf?: string | null,
+    project?: string | null,
+    createdAt?: string | null,
+    mentions?: Array< string | null > | null,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnCreateUserSubscription = {
+  onCreateUser?:  {
+    __typename: "User",
+    id: string,
+    name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
+    email?: string | null,
+    company?: string | null,
+    project?:  Array< {
+      __typename: "Project",
+      id: string,
+      name?: string | null,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null > | null,
+    onboarding?: boolean | null,
+    createdAt: string,
+    updatedAt: string,
+    ownerId?: string | null,
+  } | null,
+};
+
+export type OnDeleteUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
 };

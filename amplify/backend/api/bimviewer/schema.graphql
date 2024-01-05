@@ -14,7 +14,10 @@ type User
       {
         allow: owner
         ownerField: "ownerId"
-        operations: [create, update, delete, read]
+        operations: [create, update, delete]
+      }, {
+        allow: public
+        operations: [read]
       }
     ]
   ) {
@@ -54,6 +57,17 @@ type Submission {
   phone: String
   commpany: String
   description: String
+}
+
+type Comment
+  @model {
+  id: ID!
+  message: String
+  user: ID
+  replyOf: ID
+  project: String
+  createdAt: AWSDateTime
+  mentions: [ID]
 }
 
 type SubmissionsResult {

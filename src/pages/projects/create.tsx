@@ -124,13 +124,25 @@ const CreateProject = () => {
         },
         authMode: "AMAZON_COGNITO_USER_POOLS",
       });
-      if (response) {
-        router.push("/projects");
+
+      if (type === "add") {
+        setProjectData(projectData => {
+          return { ...projectData, submissions: formattedFiles };
+        });
+      } else {
+        const newSubmissions = projectData.submissions.filter(
+          submission =>
+            !formattedFiles.map((file: any) => file.id).includes(submission.id),
+        );
+        setProjectData(projectData => {
+          return { ...projectData, submissions: newSubmissions };
+        });
       }
-    } catch (err) {
+    }
+    catch (err) {
       console.log("failed create Project", err);
     }
-  };
+  }
 
   const handleChange = (value: string, fieldName: string) => {
     setProjectData(projectData => {

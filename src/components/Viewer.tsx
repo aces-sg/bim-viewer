@@ -227,7 +227,7 @@ const Viewer = () => {
         <h3 className="absolute top-[15px] left-[15px] z-20 font-sans font-medium text-[16px] md:text-[24px] lg:text-[24px] leading-[36px] text-[#bcf124]">
           Models loaded: {modelCount}
         </h3>
-        {/* <div className="flex items-center justify-between absolute top-[20px] right-[15px] md:right-[45px] lg:right-[45px] z-20">
+        <div className="flex items-center justify-between absolute top-[20px] right-[15px] md:right-[45px] lg:right-[45px] z-20">
           <Image
             priority
             src="/images/chatIcon.svg"
@@ -237,7 +237,7 @@ const Viewer = () => {
             className="cursor-pointer ml-2 md:ml-5 lg:ml-5"
             onClick={() => setShowCommentsBox(true)}
           />
-        </div> */}
+        </div> 
       </div>
       {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
     </>

@@ -36,7 +36,6 @@ const Account = () => {
         variables: {
           id: res.sub,
         },
-        authMode: "AMAZON_COGNITO_USER_POOLS",
       });
       setUser(userDetails.data.getUser);
     } catch (err) {

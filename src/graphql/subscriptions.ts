@@ -57,6 +57,8 @@ export const onCreateUser = /* GraphQL */ `subscription OnCreateUser(
     company
     project {
       id
+      modelId
+      modelUrl
       name
       description
       createdAt
@@ -88,6 +90,8 @@ export const onUpdateUser = /* GraphQL */ `subscription OnUpdateUser(
     company
     project {
       id
+      modelId
+      modelUrl
       name
       description
       createdAt
@@ -119,6 +123,8 @@ export const onDeleteUser = /* GraphQL */ `subscription OnDeleteUser(
     company
     project {
       id
+      modelId
+      modelUrl
       name
       description
       createdAt
@@ -223,4 +229,55 @@ export const onDeleteProject = /* GraphQL */ `subscription OnDeleteProject(
 ` as GeneratedSubscription<
   APITypes.OnDeleteProjectSubscriptionVariables,
   APITypes.OnDeleteProjectSubscription
+>;
+export const onCreateComment = /* GraphQL */ `subscription OnCreateComment($filter: ModelSubscriptionCommentFilterInput) {
+  onCreateComment(filter: $filter) {
+    id
+    message
+    user
+    replyOf
+    project
+    createdAt
+    mentions
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnCreateCommentSubscriptionVariables,
+  APITypes.OnCreateCommentSubscription
+>;
+export const onUpdateComment = /* GraphQL */ `subscription OnUpdateComment($filter: ModelSubscriptionCommentFilterInput) {
+  onUpdateComment(filter: $filter) {
+    id
+    message
+    user
+    replyOf
+    project
+    createdAt
+    mentions
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnUpdateCommentSubscriptionVariables,
+  APITypes.OnUpdateCommentSubscription
+>;
+export const onDeleteComment = /* GraphQL */ `subscription OnDeleteComment($filter: ModelSubscriptionCommentFilterInput) {
+  onDeleteComment(filter: $filter) {
+    id
+    message
+    user
+    replyOf
+    project
+    createdAt
+    mentions
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedSubscription<
+  APITypes.OnDeleteCommentSubscriptionVariables,
+  APITypes.OnDeleteCommentSubscription
 >;
