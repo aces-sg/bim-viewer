@@ -90,7 +90,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, userData }) => {
       console.error('Error creating reply:', error);
     }
     setMentionedUsers([]);
-    setShowReplyInput(false);
+    if (!showReplies) setShowReplyInput(false);
     setReplyMessage('');
   };
 
