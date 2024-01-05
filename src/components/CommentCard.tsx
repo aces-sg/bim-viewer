@@ -309,8 +309,9 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, userData }) => {
                   {highlightedDisplay}
                 </div>
               )}
-              style={{ backgroundColor: "#fddb00" }}
+              style={{color: '#0070f3', zIndex: 1, position: 'relative' }}
               onAdd={(id, display) => handleUserSelection({ id, display })}
+              displayTransform={(id, display) => "@" + (display)}
             />
           </MentionsInput>
           <button onClick={handleSendReply} className="flex items-center justify-center w-[120px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[14px] leading-[24px] text-[#000] ml-[10px]">
