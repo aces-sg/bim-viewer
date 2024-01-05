@@ -20,12 +20,6 @@ const DocumentDetail = () => {
   const [project, setProject] = useState<any>();
   const { name, description, submissions } = project || {};
 
-  const [showCommentsBox, setShowCommentsBox] = useState(false);
-
-  const closeCommentsBox = () => {
-    setShowCommentsBox(false);
-  };
-
   const handleAdd = () => {
     router.push(`/projects/${id}/update`);
   };
@@ -34,10 +28,6 @@ const DocumentDetail = () => {
 
   const closeCommentsBox = () => {
     setShowCommentsBox(false);
-  };
-
-  const handleAdd = () => {
-    router.push(`/projects/${id}/update`);
   };
 
   useEffect(() => {

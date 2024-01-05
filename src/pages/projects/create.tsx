@@ -124,7 +124,7 @@ const CreateProject = () => {
         },
         authMode: "AMAZON_COGNITO_USER_POOLS",
       });
-  
+
       if (type === "add") {
         setProjectData(projectData => {
           return { ...projectData, submissions: formattedFiles };
@@ -139,7 +139,10 @@ const CreateProject = () => {
         });
       }
     }
-  };
+    catch (err) {
+      console.log("failed create Project", err);
+    }
+  }
 
   const handleChange = (value: string, fieldName: string) => {
     setProjectData(projectData => {
@@ -223,42 +226,42 @@ const CreateProject = () => {
                             height={20}
                             alt="ChatIcon"
                           /> */}
-                        </div>
-                        <span className="font-sans font-normal text-[14px] leading-[30px] text-[#121212]">
-                          {submission.name}
-                        </span>
                       </div>
-                    ))}
-                  </div>
+                      <span className="font-sans font-normal text-[14px] leading-[30px] text-[#121212]">
+                        {submission.name}
+                      </span>
+                    </div>
+                  ))}
                 </div>
-              )}
-              <div className="my-[20px]">
-                <lr-config
-                  ctx-name="my-uploader"
-                  pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLICKEY}
-                  sourceList="local, dropbox, gdrive"
-                  store={false}
-                />
-                <lr-file-uploader-regular
-                  ref={widgetRef}
-                  ctx-name="my-uploader"
-                  class="uploaderCfg"
-                  css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"
-                  nodeValue={null}
-                ></lr-file-uploader-regular>
               </div>
-            </div>
-            <div className="mt-4">
-              <button
-                onClick={handleCreateProject}
-                className="w-full bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] disabled:opacity-20"
-                disabled={!isFormValid}
-              >
-                Create Project
-              </button>
+            )}
+            <div className="my-[20px]">
+              <lr-config
+                ctx-name="my-uploader"
+                pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLICKEY}
+                sourceList="local, dropbox, gdrive"
+                store={false}
+              />
+              <lr-file-uploader-regular
+                ref={widgetRef}
+                ctx-name="my-uploader"
+                class="uploaderCfg"
+                css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"
+                nodeValue={null}
+              ></lr-file-uploader-regular>
             </div>
           </div>
+          <div className="mt-4">
+            <button
+              onClick={handleCreateProject}
+              className="w-full bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] disabled:opacity-20"
+              disabled={!isFormValid}
+            >
+              Create Project
+            </button>
+          </div>
         </div>
+      </div>
       {showNote && (
         <CustomModal>
           <NotificationModal {...showNote} />
