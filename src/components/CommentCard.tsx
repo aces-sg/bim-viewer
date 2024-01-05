@@ -48,7 +48,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, userData }) => {
         const regex = new RegExp(`@\\[${name}\\]\\(user:id\\)`, 'gi');
         renderedMessage = renderedMessage.replace(
           regex,
-          `<span style="background-color: #fddb00; padding: 2px; border-radius: 3px; display: inline-block;">@${name}</span>`
+          `<span style="color: #0070f3; padding: 2px; border-radius: 3px; display: inline-block;">@${name}</span>`
         );
       }
     });

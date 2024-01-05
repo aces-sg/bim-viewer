@@ -257,8 +257,9 @@ const CommentsBox: FC<CommentsBoxProps> = ({ closeBox }) => {
                 {highlightedDisplay}
               </div>
             )}
-            style={{ backgroundColor: "#fddb00" }}
+            style={{color: '#0070f3', zIndex: 1, position: 'relative' }}
             onAdd={(id, display) => handleUserSelection({ id, display })}
+            displayTransform={(id, display) => "@" + (display)}
           />
         </MentionsInput>
         <button className="flex self-end fixed right-6 items-center justify-center w-[100px] bg-[#fddb00] rounded-full py-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] ml-[10px]" onClick={handleSend}>
