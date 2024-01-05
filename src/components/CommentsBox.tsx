@@ -147,8 +147,8 @@ const CommentsBox: FC<CommentsBoxProps> = ({ closeBox }) => {
   }, [user]);
 
   useEffect(() => {
-    console.log('Mentioned Users:', mentionedUsers);
   }, [mentionedUsers]);
+  
   return (
     <div className="fixed top-0 right-0 sm:w-full md:w-[500px] lg:w-[500px] h-full shadow-[-4px_0px_8px_0px_rgba(0,0,0,0.1)] bg-[#f2f2f2] z-40 overflow-y-scroll">
       <div className="bg-white px-[20px] py-[16px] flex items-center justify-between">

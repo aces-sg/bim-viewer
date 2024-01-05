@@ -3,6 +3,9 @@ import Image from "next/image";
 import { API } from "aws-amplify";
 import { createComment } from "@/graphql/mutations";
 import { Mention, MentionsInput } from "react-mentions";
+import { getCurrentUser } from "./Auth/auth";
+import { getUser } from "@/graphql/queries";
+import { User } from "@/API";
 
 interface Comments {
   mentions: any;
@@ -35,6 +38,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, userData }) => {
   const [showReplyInput, setShowReplyInput] = useState(false);
   const [replyMessage, setReplyMessage] = useState('');
   const [mentionedUsers, setMentionedUsers] = useState<UserData[]>([]);
+  const [user, setUser] = useState<User | null>(null);
 
   const inputRef = useRef();
   const userName = userData.find((u) => u.id === comment.user.toString());
@@ -72,7 +76,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, userData }) => {
         body: {
           input: {
             message: replyMessage,
-            user: comment.user,
+            user: user?.id,
             replyOf: comment.id,
             project: "project-bim",
             mentions: mentionedUserIds
@@ -94,33 +98,57 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, userData }) => {
     setReplyMessage('');
   };
 
+  async function getUserDetails() {
+    try {
+      let res = await getCurrentUser();
+      if (res && res.sub) {
+        let userDetails: any = await API.graphql({
+          query: getUser,
+          variables: {
+            id: res.sub,
+          },
+        });
+        setUser(userDetails.data.getUser);
+      }
+    } catch (err) {
+      console.log("failed to get user", err);
+    }
+  }
+
+  useEffect(() => {
+    getUserDetails();
+  }, [user]);
+
   useEffect(() => {
   }, [mentionedUsers]);
 
-  const renderReplies = (reply: Reply) => (
-    <div key={reply.id} className="ml-[20px] mt-[10px] border-l-[1px] border-solid border-[#aaa] pl-[10px]">
-      <div className="flex items-center justify-between">
-        <span className="font-sans font-semibold text-[14px] leading-[21px] text-[#000]">
-          {userName?.display}
-        </span>
-        <span className="font-sans font-normal text-[12px] leading-[18px] text-[#000]">
-          {formatTimeAgo(reply.createdAt)}
-        </span>
-      </div>
-      <p className="font-sans font-normal text-[16px] leading-[24px] text-[#000] mb-[16px]">
-        {reply.mentions && reply.mentions.length > 0 ? (
-          renderMentionedUsers(reply.message, reply.mentions)
-        ) : (
-          reply.message
-        )}
-      </p>
-      {reply.childReplies && (
-        <div className="max-h-[200px] overflow-y-auto border border-solid border-[#ddd] rounded p-2">
-          {reply.childReplies.reverse().map(renderReplies)}
+  const renderReplies = (reply: Reply) => {
+    const displayName = userData.find((u) => u.id === reply.user.toString());
+    return (
+      <div key={reply.id} className="ml-[20px] mt-[10px] border-l-[1px] border-solid border-[#aaa] pl-[10px]">
+        <div className="flex items-center justify-between">
+          <span className="font-sans font-semibold text-[14px] leading-[21px] text-[#000]">
+            {displayName?.display}
+          </span>
+          <span className="font-sans font-normal text-[12px] leading-[18px] text-[#000]">
+            {formatTimeAgo(reply.createdAt)}
+          </span>
         </div>
-      )}
-    </div>
-  );
+        <p className="font-sans font-normal text-[16px] leading-[24px] text-[#000] mb-[16px]">
+          {reply.mentions && reply.mentions.length > 0 ? (
+            renderMentionedUsers(reply.message, reply.mentions)
+          ) : (
+            reply.message
+          )}
+        </p>
+        {reply.childReplies && (
+          <div className="max-h-[200px] overflow-y-auto border border-solid border-[#ddd] rounded p-2">
+            {reply.childReplies.reverse().map(renderReplies)}
+          </div>
+        )}
+      </div>
+    );
+  }; 
 
   const handleUserSelection = (user: UserData) => {
     const isAlreadyMentioned = mentionedUsers.some(mentionedUser => mentionedUser.id === user.id);
