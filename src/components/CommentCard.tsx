@@ -44,10 +44,10 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
       const user = userData.find((u) => u.id === userId);
       if (user) {
         const name = user.display;
-        const regex = new RegExp(`@${userId}`, 'gi');
+        const regex = new RegExp(`@\\[${name}\\]\\(user:id\\)`, 'gi');
         renderedMessage = renderedMessage.replace(
           regex,
-          `<span style="background-color: yellow; padding: 2px; border-radius: 3px; display: inline-block;">${name}</span>`
+          `<span style="background-color: yellow; padding: 2px; border-radius: 3px; display: inline-block;">@${name}</span>`
         );
       }
     });
@@ -309,7 +309,7 @@ const CommentCard: FC<CommentCardProps> = ({ comment, replies, onReply, userData
         >
           <Mention
             trigger="@"
-            markup="@__display__"
+            markup="@[__display__](user:id)"
             appendSpaceOnAdd={true}
             data={userData}
             renderSuggestion={(

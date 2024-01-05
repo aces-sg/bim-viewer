@@ -304,7 +304,7 @@
         >
           <Mention
             trigger="@"
-            markup="@__display__"
+            markup="@[__display__](user:id)"
             appendSpaceOnAdd={true}
             data={userData}
             renderSuggestion={(
