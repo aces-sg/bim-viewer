@@ -24,7 +24,7 @@ const DocumentTree: FC<DocumentTreeProps> = ({ document, level }) => {
             src={`/images/fileIcon.svg`}
             width={document.type === "file" ? 16 : 20}
             height={24}
-            alt="ChatIcon"
+            alt="FileIcon"
           />
         </div>
         <span>{document.name}</span>

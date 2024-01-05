@@ -237,7 +237,7 @@ const Viewer = () => {
             className="cursor-pointer ml-2 md:ml-5 lg:ml-5"
             onClick={() => setShowCommentsBox(true)}
           />
-        </div>
+        </div> 
       </div>
       {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
     </>

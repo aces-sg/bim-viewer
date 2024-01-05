@@ -118,7 +118,7 @@ import React, {
               id: id,
               name: projectData.name,
               description: projectData.description,
-              submissions: projectData.submissions
+              // submissions: projectData.submissions || [],
             }
           },
           authMode: "AMAZON_COGNITO_USER_POOLS",
@@ -162,7 +162,7 @@ import React, {
         <h5 className="font-sans font-semibold text-[20px] leading-[30px] text-[#121212]">
           Update Project
         </h5>
-        <div className="grid grid-cols-4 gap-4 my-4">
+        <div className="grid grid-cols-2 gap-4 my-4">
           <div>
             <div className="mb-[10px]">
               <label
@@ -187,10 +187,9 @@ import React, {
               >
                 Project Description
               </label>
-              <input
+              <textarea
                 id="projectDescription"
-                type="text"
-                className="rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[44px]"
+                className="block rounded-[8px] p-[10px] border-[1px] border-solid border-[#aaa] w-full h-[88px]"
                 placeholder="Project Description"
                 value={projectData.description}
                 onChange={e => handleChange(e.target.value, "description")}
@@ -206,13 +205,13 @@ import React, {
                     {projectData?.submissions?.map((submission, index) => (
                       <div className="flex items-center mb-[5px]" key={index}>
                         <div className="w-[24px] h-[24px] flex items-center justify-center mr-[10px]">
-                          {/* <Image
+                          <Image
                             priority
                             src={`/images/fileIcon.svg`}
                             width={16}
                             height={20}
-                            alt="ChatIcon"
-                          /> */}
+                            alt="fileIcon"
+                          />
                         </div>
                         <span className="font-sans font-normal text-[14px] leading-[30px] text-[#121212]">
                           {submission.name}
@@ -222,7 +221,7 @@ import React, {
                   </div>
                 </div>
               )}
-              <div className="my-[20px]">
+              {/* <div className="my-[20px]">
                 <lr-config
                   ctx-name="my-uploader"
                   pubkey={process.env.NEXT_PUBLIC_UPLOADCARE_PUBLICKEY}
@@ -236,15 +235,23 @@ import React, {
                   css-src="https://cdn.jsdelivr.net/npm/@uploadcare/blocks@0.25.6/web/lr-file-uploader-regular.min.css"
                   nodeValue={null}
                 ></lr-file-uploader-regular>
-              </div>
+              </div> */}
             </div>
             <div className="mt-4">
               <button
                 onClick={handleUpdateProject}
-                className="w-full bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000] disabled:opacity-20"
+                className="flex items-center justify-center w-[200px] bg-[#fddb00] rounded-full p-[8px] cursor-pointer font-sans font-semibold text-[16px] leading-[24px] text-[#000]"
                 disabled={!isFormValid}
               >
-                Update Project
+                <Image
+              priority
+              src="/images/update.svg"
+              width={20}
+              height={20}
+              alt="Update Icon"
+              className="mr-2"
+            />
+                <span>Update Project</span>
               </button>
             </div>
           </div>

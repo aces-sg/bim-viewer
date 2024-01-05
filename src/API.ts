@@ -728,6 +728,55 @@ export type ListTodosQuery = {
   } | null,
 };
 
+export type GetUserQueryVariables = {
+  id: string,
+};
+
+export type GetUserQuery = {
+  getUser?:  {
+    __typename: "User",
+    id: string,
+    name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
+    email?: string | null,
+    company?: string | null,
+    project?:  Array< {
+      __typename: "Project",
+      id: string,
+      name?: string | null,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null > | null,
+    onboarding?: boolean | null,
+    createdAt: string,
+    updatedAt: string,
+    ownerId?: string | null,
+  } | null,
+};
+
+export type ListUsersQuery = {
+  listUsers?:  {
+    __typename: "ModelUserConnection",
+    items:  Array< {
+      __typename: "User",
+      id: string,
+      name?: string | null,
+      phone?: string | null,
+      manager?: string | null,
+      email?: string | null,
+      company?: string | null,
+      onboarding?: boolean | null,
+      createdAt: string,
+      updatedAt: string,
+      ownerId?: string | null,
+    } | null >,
+    nextToken?: string | null,
+  } | null,
+};
+
 export type GetProjectQueryVariables = {
   id: string,
 };
@@ -777,13 +826,22 @@ export type ListProjectsQuery = {
   } | null,
 };
 
-export type GetCommentQueryVariables = {
-  id: string,
+export type OnCreateTodoSubscriptionVariables = {
+  filter?: ModelSubscriptionTodoFilterInput | null,
 };
 
-export type GetCommentQuery = {
-  getComment?:  {
-    __typename: "Comment",
+export type OnCreateTodoSubscription = {
+  onCreateTodo?:  {
+    __typename: "Todo",
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
+};
+
+export type OnUpdateTodoSubscription = {
+  onUpdateTodo?:  {
+    __typename: "Todo",
     id: string,
     message?: string | null,
     user?: string | null,
@@ -819,12 +877,33 @@ export type ListCommentsQuery = {
   } | null,
 };
 
-export type GetUserQueryVariables = {
-  id: string,
+export type OnDeleteTodoSubscription = {
+  onDeleteTodo?:  {
+    __typename: "Todo",
+    id: string,
+    createdAt: string,
+    updatedAt: string,
+  } | null,
 };
 
-export type GetUserQuery = {
-  getUser?:  {
+export type OnCreateUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
+  ownerId?: string | null,
+};
+
+export type ListUsersQueryVariables = {
+  filter?: ModelUserFilterInput | null,
+  limit?: number | null,
+  nextToken?: string | null,
+};
+
+export type OnUpdateUserSubscriptionVariables = {
+  filter?: ModelSubscriptionUserFilterInput | null,
+  ownerId?: string | null,
+};
+
+export type OnUpdateUserSubscription = {
+  onUpdateUser?:  {
     __typename: "User",
     id: string,
     name?: string | null,
@@ -848,68 +927,37 @@ export type GetUserQuery = {
   } | null,
 };
 
-export type ListUsersQueryVariables = {
-  filter?: ModelUserFilterInput | null,
-  limit?: number | null,
-  nextToken?: string | null,
-};
-
-export type ListUsersQuery = {
-  listUsers?:  {
-    __typename: "ModelUserConnection",
-    items:  Array< {
-      __typename: "User",
-      id: string,
-      name?: string | null,
-      phone?: string | null,
-      manager?: string | null,
-      email?: string | null,
-      company?: string | null,
-      onboarding?: boolean | null,
-      createdAt: string,
-      updatedAt: string,
-      ownerId?: string | null,
-    } | null >,
-    nextToken?: string | null,
-  } | null,
-};
-
-export type OnCreateTodoSubscriptionVariables = {
-  filter?: ModelSubscriptionTodoFilterInput | null,
-};
-
-export type OnCreateTodoSubscription = {
-  onCreateTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
-};
 
 export type OnUpdateTodoSubscriptionVariables = {
   filter?: ModelSubscriptionTodoFilterInput | null,
-};
-
-export type OnUpdateTodoSubscription = {
-  onUpdateTodo?:  {
-    __typename: "Todo",
-    id: string,
-    createdAt: string,
-    updatedAt: string,
-  } | null,
 };
 
 export type OnDeleteTodoSubscriptionVariables = {
   filter?: ModelSubscriptionTodoFilterInput | null,
 };
 
-export type OnDeleteTodoSubscription = {
-  onDeleteTodo?:  {
-    __typename: "Todo",
+export type OnDeleteUserSubscription = {
+  onDeleteUser?:  {
+    __typename: "User",
     id: string,
+    name?: string | null,
+    phone?: string | null,
+    manager?: string | null,
+    email?: string | null,
+    company?: string | null,
+    project?:  Array< {
+      __typename: "Project",
+      id: string,
+      name?: string | null,
+      description?: string | null,
+      createdAt: string,
+      updatedAt: string,
+      owner?: string | null,
+    } | null > | null,
+    onboarding?: boolean | null,
     createdAt: string,
     updatedAt: string,
+    ownerId?: string | null,
   } | null,
 };
 
@@ -1051,10 +1099,6 @@ export type OnDeleteCommentSubscription = {
   } | null,
 };
 
-export type OnCreateUserSubscriptionVariables = {
-  filter?: ModelSubscriptionUserFilterInput | null,
-};
-
 export type OnCreateUserSubscription = {
   onCreateUser?:  {
     __typename: "User",
@@ -1080,60 +1124,6 @@ export type OnCreateUserSubscription = {
   } | null,
 };
 
-export type OnUpdateUserSubscriptionVariables = {
-  filter?: ModelSubscriptionUserFilterInput | null,
-};
-
-export type OnUpdateUserSubscription = {
-  onUpdateUser?:  {
-    __typename: "User",
-    id: string,
-    name?: string | null,
-    phone?: string | null,
-    manager?: string | null,
-    email?: string | null,
-    company?: string | null,
-    project?:  Array< {
-      __typename: "Project",
-      id: string,
-      name?: string | null,
-      description?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    onboarding?: boolean | null,
-    createdAt: string,
-    updatedAt: string,
-    ownerId?: string | null,
-  } | null,
-};
-
 export type OnDeleteUserSubscriptionVariables = {
   filter?: ModelSubscriptionUserFilterInput | null,
-};
-
-export type OnDeleteUserSubscription = {
-  onDeleteUser?:  {
-    __typename: "User",
-    id: string,
-    name?: string | null,
-    phone?: string | null,
-    manager?: string | null,
-    email?: string | null,
-    company?: string | null,
-    project?:  Array< {
-      __typename: "Project",
-      id: string,
-      name?: string | null,
-      description?: string | null,
-      createdAt: string,
-      updatedAt: string,
-      owner?: string | null,
-    } | null > | null,
-    onboarding?: boolean | null,
-    createdAt: string,
-    updatedAt: string,
-    ownerId?: string | null,
-  } | null,
 };

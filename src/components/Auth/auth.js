@@ -131,7 +131,6 @@ export function signOut() {
 export async function getCurrentUser() {
   return new Promise((resolve, reject) => {
     const cognitoUser = userPool.getCurrentUser();
-
     if (!cognitoUser) {
       reject(new Error("No user found"));
       return;
@@ -182,7 +181,6 @@ export function isLoggedIn() {
     // If no user is currently stored in the user pool, the user isn't logged in.
     if (!cognitoUser) {
       resolve(false);
-      router.push(`${urls.loginPage}`);
       return;
     }
 

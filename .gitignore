@@ -40,6 +40,8 @@ next-env.d.ts
 .idea
 .vscode
 
+# env variables
+.env*
 .env.production
 
 #amplify-do-not-edit-begin
@@ -50,6 +52,7 @@ amplify/mock-data
 amplify/mock-api-resources
 amplify/backend/amplify-meta.json
 amplify/backend/.temp
+amplify/backend/*
 build/
 dist/
 node_modules/

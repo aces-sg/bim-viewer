@@ -55,6 +55,96 @@ export const listTodos = /* GraphQL */ `query ListTodos(
   }
 }
 ` as GeneratedQuery<APITypes.ListTodosQueryVariables, APITypes.ListTodosQuery>;
+export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
+  getUser(id: $id) {
+    id
+    name
+    phone
+    manager
+    email
+    company
+    project {
+      id
+      name
+      description
+      createdAt
+      updatedAt
+      owner
+      __typename
+    }
+    onboarding
+    createdAt
+    updatedAt
+    ownerId
+    __typename
+  }
+}
+` as GeneratedQuery<APITypes.GetUserQueryVariables, APITypes.GetUserQuery>;
+export const listUsers = /* GraphQL */ `query ListUsers(
+  $filter: ModelUserFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      name
+      phone
+      manager
+      email
+      company
+      onboarding
+      createdAt
+      updatedAt
+      ownerId
+      __typename
+    }
+    nextToken
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.ListProjectsQueryVariables,
+  APITypes.ListProjectsQuery
+>;
+export const getComment = /* GraphQL */ `query GetComment($id: ID!) {
+  getComment(id: $id) {
+    id
+    message
+    user
+    replyOf
+    project
+    createdAt
+    mentions
+    updatedAt
+    __typename
+  }
+}
+` as GeneratedQuery<
+  APITypes.GetCommentQueryVariables,
+  APITypes.GetCommentQuery
+>;
+export const listComments = /* GraphQL */ `query ListComments(
+  $filter: ModelCommentFilterInput
+  $limit: Int
+  $nextToken: String
+) {
+  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
+    items {
+      id
+      message
+      user
+      replyOf
+      project
+      createdAt
+      mentions
+      updatedAt
+      __typename
+    }
+    nextToken
+  }
+}
+` as GeneratedQuery<APITypes.ListUsersQueryVariables, APITypes.ListUsersQuery>;
 export const getProject = /* GraphQL */ `query GetProject($id: ID!) {
   getProject(id: $id) {
     id
@@ -104,94 +194,3 @@ export const listProjects = /* GraphQL */ `query ListProjects(
   APITypes.ListProjectsQueryVariables,
   APITypes.ListProjectsQuery
 >;
-export const getComment = /* GraphQL */ `query GetComment($id: ID!) {
-  getComment(id: $id) {
-    id
-    message
-    user
-    replyOf
-    project
-    createdAt
-    mentions
-    updatedAt
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.GetCommentQueryVariables,
-  APITypes.GetCommentQuery
->;
-export const listComments = /* GraphQL */ `query ListComments(
-  $filter: ModelCommentFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listComments(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      message
-      user
-      replyOf
-      project
-      createdAt
-      mentions
-      updatedAt
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<
-  APITypes.ListCommentsQueryVariables,
-  APITypes.ListCommentsQuery
->;
-export const getUser = /* GraphQL */ `query GetUser($id: ID!) {
-  getUser(id: $id) {
-    id
-    name
-    phone
-    manager
-    email
-    company
-    project {
-      id
-      name
-      description
-      createdAt
-      updatedAt
-      owner
-      __typename
-    }
-    onboarding
-    createdAt
-    updatedAt
-    ownerId
-    __typename
-  }
-}
-` as GeneratedQuery<APITypes.GetUserQueryVariables, APITypes.GetUserQuery>;
-export const listUsers = /* GraphQL */ `query ListUsers(
-  $filter: ModelUserFilterInput
-  $limit: Int
-  $nextToken: String
-) {
-  listUsers(filter: $filter, limit: $limit, nextToken: $nextToken) {
-    items {
-      id
-      name
-      phone
-      manager
-      email
-      company
-      onboarding
-      createdAt
-      updatedAt
-      ownerId
-      __typename
-    }
-    nextToken
-    __typename
-  }
-}
-` as GeneratedQuery<APITypes.ListUsersQueryVariables, APITypes.ListUsersQuery>;

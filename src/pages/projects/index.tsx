@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import Link from "next/link";
 import Image from "next/image";
 import { Amplify, API, graphqlOperation } from "aws-amplify";
+import { NotificationModalProps } from "@/components/Modals/NotificationModal";
+import { NextSeo } from "next-seo";
 
 // Graphql
 import { listProjects } from "@/graphql/queries";
@@ -10,14 +13,22 @@ import { listProjects } from "@/graphql/queries";
 import ProjectCard from "@/components/ProjectCard";
 import CommentsBox from "@/components/CommentsBox";
 import PrivateRoute from "@/components/Auth/PrivateRoute";
+import ProtectedRoute from "@/components/Auth/ProtectedRoute";
 
 import { awsConfig } from "@/awsConfig";
 
 Amplify.configure(awsConfig);
 
 const Projects = () => {
+  const [isLoading, setLoading] = useState(true);
   const [projects, setProjects] = useState<any[]>();
   const [showCommentsBox, setShowCommentsBox] = useState(false);
+  const [showNote, setShowNote] = useState<NotificationModalProps | null>({
+    type: false,
+    message: "",
+    closeModal: () => setShowNote(null),
+  });
+  const router = useRouter();
 
   const closeCommentsBox = () => {
     setShowCommentsBox(false);
@@ -33,14 +44,22 @@ const Projects = () => {
     } catch (err) {
       console.log("failed to get projects: ", err);
     }
+    setLoading(false);
   }
 
   useEffect(() => {
     listAllProjects();
   }, []);
 
+  useEffect(() => {
+    if (isLoading === false && projects?.length === 0) {
+      router.push("/projects/create");
+    }
+  }, [projects]);
+
   return (
-    <PrivateRoute>
+    <ProtectedRoute>
+      <NextSeo title="Bimeco Projects" />
       <div className="px-[15px] md:px-[20px] lg:px-[40px] py-[32px]">
         <div className="mb-[20px] flex items-center justify-between">
           <Link href="/projects/create">
@@ -53,18 +72,9 @@ const Projects = () => {
                 alt="PlusIcon"
                 className="mr-2"
               />
-              <span>Add</span>
+              <span>Create</span>
             </button>
           </Link>
-          {/* <Image
-            priority
-            src="/images/chatIcon.svg"
-            width={40}
-            height={40}
-            alt="ChatIcon"
-            className="cursor-pointer"
-            onClick={() => setShowCommentsBox(true)}
-          /> */}
         </div>
 
         <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-[20px]">
@@ -75,7 +85,7 @@ const Projects = () => {
         </div>
       </div>
       {showCommentsBox && <CommentsBox closeBox={closeCommentsBox} />}
-    </PrivateRoute>
+    </ProtectedRoute>
   );
 };
 

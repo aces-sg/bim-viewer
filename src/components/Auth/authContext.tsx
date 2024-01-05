@@ -1,9 +1,9 @@
 import React, { createContext, useState, useEffect } from "react";
 import * as auth from "./auth";
-import {
-  CognitoUserPool
-} from "amazon-cognito-identity-js";
+import { CognitoUserPool } from "amazon-cognito-identity-js";
 import awsmobile from "../../aws-exports";
+import { API } from "aws-amplify";
+import { getUser } from "@/graphql/queries";
 
 interface AuthContextType {
   user: any;
@@ -33,14 +33,22 @@ function AuthProvider({ children }: { children: React.ReactNode }) {
   const getCurrentUser = async () => {
     try {
       const user = await auth.getCurrentUser();
-      setUser(user);
+
+      const userdetailed = (await API.graphql({
+        query: getUser,
+        variables: {
+          id: user.sub,
+        },
+        authMode: "AMAZON_COGNITO_USER_POOLS",
+      })) as any;
+      setUser(userdetailed?.data.getUser || user);
     } catch (err) {
       // not logged in
       console.log(err);
       setUser({});
     }
   };
-  
+
   const signIn = async (username: string, password: string) => {
     // debugger
     await auth.signIn(username, password);
